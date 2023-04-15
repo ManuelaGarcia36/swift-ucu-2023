@@ -17,13 +17,11 @@ class ViewController: UIViewController {
     @IBOutlet weak var followingButton: UIButton!
     @IBOutlet weak var moreOptionsButton: UIButton!
     @IBOutlet weak var informationStack: UIStackView!
-    @IBOutlet weak var stackResultView: UIView!
+    @IBOutlet weak var containerView: UIView!
     
     //Colores
-    //private let primaryColor = UIColor(red: 56/255, green: 117/255, blue: 233/255, alpha: 1)
     private let facebookBlue = UIColor(red: 59/255, green: 89/255, blue: 152/255, alpha: 1.0)
-    let facebookLightBlue = UIColor(red: 179/255, green: 203/255, blue: 252/255, alpha: 1.0)
-    
+    private let facebookLightBlue = UIColor(red: 179/255, green: 203/255, blue: 252/255, alpha: 1.0)
     private let facebookDarkGray = UIColor(red: 35/255, green: 35/255, blue: 35/255, alpha: 1.0)
     private let facebookLightGray = UIColor(red: 216/255, green: 216/255, blue: 216/255, alpha: 1.0)
     private let facebookWhite = UIColor.white
@@ -34,7 +32,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        // Do any additional setup after loading the view.
+        // Normalizacion de la vista
         perfilImage.layer.cornerRadius = perfilImage.bounds.height / 2
         perfilImage.clipsToBounds = true
         perfilImage.layer.borderWidth = 2
@@ -71,7 +69,6 @@ class ViewController: UIViewController {
             
             informationStack.addArrangedSubview(button)
         }
-        
         view.addSubview(informationStack)
         
     }
@@ -93,25 +90,27 @@ class ViewController: UIViewController {
         sender.layer.cornerRadius = sender.bounds.height/2
         sender.clipsToBounds = true
         
+        // Obtener una referencia al controlador secundario
+        //    guard let postViewController = self.storyboard?.instantiateViewController(withIdentifier: "PostViewController") as? PostViewController else {
+           //     return
+           // }
+        
         switch sender.currentTitle {
-           case "Post":
-               // Mostrar la vista de "Posts"
-               //postsView.isHidden = false
-               //infoView.isHidden = true
-               //friendsView.isHidden = true
-            //moreView.isHidden = true
-            stackResultView.backgroundColor = .blue
-           case "Info":
-               // Mostrar la vista de "Información"
-            stackResultView.backgroundColor = .yellow
-               case "Friends":
-               // Mostrar la vista de "Amigos"
-            stackResultView.backgroundColor = .green
-           case "More":
-            stackResultView.backgroundColor = .orange
-        default:
-               break
-           }
+              case "Post":
+               //postViewController.myPostView.isHidden = false
+               containerView.backgroundColor = .white
+              case "Info":
+               //postViewController.myPostView.isHidden = true
+               containerView.backgroundColor = .yellow
+                  case "Friends":
+               //postViewController.myPostView.isHidden = true
+               containerView.backgroundColor = .green
+              case "More":
+               //postViewController.myPostView.isHidden = true
+               containerView.backgroundColor = .orange
+           default:
+                  break
+              }
     }
 }
 

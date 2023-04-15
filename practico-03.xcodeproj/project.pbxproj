@@ -13,6 +13,7 @@
 		F5059B2B29DF705E002F2A35 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5059B2929DF705E002F2A35 /* Main.storyboard */; };
 		F5059B2D29DF7063002F2A35 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5059B2C29DF7063002F2A35 /* Assets.xcassets */; };
 		F5059B3029DF7063002F2A35 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5059B2E29DF7063002F2A35 /* LaunchScreen.storyboard */; };
+		F5254D2629EA3D300040B2D5 /* PostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5254D2529EA3D300040B2D5 /* PostViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -24,6 +25,7 @@
 		F5059B2C29DF7063002F2A35 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5059B2F29DF7063002F2A35 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5059B3129DF7063002F2A35 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F5254D2529EA3D300040B2D5 /* PostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -60,6 +62,7 @@
 				F5059B2529DF705E002F2A35 /* SceneDelegate.swift */,
 				F5059B2729DF705E002F2A35 /* ViewController.swift */,
 				F5059B2929DF705E002F2A35 /* Main.storyboard */,
+				F5254D2529EA3D300040B2D5 /* PostViewController.swift */,
 				F5059B2C29DF7063002F2A35 /* Assets.xcassets */,
 				F5059B2E29DF7063002F2A35 /* LaunchScreen.storyboard */,
 				F5059B3129DF7063002F2A35 /* Info.plist */,
@@ -138,6 +141,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5254D2629EA3D300040B2D5 /* PostViewController.swift in Sources */,
 				F5059B2829DF705E002F2A35 /* ViewController.swift in Sources */,
 				F5059B2429DF705E002F2A35 /* AppDelegate.swift in Sources */,
 				F5059B2629DF705E002F2A35 /* SceneDelegate.swift in Sources */,
