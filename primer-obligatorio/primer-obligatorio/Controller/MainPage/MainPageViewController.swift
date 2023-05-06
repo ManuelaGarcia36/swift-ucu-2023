@@ -26,6 +26,7 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var collectionView: UICollectionView!
     
     @IBOutlet weak var pageControl: UIPageControl!
+    var currentCellIndex = 0;
     
     @IBOutlet weak var labelSearch: UILabel!
     
@@ -35,6 +36,9 @@ class MainPageViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        pageControl.currentPage = 0
+        
         equipos = equiposIniciales
         partidos = partidosIniciales
         
@@ -46,7 +50,9 @@ class MainPageViewController: UIViewController {
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
                
         
+        collectionView.delegate = self
         collectionView.dataSource = self
+        
         collectionView.register(UINib(nibName: CustomCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: "CustomCollectionViewCell")
         
         let filterButton = UIButton()
@@ -57,6 +63,15 @@ class MainPageViewController: UIViewController {
     
 
 
+    }
+    
+    @objc func slideToNext(){
+        if currentCellIndex < bannersActivos.count - 1 {
+            currentCellIndex = currentCellIndex + 1
+        }else {
+            currentCellIndex = 0
+        }
+        collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -101,10 +116,13 @@ extension MainPageViewController: UITableViewDelegate {
     }
 }
 
+
 extension MainPageViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        3
+        let cantBanners = bannersActivos.count
+        pageControl.numberOfPages = cantBanners
+        return cantBanners
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -115,4 +133,22 @@ extension MainPageViewController: UICollectionViewDataSource {
         cell.setup(image: elemt)
         return cell
     }
+    
 }
+
+extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
+   
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let offSet = scrollView.contentOffset.x
+        let width = scrollView.frame.width
+        let horizontalCenter = width / 2
+
+        pageControl.currentPage = Int(offSet + horizontalCenter) / Int(width)
+    }
+ 
+}
+

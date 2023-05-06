@@ -20,5 +20,6 @@ class CustomCollectionViewCell: UICollectionViewCell {
 
     func setup(image: UIImage!){
         imageBanner.image = image
+        imageBanner.contentMode = .scaleAspectFill
     }
 }
