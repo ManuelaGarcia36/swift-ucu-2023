@@ -36,7 +36,7 @@ extension String {
 
 let equiposIniciales = [
     Equipo(nombre: "Peñarol", imagen: UIImage(named: "escudo-penarol.png")),
-    Equipo(nombre: "Club Nacional De Football", imagen: UIImage(named: "escudo-cdnf.png")),
+    Equipo(nombre: "Club Nacional De Football", imagen: UIImage(named: "escudo-cndf.png")),
     Equipo(nombre: "Uruguay", imagen: UIImage(named: "escudo-uy.png")),
     Equipo(nombre: "Argentina", imagen: UIImage(named: "escudo-arg.png")),
     Equipo(nombre: "Atletico Madrid", imagen: UIImage(named: "escudo-atletico.png")),
