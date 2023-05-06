@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="nuP-DA-3Sj">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="BYZ-38-t0r">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
@@ -76,11 +76,11 @@
             <objects>
                 <viewController id="eSu-6y-rMn" userLabel="Sign Up View Controller" customClass="SingUpViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H11-i5-n4O">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="Thi-0l-YSm">
-                                <rect key="frame" x="30" y="279" width="333" height="363"/>
+                                <rect key="frame" x="30" y="239.66666666666663" width="333" height="363"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crear cuenta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkh-vt-JIO">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="25.333333333333332"/>
@@ -89,31 +89,31 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK2-gy-oSD">
-                                        <rect key="frame" x="0.0" y="45.333333333333314" width="333" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="45.333333333333343" width="333" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="f3x-Xt-ZTt" userLabel="Mail Text">
-                                        <rect key="frame" x="0.0" y="85.666666666666686" width="333" height="34"/>
+                                        <rect key="frame" x="0.0" y="85.666666666666657" width="333" height="34"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contraseña" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B7f-lZ-xZv">
-                                        <rect key="frame" x="0.0" y="139.66666666666669" width="333" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="139.66666666666666" width="333" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4gq-Jt-tQh" userLabel="passwordText">
-                                        <rect key="frame" x="0.0" y="180" width="333" height="34"/>
+                                        <rect key="frame" x="0.0" y="180.00000000000003" width="333" height="34"/>
                                         <color key="textColor" systemColor="secondaryLabelColor"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztx-Ui-P9w" userLabel="createButton">
-                                        <rect key="frame" x="0.0" y="234" width="333" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="234.00000000000003" width="333" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Create" cornerStyle="capsule">
                                             <color key="baseBackgroundColor" red="0.31653743979999999" green="0.46051841970000001" blue="0.81945055720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -129,7 +129,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrO-AM-p0j">
-                                        <rect key="frame" x="0.0" y="328.66666666666663" width="333" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="328.66666666666674" width="333" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Ingresa"/>
                                         <connections>
@@ -169,11 +169,11 @@
             <objects>
                 <viewController id="Sm3-gA-5I9" userLabel="Sing In View Controller" customClass="SignInViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MZo-US-sn0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wuG-Sa-fMY">
-                                <rect key="frame" x="30" y="279" width="333" height="363"/>
+                                <rect key="frame" x="30" y="239.66666666666663" width="333" height="363"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresar a tu cuenta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bE7-ui-OdD">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="25.333333333333332"/>
@@ -182,38 +182,38 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddX-fH-MML">
-                                        <rect key="frame" x="0.0" y="45.333333333333314" width="333" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="45.333333333333343" width="333" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="FSC-8M-G8w" userLabel="usernameText">
-                                        <rect key="frame" x="0.0" y="85.666666666666686" width="333" height="34"/>
+                                        <rect key="frame" x="0.0" y="85.666666666666657" width="333" height="34"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
                                     </textField>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Contraseña" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oN3-HI-8Qh">
-                                        <rect key="frame" x="0.0" y="139.66666666666669" width="333" height="20.333333333333343"/>
+                                        <rect key="frame" x="0.0" y="139.66666666666666" width="333" height="20.333333333333343"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="QvQ-18-Ybd" userLabel="passwordText">
-                                        <rect key="frame" x="0.0" y="180" width="333" height="34"/>
+                                        <rect key="frame" x="0.0" y="180.00000000000003" width="333" height="34"/>
                                         <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8y-qi-gaA">
-                                        <rect key="frame" x="0.0" y="234" width="333" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="234.00000000000003" width="333" height="34.333333333333343"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Login" cornerStyle="capsule">
                                             <color key="baseBackgroundColor" red="0.31653743979999999" green="0.46051841970000001" blue="0.81945055720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="loginButton:" destination="Sm3-gA-5I9" eventType="touchUpInside" id="Qtf-2k-2nH"/>
-                                            <segue destination="Nbg-LU-GPq" kind="show" identifier="PrincipalViewController" id="oWa-fT-Ahl"/>
+                                            <segue destination="Nbg-LU-GPq" kind="presentation" identifier="PrincipalViewController" id="oWa-fT-Ahl"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tienes cuenta?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQP-ds-UbW">
@@ -223,7 +223,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="JBR-vN-8ln">
-                                        <rect key="frame" x="0.0" y="328.66666666666663" width="333" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="328.66666666666674" width="333" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Crear"/>
                                         <connections>
@@ -268,27 +268,9 @@
             </objects>
             <point key="canvasLocation" x="1902.2900763358778" y="29.577464788732396"/>
         </scene>
-        <!--Navigation Controller-->
-        <scene sceneID="NfY-sy-rk4">
-            <objects>
-                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="nuP-DA-3Sj" sceneMemberID="viewController">
-                    <toolbarItems/>
-                    <navigationBar key="navigationBar" contentMode="scaleToFill" id="fC6-N7-AIH">
-                        <rect key="frame" x="0.0" y="59" width="393" height="44"/>
-                        <autoresizingMask key="autoresizingMask"/>
-                    </navigationBar>
-                    <nil name="viewControllers"/>
-                    <connections>
-                        <segue destination="BYZ-38-t0r" kind="relationship" relationship="rootViewController" id="pZr-5c-x3c"/>
-                    </connections>
-                </navigationController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="Fb0-7S-q4a" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-1431.2977099236641" y="14.788732394366198"/>
-        </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jJM-q0-c0Z"/>
+        <segue reference="vJ3-Pa-ll9"/>
         <segue reference="NUR-E3-Ium"/>
     </inferredMetricsTieBreakers>
     <resources>
