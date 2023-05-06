@@ -213,7 +213,7 @@
                                         </buttonConfiguration>
                                         <connections>
                                             <action selector="loginButton:" destination="Sm3-gA-5I9" eventType="touchUpInside" id="Qtf-2k-2nH"/>
-                                            <segue destination="Nbg-LU-GPq" kind="presentation" identifier="PrincipalViewController" id="oWa-fT-Ahl"/>
+                                            <segue destination="Nbg-LU-GPq" kind="presentation" identifier="MainViewController" id="oWa-fT-Ahl"/>
                                         </connections>
                                     </button>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tienes cuenta?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rQP-ds-UbW">
@@ -258,10 +258,10 @@
             </objects>
             <point key="canvasLocation" x="1271" y="15"/>
         </scene>
-        <!--PrincipalViewController-->
+        <!--MainViewController-->
         <scene sceneID="aID-PV-Skv">
             <objects>
-                <viewControllerPlaceholder storyboardIdentifier="PrincipalViewController" storyboardName="MainPage" referencedIdentifier="PrincipalViewController" id="Nbg-LU-GPq" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardIdentifier="MainViewController" storyboardName="MainPageScreen" referencedIdentifier="MainViewController" id="Nbg-LU-GPq" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="ZiS-SQ-xwj"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3HA-aI-T1W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -271,7 +271,7 @@
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="vJ3-Pa-ll9"/>
-        <segue reference="NUR-E3-Ium"/>
+        <segue reference="OBs-nV-dpH"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="tituloimage" width="805" height="153"/>

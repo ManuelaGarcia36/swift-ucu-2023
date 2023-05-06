@@ -36,7 +36,7 @@ class SignInViewController: UIViewController {
                      UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
                  } else {
                      //Entro
-                     performSegue(withIdentifier: "PrincipalViewController", sender: self)
+                     performSegue(withIdentifier: "MainViewController", sender: self)
                  }
              }
          }

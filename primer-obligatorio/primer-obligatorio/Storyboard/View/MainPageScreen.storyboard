@@ -178,7 +178,7 @@
         <!--Navigation Controller-->
         <scene sceneID="NAE-3T-kvQ">
             <objects>
-                <navigationController storyboardIdentifier="PrincipalViewController" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="2te-x0-Qq3" sceneMemberID="viewController">
+                <navigationController storyboardIdentifier="MainViewController" modalPresentationStyle="fullScreen" hidesBottomBarWhenPushed="YES" id="2te-x0-Qq3" sceneMemberID="viewController">
                     <navigationBar key="navigationBar" contentMode="scaleToFill" id="OIh-Jf-1t3">
                         <rect key="frame" x="0.0" y="59" width="393" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>

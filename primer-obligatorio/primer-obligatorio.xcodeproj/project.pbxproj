@@ -11,8 +11,8 @@
 		F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */; };
 		F52215772A0045EC0018746B /* Equipo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215762A0045EC0018746B /* Equipo.swift */; };
 		F52215792A0046090018746B /* Partido.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215782A0046090018746B /* Partido.swift */; };
-		F522157B2A004DA10018746B /* PrincipalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522157A2A004DA10018746B /* PrincipalViewController.swift */; };
-		F52215832A0066390018746B /* MainPage.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F52215822A0066390018746B /* MainPage.storyboard */; };
+		F522157B2A004DA10018746B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522157A2A004DA10018746B /* MainViewController.swift */; };
+		F52215832A0066390018746B /* MainPageScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F52215822A0066390018746B /* MainPageScreen.storyboard */; };
 		F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215842A0087EE0018746B /* MainPageViewController.swift */; };
 		F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522158A2A0092280018746B /* CustomTableViewCell.swift */; };
 		F522158D2A0092280018746B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F522158B2A0092280018746B /* CustomTableViewCell.xib */; };
@@ -21,7 +21,7 @@
 		F5FCD25429F9F48A00D661E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */; };
 		F5FCD25629F9F48A00D661E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25529F9F48A00D661E2 /* SceneDelegate.swift */; };
 		F5FCD25829F9F48A00D661E2 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25729F9F48A00D661E2 /* ViewController.swift */; };
-		F5FCD25B29F9F48A00D661E2 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5FCD25929F9F48A00D661E2 /* Login.storyboard */; };
+		F5FCD25B29F9F48A00D661E2 /* LoginScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5FCD25929F9F48A00D661E2 /* LoginScreen.storyboard */; };
 		F5FCD25D29F9F48F00D661E2 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5FCD25C29F9F48F00D661E2 /* Assets.xcassets */; };
 		F5FCD26029F9F48F00D661E2 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F5FCD25E29F9F48F00D661E2 /* LaunchScreen.storyboard */; };
 		F5FCD26E29FA005F00D661E2 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD26D29FA005F00D661E2 /* SignInViewController.swift */; };
@@ -34,8 +34,8 @@
 		F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		F52215762A0045EC0018746B /* Equipo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipo.swift; sourceTree = "<group>"; };
 		F52215782A0046090018746B /* Partido.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partido.swift; sourceTree = "<group>"; };
-		F522157A2A004DA10018746B /* PrincipalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrincipalViewController.swift; sourceTree = "<group>"; };
-		F52215822A0066390018746B /* MainPage.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPage.storyboard; sourceTree = "<group>"; };
+		F522157A2A004DA10018746B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		F52215822A0066390018746B /* MainPageScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPageScreen.storyboard; sourceTree = "<group>"; };
 		F52215842A0087EE0018746B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		F522158A2A0092280018746B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		F522158B2A0092280018746B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
@@ -45,7 +45,7 @@
 		F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F5FCD25529F9F48A00D661E2 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		F5FCD25729F9F48A00D661E2 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		F5FCD25A29F9F48A00D661E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
+		F5FCD25A29F9F48A00D661E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LoginScreen.storyboard; sourceTree = "<group>"; };
 		F5FCD25C29F9F48F00D661E2 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		F5FCD25F29F9F48F00D661E2 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		F5FCD26129F9F48F00D661E2 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -65,6 +65,47 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F5C984792A06D1EB00E4997F /* View */ = {
+			isa = PBXGroup;
+			children = (
+				F5FCD25E29F9F48F00D661E2 /* LaunchScreen.storyboard */,
+				F5FCD25929F9F48A00D661E2 /* LoginScreen.storyboard */,
+				F52215822A0066390018746B /* MainPageScreen.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		F5C9847A2A06D24400E4997F /* Login */ = {
+			isa = PBXGroup;
+			children = (
+				F5FCD25729F9F48A00D661E2 /* ViewController.swift */,
+				F5FCD26D29FA005F00D661E2 /* SignInViewController.swift */,
+				F5FCD26F29FA00BD00D661E2 /* SingUpViewController.swift */,
+			);
+			path = Login;
+			sourceTree = "<group>";
+		};
+		F5C9847B2A06D25E00E4997F /* MainPage */ = {
+			isa = PBXGroup;
+			children = (
+				F5FA20982A048DD2009A8C76 /* FilterAlertViewController.swift */,
+				F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */,
+				F522157A2A004DA10018746B /* MainViewController.swift */,
+				F52215842A0087EE0018746B /* MainPageViewController.swift */,
+				F5C9847C2A06D27000E4997F /* CustomView */,
+			);
+			path = MainPage;
+			sourceTree = "<group>";
+		};
+		F5C9847C2A06D27000E4997F /* CustomView */ = {
+			isa = PBXGroup;
+			children = (
+				F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */,
+				F522158A2A0092280018746B /* CustomTableViewCell.swift */,
+			);
+			path = CustomView;
+			sourceTree = "<group>";
+		};
 		F5FCD24729F9F48A00D661E2 = {
 			isa = PBXGroup;
 			children = (
@@ -97,11 +138,9 @@
 		F5FCD26829F9F9F500D661E2 /* Storyboard */ = {
 			isa = PBXGroup;
 			children = (
+				F5C984792A06D1EB00E4997F /* View */,
 				F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */,
 				F522158B2A0092280018746B /* CustomTableViewCell.xib */,
-				F5FCD25E29F9F48F00D661E2 /* LaunchScreen.storyboard */,
-				F5FCD25929F9F48A00D661E2 /* Login.storyboard */,
-				F52215822A0066390018746B /* MainPage.storyboard */,
 			);
 			path = Storyboard;
 			sourceTree = "<group>";
@@ -109,15 +148,8 @@
 		F5FCD26A29F9FA1D00D661E2 /* Controller */ = {
 			isa = PBXGroup;
 			children = (
-				F5FA20982A048DD2009A8C76 /* FilterAlertViewController.swift */,
-				F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */,
-				F5FCD25729F9F48A00D661E2 /* ViewController.swift */,
-				F522157A2A004DA10018746B /* PrincipalViewController.swift */,
-				F5FCD26D29FA005F00D661E2 /* SignInViewController.swift */,
-				F5FCD26F29FA00BD00D661E2 /* SingUpViewController.swift */,
-				F52215842A0087EE0018746B /* MainPageViewController.swift */,
-				F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */,
-				F522158A2A0092280018746B /* CustomTableViewCell.swift */,
+				F5C9847B2A06D25E00E4997F /* MainPage */,
+				F5C9847A2A06D24400E4997F /* Login */,
 			);
 			path = Controller;
 			sourceTree = "<group>";
@@ -199,12 +231,12 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F52215832A0066390018746B /* MainPage.storyboard in Resources */,
+				F52215832A0066390018746B /* MainPageScreen.storyboard in Resources */,
 				F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */,
 				F5FCD26029F9F48F00D661E2 /* LaunchScreen.storyboard in Resources */,
 				F522158D2A0092280018746B /* CustomTableViewCell.xib in Resources */,
 				F5FCD25D29F9F48F00D661E2 /* Assets.xcassets in Resources */,
-				F5FCD25B29F9F48A00D661E2 /* Login.storyboard in Resources */,
+				F5FCD25B29F9F48A00D661E2 /* LoginScreen.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -219,7 +251,7 @@
 				F5FCD26E29FA005F00D661E2 /* SignInViewController.swift in Sources */,
 				F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */,
 				F5FCD25829F9F48A00D661E2 /* ViewController.swift in Sources */,
-				F522157B2A004DA10018746B /* PrincipalViewController.swift in Sources */,
+				F522157B2A004DA10018746B /* MainViewController.swift in Sources */,
 				F5FCD27429FA1B2000D661E2 /* UtilityFunction.swift in Sources */,
 				F52215792A0046090018746B /* Partido.swift in Sources */,
 				F50C178B2A033D9B00880F6D /* CustomCollectionViewCell.swift in Sources */,
@@ -235,12 +267,12 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		F5FCD25929F9F48A00D661E2 /* Login.storyboard */ = {
+		F5FCD25929F9F48A00D661E2 /* LoginScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				F5FCD25A29F9F48A00D661E2 /* Base */,
 			);
-			name = Login.storyboard;
+			name = LoginScreen.storyboard;
 			sourceTree = "<group>";
 		};
 		F5FCD25E29F9F48F00D661E2 /* LaunchScreen.storyboard */ = {
@@ -379,7 +411,7 @@
 				INFOPLIST_FILE = "primer-obligatorio/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Login;
+				INFOPLIST_KEY_UIMainStoryboardFile = LoginScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -406,7 +438,7 @@
 				INFOPLIST_FILE = "primer-obligatorio/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Login;
+				INFOPLIST_KEY_UIMainStoryboardFile = LoginScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
