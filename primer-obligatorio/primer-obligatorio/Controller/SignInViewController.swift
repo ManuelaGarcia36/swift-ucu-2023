@@ -24,8 +24,22 @@ class SignInViewController: UIViewController {
     }
         
     @IBAction func loginButton(_ sender: Any) {
-       // if let user = emailText.text, let pass = passwordText.text{
-        performSegue(withIdentifier: "PrincipalViewController", sender: self)
-    }
+         if let user = emailText.text, let pass = passwordText.text{
+             if user == "" && pass == "" {
+                 UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter user and password")
+             }else if user != "" && pass == "" {
+                 UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter password")
+             }else {
+                 if !user.isValidEmail(mail: user){
+                     UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter valid mail")
+                 } else if !pass.isValidPassword(password: pass) {
+                     UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
+                 } else {
+                     //Entro
+                     performSegue(withIdentifier: "PrincipalViewController", sender: self)
+                 }
+             }
+         }
+     }
             
 }
