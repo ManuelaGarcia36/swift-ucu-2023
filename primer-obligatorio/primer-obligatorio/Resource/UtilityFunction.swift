@@ -35,12 +35,12 @@ extension String {
 
 
 let equiposIniciales = [
-    Equipo(nombre: "Peñarol", imagen: UIImage(named: "escudoPenarol.png")),
-    Equipo(nombre: "Nacional", imagen: UIImage(named: "escudoNacional.png")),
-    Equipo(nombre: "Uruguay", imagen: UIImage(named: "escudoUruguay.png")),
-    Equipo(nombre: "Argentina", imagen: UIImage(named: "escudoArgentina.png")),
-    Equipo(nombre: "Atletico Madrid", imagen: UIImage(named: "escudoAMadrid.png")),
-    Equipo(nombre: "Barcelona", imagen: UIImage(named: "escudoBarcelona.png"))
+    Equipo(nombre: "Peñarol", imagen: UIImage(named: "escudo-penarol.png")),
+    Equipo(nombre: "Club Nacional De Football", imagen: UIImage(named: "escudo-cdnf.png")),
+    Equipo(nombre: "Uruguay", imagen: UIImage(named: "escudo-uy.png")),
+    Equipo(nombre: "Argentina", imagen: UIImage(named: "escudo-arg.png")),
+    Equipo(nombre: "Atletico Madrid", imagen: UIImage(named: "escudo-atletico.png")),
+    Equipo(nombre: "Barcelona", imagen: UIImage(named: "escudo-bcn.png"))
 ]
 
 let partidosIniciales = [
@@ -53,7 +53,7 @@ let partidosIniciales = [
 ]
 
 let bannersActivos = [
-    UIImage(named: "banner_nacional_penarol.png"),
-    UIImage(named: "banner_real_barcelona.png"),
+    UIImage(named: "banner_cndf_penarol.png"),
+    UIImage(named: "banner_real_bcn.png"),
     UIImage(named: "banner.png")
 ]

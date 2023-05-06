@@ -18,7 +18,7 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        let pencImage = UIImage(systemName: "tituloimage")
+        let pencImage = UIImage(systemName: "imagen-penca")
         pencaImage.image = pencImage
        // pencaImage.setImage(pencImage, for: .normal)
     }
