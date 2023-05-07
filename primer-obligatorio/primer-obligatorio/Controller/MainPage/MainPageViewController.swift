@@ -13,7 +13,7 @@ class MainPageViewController: UIViewController {
     private var equipos: [Equipo]!
     private var partidos: [Partido]!
     @IBOutlet weak var tableView: UITableView!
-    
+    private var showingAlert = false
     @IBOutlet weak var viewHeader: UIView!
     
     @IBOutlet weak var collectionView: UICollectionView!
@@ -68,6 +68,38 @@ class MainPageViewController: UIViewController {
     
     @objc func filterButtonTapped() {
         // acción al presionar el botón
+        
+        
+    }
+    
+    func filtrarPorEstado(_ estado: EstadoPartido) {
+        self.partidos = self.partidos.filter { $0.estado == estado }
+        self.tableView.reloadData()
+    }
+    
+    @IBAction func filterButton(_ sender: Any) {
+        partidos = partidosIniciales
+        
+        let alert =  UIAlertController(title: "Filtrar partidos", message: "", preferredStyle: .alert)
+        
+        let verAcertadosAction = UIAlertAction(title: "Ver acertados", style: .default, handler: { [self] action in
+            self.filtrarPorEstado(.acertado)
+        })
+        let verErradosAction = UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
+            self.filtrarPorEstado(.noAcertado)
+        })
+        let verPendientesAction = UIAlertAction(title: "Ver pendientes", style: .default, handler: { [self] action in
+            self.filtrarPorEstado(.pendiente)
+        })
+        let verSinResAction = UIAlertAction(title: "Ver jugados sin/res", style: .default, handler: { [self] action in
+            self.filtrarPorEstado(.jugado)
+        })
+        alert.addAction(verAcertadosAction)
+        alert.addAction(verErradosAction)
+        alert.addAction(verPendientesAction)
+        alert.addAction(verSinResAction)
+        self.present(alert, animated: true)
+        
     }
     
     
@@ -214,9 +246,9 @@ extension MainPageViewController: UISearchBarDelegate {
     func filtrarPartidosPorEquipo(nombreEquipo: String) -> [Partido] {
         return partidos.filter { partido in
             return partido.equipoLocal.nombre.lowercased().contains(nombreEquipo.lowercased())
-                || partido.equipoVisitante.nombre.lowercased().contains(nombreEquipo.lowercased())
+            || partido.equipoVisitante.nombre.lowercased().contains(nombreEquipo.lowercased())
         }
     }
-
+    
     
 }

@@ -54,7 +54,7 @@
                                             <state key="normal" title="Button"/>
                                             <buttonConfiguration key="configuration" style="plain" title="Button"/>
                                             <connections>
-                                                <segue destination="XnS-RP-AYw" kind="show" id="9TG-7S-t8N"/>
+                                                <action selector="filterButton:" destination="TNt-Ua-MPp" eventType="touchUpInside" id="YSJ-qa-B15"/>
                                             </connections>
                                         </button>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tOu-a0-6yB">
@@ -149,7 +149,6 @@
                         <outlet property="searchBar" destination="R5D-nC-APv" id="Epx-Q5-Q1g"/>
                         <outlet property="tableView" destination="jbM-UH-7BJ" id="8uo-gh-6QU"/>
                         <outlet property="viewHeader" destination="XST-7Y-eQI" id="MCv-Tr-Cnm"/>
-                        <segue destination="GDr-P0-L0Y" kind="show" identifier="FilterAlertViewController" id="fTw-t9-sMT"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="TvF-Jm-seA" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -180,22 +179,6 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ziw-NC-lka" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1795" y="401"/>
-        </scene>
-        <!--Filter Alert View Controller-->
-        <scene sceneID="pky-9a-lr7">
-            <objects>
-                <viewController id="GDr-P0-L0Y" customClass="FilterAlertViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="AiJ-11-JsO">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
-                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="Bfl-Kw-11S"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="e7w-O6-zY5"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="MD5-Ur-ah9" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="1796" y="-327"/>
         </scene>
         <!--Navigation Controller-->
         <scene sceneID="NAE-3T-kvQ">
