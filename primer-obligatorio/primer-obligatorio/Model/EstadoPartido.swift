@@ -12,5 +12,5 @@ enum EstadoPartido {
    case pendiente
    case jugado
    case acertado
-   case noAcertado
+   case errado
 }

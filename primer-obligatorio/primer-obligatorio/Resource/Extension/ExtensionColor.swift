@@ -16,7 +16,6 @@ extension UIColor {
     }
 }
 
-
 let blueLogoView = UIColor(hex: 0x161b28)
 let blueBackgroundTableView = UIColor(hex: 0x202045)
 let lightBlueTableViewDetails = UIColor(hex: 0x5c77c2)
@@ -30,15 +29,3 @@ let blueBackgroundLabelCard = UIColor(hex: 0x1a36a3)
 let blueBackgroundViewPendingCard = UIColor(hex: 0x96A4DC)
 let greyBackgroundCard = UIColor(hex: 0x9A9CA5)
 let greyBackgroundLabelCard = UIColor(hex: 0x5B5D66)
-
-
-
-
-
-
-
-
-
-
-
-

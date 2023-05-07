@@ -139,9 +139,6 @@
                                         </constraints>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Ver  detalles &gt;"/>
-                                        <connections>
-                                            <action selector="buttonTapped:" destination="KGk-i7-Jjw" eventType="touchUpInside" id="BNC-rG-KkO"/>
-                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" red="0.088906116780000002" green="0.1079819873" blue="0.1506907344" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -179,20 +176,19 @@
             <directionalEdgeInsets key="directionalLayoutMargins" top="20" leading="0.0" bottom="20" trailing="0.0"/>
             <inset key="separatorInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
             <connections>
-                <outlet property="buttonCellView" destination="6CI-kC-F1f" id="LPW-1a-xGa"/>
-                <outlet property="cardPartyView" destination="QTL-oB-p2b" id="Ml5-xU-qoz"/>
-                <outlet property="contentView" destination="dCX-77-Bt1" id="5zT-64-VgE"/>
+                <outlet property="SecondRivalImage" destination="jC2-z0-ZRu" id="T5e-xf-bKK"/>
+                <outlet property="buttonView" destination="6CI-kC-F1f" id="BWv-9d-LMt"/>
+                <outlet property="cardPrincipalView" destination="QTL-oB-p2b" id="Ml5-xU-qoz"/>
+                <outlet property="firstRivalImage" destination="DHT-ha-yvC" id="L6V-8T-gij"/>
+                <outlet property="firstRivalLabel" destination="lOs-XF-wfU" id="WMk-YS-mNo"/>
+                <outlet property="firstRivalResultText" destination="bzA-xG-vqJ" id="mXL-Ry-MEq"/>
+                <outlet property="gameResultView" destination="3zE-Yo-Zoc" id="hXh-22-YRK"/>
                 <outlet property="headerCellView" destination="BCH-43-cAe" id="hh8-nx-SAL"/>
                 <outlet property="headerLabel" destination="i1Z-Jb-6VH" id="T95-V8-xJc"/>
-                <outlet property="moreDetailsButton" destination="RHb-yC-kWi" id="b6z-3C-iI7"/>
+                <outlet property="moreDetailsButton" destination="RHb-yC-kWi" id="MnS-56-v8b"/>
                 <outlet property="myContentView" destination="dCX-77-Bt1" id="4BR-Kh-fxV"/>
-                <outlet property="paryResultView" destination="3zE-Yo-Zoc" id="hXh-22-YRK"/>
-                <outlet property="primerRivalImage" destination="DHT-ha-yvC" id="L6V-8T-gij"/>
-                <outlet property="primerRivalLabel" destination="lOs-XF-wfU" id="WMk-YS-mNo"/>
-                <outlet property="primerRivalResultText" destination="bzA-xG-vqJ" id="mXL-Ry-MEq"/>
-                <outlet property="segundoRivalImage" destination="jC2-z0-ZRu" id="T5e-xf-bKK"/>
-                <outlet property="segundoRivalLabel" destination="wjI-TA-r2e" id="YEw-Mu-S7U"/>
-                <outlet property="segundoRivalResultText" destination="vFC-Zh-VXy" id="TMe-Pp-ZNd"/>
+                <outlet property="secondRivalLabel" destination="wjI-TA-r2e" id="YEw-Mu-S7U"/>
+                <outlet property="secondRivalResultText" destination="vFC-Zh-VXy" id="TMe-Pp-ZNd"/>
             </connections>
             <point key="canvasLocation" x="106.87022900763358" y="100.35211267605634"/>
         </tableViewCell>

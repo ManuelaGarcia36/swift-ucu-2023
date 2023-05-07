@@ -43,7 +43,7 @@ class MainPageViewController: UIViewController {
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = blueBackgroundTableView
-        collectionView.register(UINib(nibName: CustomCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: "CustomCollectionViewCell")
+        collectionView.register(UINib(nibName: CustomCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: CustomCollectionViewCell.reuseIdentifier)
         
         searchBar.backgroundColor = blueBackgroundTableView
         filterButton.backgroundColor = blueBackgroundTableView
@@ -65,12 +65,25 @@ class MainPageViewController: UIViewController {
         }
         collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
     }
+
+    /**  override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+          if segue.identifier == "DetailsSegue" {
+              if segue.destination is DetailsPartidoViewController {
+                  // Configurar el controlador de vista de destino si es necesario
+              }
+          }
+        
+      } */
     
-    @objc func filterButtonTapped() {
-        // acción al presionar el botón
-        
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "DetailsSegue" {
+            if let partido = sender as? Partido {
+                let detailVC = segue.destination as! DetailsPartidoViewController
+                detailVC.setUp(partido: partido)
+            }
+        }
     }
+
     
     func filtrarPorEstado(_ estado: EstadoPartido) {
         self.partidos = self.partidos.filter { $0.estado == estado }
@@ -86,7 +99,7 @@ class MainPageViewController: UIViewController {
             self.filtrarPorEstado(.acertado)
         })
         let verErradosAction = UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
-            self.filtrarPorEstado(.noAcertado)
+            self.filtrarPorEstado(.errado)
         })
         let verPendientesAction = UIAlertAction(title: "Ver pendientes", style: .default, handler: { [self] action in
             self.filtrarPorEstado(.pendiente)
@@ -101,10 +114,6 @@ class MainPageViewController: UIViewController {
         self.present(alert, animated: true)
         
     }
-    
-    
-    
-    
 }
 
 extension MainPageViewController: UITableViewDataSource {
@@ -117,9 +126,8 @@ extension MainPageViewController: UITableViewDataSource {
         _ = sortedDictionary.map { $0.key }
         
         if let firstElement = sortedDictionary[safe: section]?.value.first {
-            let dateFormatter = DateFormatter()
-            dateFormatter.dateFormat = "EEEE dd/MM"
-            let dateString = dateFormatter.string(from: firstElement.fecha ?? Date())
+          
+            let dateString = Date.dateFromToCustomString(date: firstElement.fecha ?? Date())
             
             let label = UILabel()
             label.backgroundColor = blueBackgroundTableView
@@ -171,6 +179,8 @@ extension MainPageViewController: UITableViewDataSource {
         
         let partido = partidoss[indexPath.row]
         cell.setup(partido: partido)
+        cell.moreDetailsButton.addTarget(self, action: #selector(customTableViewCellDidTapButton(_:)), for: .touchUpInside)
+        cell.delegate = self
         return cell
         
     }
@@ -184,13 +194,19 @@ extension Array {
 
 
 
-
-
-
 extension MainPageViewController: UITableViewDelegate {
+ 
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        tableView.deselectRow(at: indexPath, animated: true)
+        let selectedPartido = partidos[indexPath.row] // assuming partidos is an array of Partido objects
+        performSegue(withIdentifier: "DetailsSegue", sender: selectedPartido)
     }
+
+}
+
+extension MainPageViewController: CustomTableViewCellDelegate {
+    @objc func customTableViewCellDidTapButton(_ cell: CustomTableViewCell) {
+        performSegue(withIdentifier: "DetailsSegue", sender: cell)
+      }
 }
 
 
@@ -203,7 +219,7 @@ extension MainPageViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as? CustomCollectionViewCell
+        guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.reuseIdentifier, for: indexPath) as? CustomCollectionViewCell
         else { return .init()}
         
         let elemt = bannersActivos[indexPath.row]

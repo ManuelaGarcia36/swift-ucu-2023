@@ -20,8 +20,7 @@
 		F5C984812A0715AD00E4997F /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984802A0715AD00E4997F /* ExtensionDate.swift */; };
 		F5C984832A0715BA00E4997F /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984822A0715BA00E4997F /* ExtensionString.swift */; };
 		F5C984852A07EF1E00E4997F /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984842A07EF1E00E4997F /* ExtensionColor.swift */; };
-		F5C984872A07F98900E4997F /* ExtensionPageControl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984862A07F98900E4997F /* ExtensionPageControl.swift */; };
-		F5FA20992A048DD2009A8C76 /* FilterAlertViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA20982A048DD2009A8C76 /* FilterAlertViewController.swift */; };
+		F5C984892A08498F00E4997F /* ExtensionUITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */; };
 		F5FA209B2A048E20009A8C76 /* DetailsPartidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */; };
 		F5FCD25429F9F48A00D661E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */; };
 		F5FCD25629F9F48A00D661E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25529F9F48A00D661E2 /* SceneDelegate.swift */; };
@@ -48,8 +47,7 @@
 		F5C984802A0715AD00E4997F /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
 		F5C984822A0715BA00E4997F /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		F5C984842A07EF1E00E4997F /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
-		F5C984862A07F98900E4997F /* ExtensionPageControl.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionPageControl.swift; sourceTree = "<group>"; };
-		F5FA20982A048DD2009A8C76 /* FilterAlertViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterAlertViewController.swift; sourceTree = "<group>"; };
+		F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUITextFieldDelegate.swift; sourceTree = "<group>"; };
 		F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPartidoViewController.swift; sourceTree = "<group>"; };
 		F5FCD25029F9F48A00D661E2 /* primer-obligatorio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "primer-obligatorio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -98,22 +96,21 @@
 		F5C9847B2A06D25E00E4997F /* MainPage */ = {
 			isa = PBXGroup;
 			children = (
-				F5FA20982A048DD2009A8C76 /* FilterAlertViewController.swift */,
 				F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */,
 				F522157A2A004DA10018746B /* MainViewController.swift */,
 				F52215842A0087EE0018746B /* MainPageViewController.swift */,
-				F5C9847C2A06D27000E4997F /* CustomView */,
+				F5C9847C2A06D27000E4997F /* CustomCellView */,
 			);
 			path = MainPage;
 			sourceTree = "<group>";
 		};
-		F5C9847C2A06D27000E4997F /* CustomView */ = {
+		F5C9847C2A06D27000E4997F /* CustomCellView */ = {
 			isa = PBXGroup;
 			children = (
 				F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */,
 				F522158A2A0092280018746B /* CustomTableViewCell.swift */,
 			);
-			path = CustomView;
+			path = CustomCellView;
 			sourceTree = "<group>";
 		};
 		F5C9847F2A07159800E4997F /* Extension */ = {
@@ -122,7 +119,7 @@
 				F5C984802A0715AD00E4997F /* ExtensionDate.swift */,
 				F5C984822A0715BA00E4997F /* ExtensionString.swift */,
 				F5C984842A07EF1E00E4997F /* ExtensionColor.swift */,
-				F5C984862A07F98900E4997F /* ExtensionPageControl.swift */,
+				F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */,
 			);
 			path = Extension;
 			sourceTree = "<group>";
@@ -178,7 +175,6 @@
 		F5FCD26B29F9FA3300D661E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F5C9847F2A07159800E4997F /* Extension */,
 				F52215762A0045EC0018746B /* Equipo.swift */,
 				F52215782A0046090018746B /* Partido.swift */,
 				F5C9847D2A07148100E4997F /* EstadoPartido.swift */,
@@ -189,6 +185,7 @@
 		F5FCD26C29F9FA7600D661E2 /* Resource */ = {
 			isa = PBXGroup;
 			children = (
+				F5C9847F2A07159800E4997F /* Extension */,
 				F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */,
 				F5FCD25529F9F48A00D661E2 /* SceneDelegate.swift */,
 				F5FCD27329FA1B2000D661E2 /* UtilityFunction.swift */,
@@ -272,11 +269,11 @@
 			files = (
 				F5C9847E2A07148100E4997F /* EstadoPartido.swift in Sources */,
 				F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */,
+				F5C984892A08498F00E4997F /* ExtensionUITextFieldDelegate.swift in Sources */,
 				F5FCD26E29FA005F00D661E2 /* SignInViewController.swift in Sources */,
 				F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */,
 				F5FCD25829F9F48A00D661E2 /* ViewController.swift in Sources */,
 				F522157B2A004DA10018746B /* MainViewController.swift in Sources */,
-				F5C984872A07F98900E4997F /* ExtensionPageControl.swift in Sources */,
 				F5FCD27429FA1B2000D661E2 /* UtilityFunction.swift in Sources */,
 				F52215792A0046090018746B /* Partido.swift in Sources */,
 				F50C178B2A033D9B00880F6D /* CustomCollectionViewCell.swift in Sources */,
@@ -284,7 +281,6 @@
 				F5FCD27029FA00BD00D661E2 /* SingUpViewController.swift in Sources */,
 				F5C984852A07EF1E00E4997F /* ExtensionColor.swift in Sources */,
 				F5FCD25429F9F48A00D661E2 /* AppDelegate.swift in Sources */,
-				F5FA20992A048DD2009A8C76 /* FilterAlertViewController.swift in Sources */,
 				F5C984832A0715BA00E4997F /* ExtensionString.swift in Sources */,
 				F5FA209B2A048E20009A8C76 /* DetailsPartidoViewController.swift in Sources */,
 				F52215772A0045EC0018746B /* Equipo.swift in Sources */,
