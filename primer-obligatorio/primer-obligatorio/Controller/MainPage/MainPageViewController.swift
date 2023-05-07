@@ -78,7 +78,7 @@ class MainPageViewController: UIViewController {
 extension MainPageViewController: UITableViewDataSource {
     // tener un objeto dividido por secciones
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        let dictionary = Dictionary(grouping: partidos, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
         
         let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
         
@@ -103,14 +103,14 @@ extension MainPageViewController: UITableViewDataSource {
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        let dictionary = Dictionary(grouping: partidos, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
         
         return dictionary.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        let dictionary = Dictionary(grouping: partidos, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
         
         let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
         
@@ -127,7 +127,7 @@ extension MainPageViewController: UITableViewDataSource {
         else { return .init()}
         
         
-        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        let dictionary = Dictionary(grouping: partidos, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
         
         let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
         
@@ -197,3 +197,26 @@ extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollecti
     
 }
 
+var searchEquipo = [String]()
+
+extension MainPageViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        searchEquipo = []
+        if searchText.isEmpty {
+            partidos = partidosIniciales
+            tableView.reloadData()
+            return
+        }
+        partidos = filtrarPartidosPorEquipo(nombreEquipo: searchText)
+        tableView.reloadData()
+    }
+    
+    func filtrarPartidosPorEquipo(nombreEquipo: String) -> [Partido] {
+        return partidos.filter { partido in
+            return partido.equipoLocal.nombre.lowercased().contains(nombreEquipo.lowercased())
+                || partido.equipoVisitante.nombre.lowercased().contains(nombreEquipo.lowercased())
+        }
+    }
+
+    
+}
