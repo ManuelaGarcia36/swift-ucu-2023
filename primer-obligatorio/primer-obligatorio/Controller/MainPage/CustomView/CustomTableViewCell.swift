@@ -15,7 +15,7 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var headerLabel: UILabel!
     
     @IBOutlet weak var cardPartyView: UIView!
-
+    
     @IBOutlet weak var buttonCellView: UIView!
     
     @IBOutlet weak var paryResultView: UIView!
@@ -48,8 +48,14 @@ class CustomTableViewCell: UITableViewCell {
         myContentView.layer.borderWidth = 1.0
         buttonCellView.layer.borderColor = lightBlueTableViewDetails.cgColor
         buttonCellView.layer.borderWidth = 1.0
-    
+        
         moreDetailsButton.tintColor = .white
+        
+        primerRivalResultText.delegate = self
+        segundoRivalResultText.delegate = self
+        primerRivalResultText.keyboardType = .numberPad
+        segundoRivalResultText.keyboardType = .numberPad
+        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -96,7 +102,7 @@ class CustomTableViewCell: UITableViewCell {
             headerLabel.text = " Pendiente "
             
             moreDetailsButton.isHidden = true
-           
+            
             
             // dar fondo a picker
             paryResultView.backgroundColor = blueBackgroundPickerCard
@@ -106,7 +112,7 @@ class CustomTableViewCell: UITableViewCell {
             paryResultView.layer.cornerRadius = 10.0
             
             primerRivalResultText.backgroundColor = blueBackgroundPickerCard
-        
+            
             segundoRivalResultText.backgroundColor = blueBackgroundPickerCard
             primerRivalResultText.isEnabled = true
             segundoRivalResultText.isEnabled = true
@@ -119,7 +125,7 @@ class CustomTableViewCell: UITableViewCell {
             //fixme:
             primerRivalResultText.text = String(partido.golesLocal)
             segundoRivalResultText.text = String(partido.golesVisitante)
-        
+            
         }
         
         // common
@@ -139,3 +145,22 @@ class CustomTableViewCell: UITableViewCell {
     
 }
 
+extension CustomTableViewCell: UITextFieldDelegate {
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        let allowedCharacters = CharacterSet.decimalDigits
+        let characterSet = CharacterSet(charactersIn: string)
+        //return allowedCharacters.isSuperset(of: characterSet)
+        guard allowedCharacters.isSuperset(of: characterSet) else {
+            return false
+        }
+        let currentText = (textField.text ?? "") as NSString
+        let updatedText = currentText.replacingCharacters(in: range, with: string)
+        
+        // Verificar si el valor es menor que 99
+        if let number = Int(updatedText), number < 100 {
+            return true
+        }
+        
+        return false
+    }
+}

@@ -8,8 +8,6 @@
 import Foundation
 import UIKit
 
-
-
 class UtilityFunction: NSObject {
     
     func simpleAlert(vc: UIViewController, title: String, message:String) {
@@ -19,7 +17,7 @@ class UtilityFunction: NSObject {
         vc.present(alert, animated: true)
     }
     
-   
+    
     func ordenarPartidos() -> [Date] {
         
         let partidosOrdenadosPorFecha = partidosIniciales.sorted(by: { (partido1, partido2) -> Bool in
@@ -30,9 +28,9 @@ class UtilityFunction: NSObject {
                 return false // or true, depending on your logic
             }
         })
-
         
-      //  let partidosOrdenadosPorFecha = partidosIniciales.sorted(by: { $0.fecha < $1.fecha })
+        
+        //  let partidosOrdenadosPorFecha = partidosIniciales.sorted(by: { $0.fecha < $1.fecha })
         var partidosAgrupadosPorFecha = [String: [Partido]]()
         
         for partido in partidosOrdenadosPorFecha {
@@ -51,28 +49,12 @@ class UtilityFunction: NSObject {
         
         return fechasOrdenadas
     }
-
+    
     func obtenerFechaComoString(_ fecha: Date) -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "dd/MM/yyyy"
         return formatter.string(from: fecha)
     }
-}
-
-extension String {
-    
-    func isValidEmail(mail: String) -> Bool {
-        let regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
-        let test = NSPredicate(format: "SELF MATCHES %@", regex)
-        let result = test.evaluate(with: mail)
-        return result
-    }
-    
-    func isValidPassword(password: String) -> Bool {
-        let length = password.count
-        return length > 8 ? true: false;
-    }
-
 }
 
 
