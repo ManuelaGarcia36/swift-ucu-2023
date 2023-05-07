@@ -15,20 +15,16 @@ class Partido {
     var golesVisitante: Int
     var estado: EstadoPartido
     var observaciones: String?
+    var fecha: Date?
     
-    init(equipoLocal: Equipo, equipoVisitante: Equipo, golesLocal: Int = 0, golesVisitante: Int = 0, estado: EstadoPartido = .pendiente, observaciones: String? = nil) {
+    init(equipoLocal: Equipo, equipoVisitante: Equipo, golesLocal: Int = 0, golesVisitante: Int = 0, estado: EstadoPartido = .pendiente, observaciones: String? = nil, fecha: Date? = nil) {
         self.equipoLocal = equipoLocal
         self.equipoVisitante = equipoVisitante
         self.golesLocal = golesLocal
         self.golesVisitante = golesVisitante
         self.estado = estado
         self.observaciones = observaciones
+        self.fecha = fecha
     }
 }
 
-enum EstadoPartido {
-   case pendiente
-   case jugado
-   case acertado
-   case noAcertado
-}

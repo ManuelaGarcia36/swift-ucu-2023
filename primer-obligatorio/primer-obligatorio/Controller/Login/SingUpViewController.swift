@@ -11,23 +11,24 @@ import UIKit
 //registrarse
 class SingUpViewController: UIViewController {
     
-    @IBOutlet weak var imagePenca: UIImageView!
-    
+    @IBOutlet var myView: UIView!
+    @IBOutlet weak var myStackView: UIStackView!
+    @IBOutlet weak var pencaImage: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
-
     @IBOutlet weak var mailTex: UITextField!
-    
     @IBOutlet weak var passwordText: UITextField!
-    
     @IBOutlet weak var createButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        let pencImage = UIImage(systemName: "imagen-penca")
-        imagePenca.image = pencImage
+        
+        myView.backgroundColor = blueLogoView
+        myStackView.backgroundColor = blueLogoView
+        
+        pencaImage.image = UIImage(systemName: "imagen-penca")
+        pencaImage.backgroundColor = blueLogoView
     }
-
+    
     @IBAction func saveBtn(_ sender: Any) {
         if let user = mailTex.text, let pass = passwordText.text{
             if user == "" && pass == "" {
@@ -46,7 +47,5 @@ class SingUpViewController: UIViewController {
             }
         }
     }
-     
+    
 }
-
-

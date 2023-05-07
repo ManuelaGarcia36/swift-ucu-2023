@@ -9,7 +9,11 @@ import UIKit
 
 class ViewController: UIViewController {
     
+    @IBOutlet var myView: UIView!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        myView.backgroundColor = blueLogoView
     }
 }

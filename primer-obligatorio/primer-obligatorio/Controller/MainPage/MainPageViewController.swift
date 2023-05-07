@@ -6,13 +6,6 @@
 //
 
 import Foundation
-//
-//  ViewController.swift
-//  primer-obligatorio
-//
-//  Created by Manuela Garcia Lira on 26/4/23.
-//
-
 import UIKit
 
 class MainPageViewController: UIViewController {
@@ -42,28 +35,27 @@ class MainPageViewController: UIViewController {
         equipos = equiposIniciales
         partidos = partidosIniciales
         
-        print(equipos.count)
-        print(partidos.count)
-    
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
-               
+        tableView.backgroundColor = blueBackgroundTableView
         
         collectionView.delegate = self
         collectionView.dataSource = self
-        
+        collectionView.backgroundColor = blueBackgroundTableView
         collectionView.register(UINib(nibName: CustomCollectionViewCell.reuseIdentifier, bundle: nil), forCellWithReuseIdentifier: "CustomCollectionViewCell")
         
-        let filterButton = UIButton()
-        filterButton.setImage(UIImage(systemName: "line.3.horizontal.decrease.circle"), for: .normal)
+        searchBar.backgroundColor = blueBackgroundTableView
+        filterButton.backgroundColor = blueBackgroundTableView
+        pageControl.backgroundColor = blueBackgroundTableView
+        labelSearch.backgroundColor = blueBackgroundTableView
+        viewHeader.backgroundColor = blueBackgroundTableView
         
-       
-        filterButton.addTarget(self, action: #selector(filterButtonTapped), for: .touchUpInside)
-    
-
-
+        let image = UIImage(systemName: "line.3.horizontal.decrease.circle")
+        filterButton.setImage(image, for: .normal)
+        filterButton.setTitle("", for: .normal)
     }
+    
     
     @objc func slideToNext(){
         if currentCellIndex < bannersActivos.count - 1 {
@@ -74,45 +66,98 @@ class MainPageViewController: UIViewController {
         collectionView.scrollToItem(at: IndexPath(item: currentCellIndex, section: 0), at: .right, animated: true)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "FilterAlertViewController" {
-            if let destinationVC = segue.destination as? FilterAlertViewController {
-               // destinationVC.param = textParam.text ?? "defaultText"
-            }
-        }
-            
+    @objc func filterButtonTapped() {
+        // acción al presionar el botón
     }
     
-    @objc func filterButtonTapped() {
-           // acción al presionar el botón
-       }
+    
+    
+    
 }
 
 extension MainPageViewController: UITableViewDataSource {
+    // tener un objeto dividido por secciones
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        
+        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
+        
+        _ = sortedDictionary.map { $0.key }
+        
+        if let firstElement = sortedDictionary[safe: section]?.value.first {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "EEEE dd/MM"
+            let dateString = dateFormatter.string(from: firstElement.fecha ?? Date())
+            
+            let label = UILabel()
+            label.backgroundColor = blueBackgroundTableView
+            label.textColor = .white
+            label.translatesAutoresizingMaskIntoConstraints = false
+            label.text = dateString
+            
+            let containerView = UIView()
+            containerView.addSubview(label)
+            return containerView
+        }
+        return  UIView()
+    }
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        return 1
+        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        
+        return dictionary.count
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return partidos.count
+        
+        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        
+        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
+        
+        let keys = sortedDictionary.map { $0.key }
+        
+        //  let key = sortedKeys[section]
+        let values = keys[section]
+        
+        return dictionary[values, default: []].count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as? CustomTableViewCell
         else { return .init()}
-       
-        let partido = partidos[indexPath.row]
+        
+        
+        let dictionary = Dictionary(grouping: partidosIniciales, by: { Calendar.current.startOfDay(for: $0.fecha ?? Date()) })
+        
+        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
+        
+        let keys = sortedDictionary.map { $0.key }
+        let values = keys[indexPath.section]
+        
+        let partidoss = dictionary[values, default: []]
+        
+        
+        let partido = partidoss[indexPath.row]
         cell.setup(partido: partido)
         return cell
         
     }
 }
 
+extension Array {
+    subscript (safe index: Int) -> Element? {
+        return indices ~= index ? self[index] : nil
+    }
+}
+
+
+
+
+
+
 extension MainPageViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         tableView.deselectRow(at: indexPath, animated: true)
-        
     }
 }
 
@@ -128,7 +173,7 @@ extension MainPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "CustomCollectionViewCell", for: indexPath) as? CustomCollectionViewCell
         else { return .init()}
-       
+        
         let elemt = bannersActivos[indexPath.row]
         cell.setup(image: elemt)
         return cell
@@ -137,7 +182,7 @@ extension MainPageViewController: UICollectionViewDataSource {
 }
 
 extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollectionViewDelegate {
-   
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: collectionView.frame.width, height: collectionView.frame.height)
     }
@@ -146,9 +191,9 @@ extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollecti
         let offSet = scrollView.contentOffset.x
         let width = scrollView.frame.width
         let horizontalCenter = width / 2
-
+        
         pageControl.currentPage = Int(offSet + horizontalCenter) / Int(width)
     }
- 
+    
 }
 

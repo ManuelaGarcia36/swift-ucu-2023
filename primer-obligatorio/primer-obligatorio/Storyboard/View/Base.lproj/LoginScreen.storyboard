@@ -66,10 +66,13 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="PuM-Lb-4E7"/>
+                    <connections>
+                        <outlet property="myView" destination="8bC-Xf-vdC" id="5ea-wE-Uhq"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-504.58015267175568" y="14.788732394366198"/>
+            <point key="canvasLocation" x="-494" y="-327"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="hdp-gE-gLo">
@@ -169,6 +172,7 @@
                         <constraints>
                             <constraint firstItem="ogA-Gb-Z5z" firstAttribute="trailing" secondItem="Thi-0l-YSm" secondAttribute="trailing" constant="30" id="6ET-BC-qHL"/>
                             <constraint firstItem="Thi-0l-YSm" firstAttribute="centerY" secondItem="ogA-Gb-Z5z" secondAttribute="centerY" id="Dgg-Fl-d60"/>
+                            <constraint firstItem="Thi-0l-YSm" firstAttribute="centerX" secondItem="ogA-Gb-Z5z" secondAttribute="centerX" id="LWc-ul-YmZ"/>
                             <constraint firstItem="Thi-0l-YSm" firstAttribute="leading" secondItem="ogA-Gb-Z5z" secondAttribute="leading" constant="30" id="xxo-xo-cYt"/>
                         </constraints>
                     </view>
@@ -176,14 +180,16 @@
                     <connections>
                         <outlet property="createButton" destination="ztx-Ui-P9w" id="xx9-rJ-E5C"/>
                         <outlet property="emailLabel" destination="hK2-gy-oSD" id="Z0R-6l-ra9"/>
-                        <outlet property="imagePenca" destination="CJF-3R-dqh" id="cYw-4p-ZYm"/>
                         <outlet property="mailTex" destination="f3x-Xt-ZTt" id="gwO-ht-u4S"/>
+                        <outlet property="myStackView" destination="Thi-0l-YSm" id="WnT-BZ-usu"/>
+                        <outlet property="myView" destination="H11-i5-n4O" id="wVx-eD-5YZ"/>
                         <outlet property="passwordText" destination="4gq-Jt-tQh" id="rvv-mf-bR1"/>
+                        <outlet property="pencaImage" destination="CJF-3R-dqh" id="heY-Jq-ox3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Gh8-55-ZX6" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="333.58778625954199" y="522.53521126760563"/>
+            <point key="canvasLocation" x="236" y="737"/>
         </scene>
         <!--Sing In View Controller-->
         <scene sceneID="ku4-mw-ygq">
@@ -291,8 +297,10 @@
                     <connections>
                         <outlet property="emailText" destination="FSC-8M-G8w" id="7BB-y3-WG1"/>
                         <outlet property="loginButton" destination="J8y-qi-gaA" id="TRH-sL-nki"/>
+                        <outlet property="myStackView" destination="wuG-Sa-fMY" id="dr3-1H-gFa"/>
+                        <outlet property="myView" destination="MZo-US-sn0" id="9G0-Bi-ms9"/>
                         <outlet property="passwordText" destination="QvQ-18-Ybd" id="vuk-gx-gVS"/>
-                        <outlet property="pencaImage" destination="MCh-CB-jGy" id="t63-Px-7kW"/>
+                        <outlet property="pencaImage" destination="MCh-CB-jGy" id="dgx-2U-ebn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lOs-tq-egc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -307,12 +315,12 @@
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="3HA-aI-T1W" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="1902.2900763358778" y="29.577464788732396"/>
+            <point key="canvasLocation" x="753" y="92"/>
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
         <segue reference="jJM-q0-c0Z"/>
-        <segue reference="2BP-bX-o5D"/>
+        <segue reference="NUR-E3-Ium"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="imagen-penca" width="805" height="153"/>
