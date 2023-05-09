@@ -30,7 +30,7 @@ class UtilityFunction: NSObject {
         
         
         //  let partidosOrdenadosPorFecha = partidosIniciales.sorted(by: { $0.fecha < $1.fecha })
-        var partidosAgrupadosPorFecha = [String: [Partido]]()
+        var partidosAgrupadosPorFecha = [String: [Game]]()
         
         for partido in partidosOrdenadosPorFecha {
             guard let fecha = partido.dateGame else { continue }

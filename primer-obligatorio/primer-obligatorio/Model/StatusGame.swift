@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum EstadoPartido {
+enum StatusGame {
    case pendiente
    case jugado
    case acertado

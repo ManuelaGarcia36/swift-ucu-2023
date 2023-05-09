@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class Equipo {
+class Team {
     var nameTeam: String
     var imageTeam: UIImage?
     

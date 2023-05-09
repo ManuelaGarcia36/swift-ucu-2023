@@ -9,18 +9,17 @@
 /* Begin PBXBuildFile section */
 		F50C178B2A033D9B00880F6D /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */; };
 		F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */; };
-		F52215772A0045EC0018746B /* Equipo.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215762A0045EC0018746B /* Equipo.swift */; };
-		F52215792A0046090018746B /* Partido.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215782A0046090018746B /* Partido.swift */; };
+		F52215772A0045EC0018746B /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215762A0045EC0018746B /* Team.swift */; };
+		F52215792A0046090018746B /* Game.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215782A0046090018746B /* Game.swift */; };
 		F522157B2A004DA10018746B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522157A2A004DA10018746B /* MainViewController.swift */; };
 		F52215832A0066390018746B /* MainPageScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F52215822A0066390018746B /* MainPageScreen.storyboard */; };
 		F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215842A0087EE0018746B /* MainPageViewController.swift */; };
 		F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522158A2A0092280018746B /* CustomTableViewCell.swift */; };
 		F522158D2A0092280018746B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F522158B2A0092280018746B /* CustomTableViewCell.xib */; };
-		F5C9847E2A07148100E4997F /* EstadoPartido.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9847D2A07148100E4997F /* EstadoPartido.swift */; };
+		F5C9847E2A07148100E4997F /* StatusGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9847D2A07148100E4997F /* StatusGame.swift */; };
 		F5C984812A0715AD00E4997F /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984802A0715AD00E4997F /* ExtensionDate.swift */; };
 		F5C984832A0715BA00E4997F /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984822A0715BA00E4997F /* ExtensionString.swift */; };
 		F5C984852A07EF1E00E4997F /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984842A07EF1E00E4997F /* ExtensionColor.swift */; };
-		F5C984892A08498F00E4997F /* ExtensionUITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */; };
 		F5C9848F2A09C3BA00E4997F /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9848E2A09C3BA00E4997F /* ExtensionArray.swift */; };
 		F5C984922A09D3A600E4997F /* ConstantVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984912A09D3A600E4997F /* ConstantVar.swift */; };
 		F5FA209B2A048E20009A8C76 /* DetailsPartidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */; };
@@ -38,18 +37,17 @@
 /* Begin PBXFileReference section */
 		F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
-		F52215762A0045EC0018746B /* Equipo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Equipo.swift; sourceTree = "<group>"; };
-		F52215782A0046090018746B /* Partido.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Partido.swift; sourceTree = "<group>"; };
+		F52215762A0045EC0018746B /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
+		F52215782A0046090018746B /* Game.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Game.swift; sourceTree = "<group>"; };
 		F522157A2A004DA10018746B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F52215822A0066390018746B /* MainPageScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPageScreen.storyboard; sourceTree = "<group>"; };
 		F52215842A0087EE0018746B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		F522158A2A0092280018746B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		F522158B2A0092280018746B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
-		F5C9847D2A07148100E4997F /* EstadoPartido.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EstadoPartido.swift; sourceTree = "<group>"; };
+		F5C9847D2A07148100E4997F /* StatusGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusGame.swift; sourceTree = "<group>"; };
 		F5C984802A0715AD00E4997F /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
 		F5C984822A0715BA00E4997F /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
 		F5C984842A07EF1E00E4997F /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
-		F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUITextFieldDelegate.swift; sourceTree = "<group>"; };
 		F5C9848E2A09C3BA00E4997F /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
 		F5C984912A09D3A600E4997F /* ConstantVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantVar.swift; sourceTree = "<group>"; };
 		F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPartidoViewController.swift; sourceTree = "<group>"; };
@@ -113,7 +111,6 @@
 				F5C984802A0715AD00E4997F /* ExtensionDate.swift */,
 				F5C984822A0715BA00E4997F /* ExtensionString.swift */,
 				F5C984842A07EF1E00E4997F /* ExtensionColor.swift */,
-				F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */,
 				F5C9848E2A09C3BA00E4997F /* ExtensionArray.swift */,
 			);
 			path = Extension;
@@ -204,9 +201,9 @@
 		F5FCD26B29F9FA3300D661E2 /* Model */ = {
 			isa = PBXGroup;
 			children = (
-				F52215762A0045EC0018746B /* Equipo.swift */,
-				F52215782A0046090018746B /* Partido.swift */,
-				F5C9847D2A07148100E4997F /* EstadoPartido.swift */,
+				F52215762A0045EC0018746B /* Team.swift */,
+				F52215782A0046090018746B /* Game.swift */,
+				F5C9847D2A07148100E4997F /* StatusGame.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -297,16 +294,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F5C9847E2A07148100E4997F /* EstadoPartido.swift in Sources */,
+				F5C9847E2A07148100E4997F /* StatusGame.swift in Sources */,
 				F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */,
-				F5C984892A08498F00E4997F /* ExtensionUITextFieldDelegate.swift in Sources */,
 				F5C9848F2A09C3BA00E4997F /* ExtensionArray.swift in Sources */,
 				F5FCD26E29FA005F00D661E2 /* SignInViewController.swift in Sources */,
 				F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */,
 				F5FCD25829F9F48A00D661E2 /* ViewController.swift in Sources */,
 				F522157B2A004DA10018746B /* MainViewController.swift in Sources */,
 				F5FCD27429FA1B2000D661E2 /* UtilityFunction.swift in Sources */,
-				F52215792A0046090018746B /* Partido.swift in Sources */,
+				F52215792A0046090018746B /* Game.swift in Sources */,
 				F50C178B2A033D9B00880F6D /* CustomCollectionViewCell.swift in Sources */,
 				F5C984922A09D3A600E4997F /* ConstantVar.swift in Sources */,
 				F5C984812A0715AD00E4997F /* ExtensionDate.swift in Sources */,
@@ -315,7 +311,7 @@
 				F5FCD25429F9F48A00D661E2 /* AppDelegate.swift in Sources */,
 				F5C984832A0715BA00E4997F /* ExtensionString.swift in Sources */,
 				F5FA209B2A048E20009A8C76 /* DetailsPartidoViewController.swift in Sources */,
-				F52215772A0045EC0018746B /* Equipo.swift in Sources */,
+				F52215772A0045EC0018746B /* Team.swift in Sources */,
 				F5FCD25629F9F48A00D661E2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -23,7 +23,7 @@ class DetailsPartidoViewController: UIViewController {
     @IBOutlet weak var secondRivalImage: UIImageView!
     @IBOutlet weak var secondRivalLabel: UILabel!
     
-    var partidoActual: Partido?
+    var partidoActual: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()

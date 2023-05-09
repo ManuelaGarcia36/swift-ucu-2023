@@ -11,8 +11,8 @@ import UIKit
 class MainPageViewController: UIViewController {
     
     // Lista de partidos y equipos
-    private var teamsList: [Equipo]!
-    private var gamesList: [Partido]!
+    private var teamsList: [Team]!
+    private var gamesList: [Game]!
     
     // outlets
     @IBOutlet weak var tableView: UITableView!
@@ -62,15 +62,15 @@ class MainPageViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsPartidoViewController, let partido = sender as? Partido {
+        if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsPartidoViewController, let partido = sender as? Game {
             detailsPartidoVC.partidoActual = partido
         }
     }
     
     // funcion para filtrar partidos por tipo de estado
-    func filtrarPorEstado(_ estado: EstadoPartido) {
+    func filtrarPorEstado(_ status: StatusGame) {
         isFilterButtonOn = true
-        self.gamesList = self.gamesList.filter { $0.status == estado }
+        self.gamesList = self.gamesList.filter { $0.status == status }
         self.tableView.reloadData()
     }
     
@@ -113,7 +113,7 @@ class MainPageViewController: UIViewController {
 extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDelegate, UITableViewDelegate{
     
     // Funcion para el tap del button de la cell detalles
-    func customTableViewCellDidTapButton(with partido: Partido?) {
+    func customTableViewCellDidTapButton(with partido: Game?) {
         guard let partido = partido else { return }
         performSegue(withIdentifier: "DetailsSegue", sender: partido)
     }
@@ -219,7 +219,7 @@ extension MainPageViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    func filtrarPartidosPorEquipo(nombreEquipo: String) -> [Partido] {
+    func filtrarPartidosPorEquipo(nombreEquipo: String) -> [Game] {
         return gamesList.filter { partido in
             return partido.localTeam.nameTeam.lowercased().hasPrefix(nombreEquipo.lowercased())
             || partido.rivalTeam.nameTeam.lowercased().hasPrefix(nombreEquipo.lowercased())

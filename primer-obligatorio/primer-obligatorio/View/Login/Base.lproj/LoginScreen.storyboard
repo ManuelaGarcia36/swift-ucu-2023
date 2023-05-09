@@ -30,7 +30,7 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="UdD-mV-QFc">
-                                <rect key="frame" x="141.33333333333334" y="511" width="110.33333333333334" height="35"/>
+                                <rect key="frame" x="135.33333333333334" y="511" width="122.66666666666666" height="35"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="35" id="kX4-Sx-YXy"/>
                                 </constraints>
@@ -61,6 +61,8 @@
                             <constraint firstItem="p2i-dF-333" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="Dln-0w-a4f"/>
                             <constraint firstItem="p2i-dF-333" firstAttribute="top" secondItem="8bC-Xf-vdC" secondAttribute="top" constant="308" id="Gy5-wa-i00"/>
                             <constraint firstItem="KP6-Ib-uGU" firstAttribute="centerX" secondItem="p2i-dF-333" secondAttribute="centerX" id="XTF-Vb-hWT"/>
+                            <constraint firstItem="UdD-mV-QFc" firstAttribute="leading" secondItem="KP6-Ib-uGU" secondAttribute="leading" id="Xfl-vK-eoi"/>
+                            <constraint firstItem="UdD-mV-QFc" firstAttribute="trailing" secondItem="KP6-Ib-uGU" secondAttribute="trailing" id="bLM-cA-YQB"/>
                             <constraint firstItem="p2i-dF-333" firstAttribute="leading" secondItem="8bC-Xf-vdC" secondAttribute="leading" id="ddm-hA-arM"/>
                             <constraint firstItem="KP6-Ib-uGU" firstAttribute="top" secondItem="UdD-mV-QFc" secondAttribute="bottom" constant="50" id="szA-RH-Upa"/>
                         </constraints>
@@ -319,8 +321,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jJM-q0-c0Z"/>
-        <segue reference="NUR-E3-Ium"/>
+        <segue reference="vJ3-Pa-ll9"/>
+        <segue reference="2BP-bX-o5D"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="imagen-penca" width="805" height="153"/>
