@@ -31,11 +31,11 @@ class CustomTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonView: UIView!
     
     weak var delegate: CustomTableViewCellDelegate?
+    var partidoActual: Partido?
 
     override func awakeFromNib() {
         super.awakeFromNib()
         
-       
         // Initialization default and generic colors and details
         self.backgroundColor = blueBackgroundTableView
         headerCellView.backgroundColor = blueBackgroundTableView
@@ -60,17 +60,17 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func setup(partido: Partido){
-   
-        switch(partido.estado) {
+       
+        switch(partido.status) {
         case .acertado:
             // FIXME: Generalizar logica y mejorarla
             headerCellView.backgroundColor = greenBackgroundCard
             headerLabel.backgroundColor = greenBackgroundLabelCard
             headerLabel.text = " Acertado "
+            firstRivalResultText.text = String(partido.homeTeamGoals)
+            secondRivalResultText.text = String(partido.awayTeamGoals)
             firstRivalResultText.isEnabled = false
             secondRivalResultText.isEnabled = false
-            firstRivalResultText.text = String(partido.golesLocal)
-            secondRivalResultText.text = String(partido.golesVisitante)
             
         case .jugado:
             headerCellView.backgroundColor = greyBackgroundCard
@@ -90,8 +90,8 @@ class CustomTableViewCell: UITableViewCell {
             firstRivalResultText.isEnabled = false
             secondRivalResultText.isEnabled = false
             
-            firstRivalResultText.text = String(partido.golesLocal)
-            secondRivalResultText.text = String(partido.golesVisitante)
+            firstRivalResultText.text = String(partido.homeTeamGoals)
+            secondRivalResultText.text = String(partido.awayTeamGoals)
             
         case .pendiente:
             headerCellView.backgroundColor = blueBackgroundCard
@@ -120,8 +120,8 @@ class CustomTableViewCell: UITableViewCell {
             buttonView.layer.borderWidth = 0
             
             //fixme:
-            firstRivalResultText.text = String(partido.golesLocal)
-            secondRivalResultText.text = String(partido.golesVisitante)
+            firstRivalResultText.text = String(partido.homeTeamGoals)
+            secondRivalResultText.text = String(partido.awayTeamGoals)
             
         }
         
@@ -133,19 +133,19 @@ class CustomTableViewCell: UITableViewCell {
         secondRivalResultText.textColor = .white
         
         
-        firstRivalImage.image = partido.equipoLocal.imagen
-        firstRivalLabel.text = partido.equipoLocal.nombre
+        firstRivalImage.image = partido.localTeam.imageTeam
+        firstRivalLabel.text = partido.localTeam.nameTeam
         
-        secondRivalImage.image = partido.equipoVisitante.imagen
-        secondRivalLabel.text = partido.equipoVisitante.nombre
+        secondRivalImage.image = partido.rivalTeam.imageTeam
+        secondRivalLabel.text = partido.rivalTeam.nameTeam
     }
     
-    @objc func buttonPressed(_ sender: UIButton) {
-        delegate?.customTableViewCellDidTapButton(self)
+    @objc func customTableViewCellDidTapButton(_ sender: UIButton) {
+        delegate?.customTableViewCellDidTapButton(with: partidoActual)
     }
     
 }
 
 protocol CustomTableViewCellDelegate: AnyObject {
-    func customTableViewCellDidTapButton(_ cell: CustomTableViewCell)
+    func customTableViewCellDidTapButton(with partido: Partido?)
 }

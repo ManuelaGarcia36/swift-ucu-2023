@@ -20,7 +20,7 @@ class UtilityFunction: NSObject {
     
     func ordenarPartidos() -> [Date] {
         let partidosOrdenadosPorFecha = partidosIniciales.sorted(by: { (partido1, partido2) -> Bool in
-            if let fecha1 = partido1.fecha, let fecha2 = partido2.fecha {
+            if let fecha1 = partido1.dateGame, let fecha2 = partido2.dateGame {
                 return fecha1 < fecha2
             } else {
                 // handle case where one or both dates are nil
@@ -33,7 +33,7 @@ class UtilityFunction: NSObject {
         var partidosAgrupadosPorFecha = [String: [Partido]]()
         
         for partido in partidosOrdenadosPorFecha {
-            guard let fecha = partido.fecha else { continue }
+            guard let fecha = partido.dateGame else { continue }
             let fechaString = obtenerFechaComoString(fecha)
             if partidosAgrupadosPorFecha[fechaString] != nil {
                 partidosAgrupadosPorFecha[fechaString]?.append(partido)
@@ -56,6 +56,7 @@ class UtilityFunction: NSObject {
     }
 }
 
+var searchEquipo = [String]()
 
 let equiposIniciales = [
     Equipo(nombre: "Peñarol", imagen: UIImage(named: "escudo-penarol.png")),
@@ -69,9 +70,9 @@ let equiposIniciales = [
 let partidosIniciales = [
     Partido(equipoLocal: equiposIniciales[0], equipoVisitante: equiposIniciales[1], golesLocal: 2, golesVisitante: 1, estado: .jugado, fecha: Date(timeIntervalSinceNow: -259200)),
     Partido(equipoLocal: equiposIniciales[2], equipoVisitante: equiposIniciales[3], estado: .pendiente, fecha: Date(timeIntervalSinceNow: -259200)),
-    Partido(equipoLocal: equiposIniciales[4], equipoVisitante: equiposIniciales[5], estado: .errado, observaciones: "El partido se suspendió debido a la lluvia.", fecha: Date(timeIntervalSinceNow: -259200)),
+    Partido(equipoLocal: equiposIniciales[4], equipoVisitante: equiposIniciales[5], golesLocal: 2, golesVisitante: 1, estado: .errado, observaciones: "El partido se suspendió debido a la lluvia.", fecha: Date(timeIntervalSinceNow: -259200)),
     Partido(equipoLocal: equiposIniciales[0], equipoVisitante: equiposIniciales[3], estado: .jugado, fecha: Date(timeIntervalSinceNow: -345600)),
-    Partido(equipoLocal: equiposIniciales[1], equipoVisitante: equiposIniciales[4], estado: .acertado, fecha: Date(timeIntervalSinceNow: -432000)),
+    Partido(equipoLocal: equiposIniciales[1], equipoVisitante: equiposIniciales[4], golesLocal: 3, golesVisitante: 3, estado: .acertado, fecha: Date(timeIntervalSinceNow: -432000)),
     Partido(equipoLocal: equiposIniciales[2], equipoVisitante: equiposIniciales[0], estado: .pendiente, fecha: Date(timeIntervalSinceNow: -432000))
 ]
 

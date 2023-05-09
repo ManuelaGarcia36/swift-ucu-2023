@@ -9,22 +9,22 @@ import Foundation
 import UIKit
 
 class Partido {
-    let equipoLocal: Equipo
-    let equipoVisitante: Equipo
-    var golesLocal: Int
-    var golesVisitante: Int
-    var estado: EstadoPartido
-    var observaciones: String?
-    var fecha: Date?
+    let localTeam: Equipo
+    let rivalTeam: Equipo
+    var homeTeamGoals: Int
+    var awayTeamGoals: Int
+    var status: EstadoPartido
+    var observations: String?
+    var dateGame: Date?
     
     init(equipoLocal: Equipo, equipoVisitante: Equipo, golesLocal: Int = 0, golesVisitante: Int = 0, estado: EstadoPartido = .pendiente, observaciones: String? = nil, fecha: Date? = nil) {
-        self.equipoLocal = equipoLocal
-        self.equipoVisitante = equipoVisitante
-        self.golesLocal = golesLocal
-        self.golesVisitante = golesVisitante
-        self.estado = estado
-        self.observaciones = observaciones
-        self.fecha = fecha
+        self.localTeam = equipoLocal
+        self.rivalTeam = equipoVisitante
+        self.homeTeamGoals = golesLocal
+        self.awayTeamGoals = golesVisitante
+        self.status = estado
+        self.observations = observaciones
+        self.dateGame = fecha
     }
 }
 
