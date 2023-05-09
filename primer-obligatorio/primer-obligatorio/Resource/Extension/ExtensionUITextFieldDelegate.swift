@@ -9,10 +9,11 @@ import Foundation
 import UIKit
 
 extension CustomTableViewCell: UITextFieldDelegate {
+    
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
-       
+        
         guard allowedCharacters.isSuperset(of: characterSet) else {
             return false
         }
@@ -21,6 +22,7 @@ extension CustomTableViewCell: UITextFieldDelegate {
         
         // Verificar si el valor es menor que 99
         if let number = Int(updatedText), number < 100 {
+            // updateView(self)
             return true
         }
         

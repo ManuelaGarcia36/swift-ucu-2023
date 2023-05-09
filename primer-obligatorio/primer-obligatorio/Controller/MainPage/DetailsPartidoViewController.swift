@@ -27,6 +27,10 @@ class DetailsPartidoViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        setup()
+    }
+    
+    func setup(){
         if let partido = partidoActual {
             switch (partido.status){
             case .acertado:

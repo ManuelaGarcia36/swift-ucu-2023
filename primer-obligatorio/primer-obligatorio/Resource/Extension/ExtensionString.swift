@@ -20,12 +20,12 @@ extension String {
         let length = password.count
         return length > 8 ? true: false;
     }
-
+    
     func isValidInput(input: String) -> Bool {
         let regex = "^(0|[1-9][0-9]?)$"
         let predicate = NSPredicate(format: "SELF MATCHES %@", regex)
         
         return predicate.evaluate(with: input)
     }
-
+    
 }

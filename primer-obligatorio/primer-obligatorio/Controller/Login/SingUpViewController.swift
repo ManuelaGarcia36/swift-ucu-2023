@@ -43,7 +43,6 @@ class SingUpViewController: UIViewController {
                 }
                 
                 // TODO: AGREGAR UN SAVE
-                //devolver al login
             }
         }
     }

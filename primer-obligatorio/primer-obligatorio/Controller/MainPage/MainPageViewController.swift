@@ -23,9 +23,13 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     
+    private var isFilterButtonOn: Bool!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        isFilterButtonOn = false
+        // Establecer el margen de separación para las celdas de otras secciones si lo necesitas
+        tableView.separatorInsetReference = .fromAutomaticInsets
         // initial
         pageControl.currentPage = 0
         teamsList = equiposIniciales
@@ -55,8 +59,8 @@ class MainPageViewController: UIViewController {
         labelSearch.backgroundColor = blueBackgroundTableView
         headerView.backgroundColor = blueBackgroundTableView
     }
-
-
+    
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsPartidoViewController, let partido = sender as? Partido {
             detailsPartidoVC.partidoActual = partido
@@ -65,7 +69,14 @@ class MainPageViewController: UIViewController {
     
     // funcion para filtrar partidos por tipo de estado
     func filtrarPorEstado(_ estado: EstadoPartido) {
+        isFilterButtonOn = true
         self.gamesList = self.gamesList.filter { $0.status == estado }
+        self.tableView.reloadData()
+    }
+    
+    func eliminarFiltro() {
+        isFilterButtonOn = false
+        self.gamesList = partidosIniciales
         self.tableView.reloadData()
     }
     
@@ -85,22 +96,27 @@ class MainPageViewController: UIViewController {
         let verSinResAction = UIAlertAction(title: "Ver jugados sin/res", style: .default, handler: { [self] action in
             self.filtrarPorEstado(.jugado)
         })
+        let verTodosAction = UIAlertAction(title: "Ver todos", style: .default) { [self] action in
+            self.eliminarFiltro()
+        }
         alert.addAction(verAcertadosAction)
         alert.addAction(verErradosAction)
         alert.addAction(verPendientesAction)
         alert.addAction(verSinResAction)
+        alert.addAction(verTodosAction)
+        alert.preferredAction = verTodosAction
+        
         self.present(alert, animated: true)
     }
 }
 
 extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDelegate, UITableViewDelegate{
-   
+    
     // Funcion para el tap del button de la cell detalles
     func customTableViewCellDidTapButton(with partido: Partido?) {
         guard let partido = partido else { return }
         performSegue(withIdentifier: "DetailsSegue", sender: partido)
     }
-
     
     // setup headers section
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
@@ -150,7 +166,7 @@ extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDel
         cell.partidoActual = partido
         cell.delegate = self
         cell.moreDetailsButton.addTarget(cell, action: #selector(CustomTableViewCell.customTableViewCellDidTapButton(_:)), for: .touchUpInside)
-
+        
         cell.setup(partido: partido)
         return cell
     }
@@ -194,7 +210,7 @@ extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollecti
 extension MainPageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         searchEquipo = []
-        if searchText.isEmpty {
+        if searchText.isEmpty && !isFilterButtonOn {
             gamesList = partidosIniciales
             tableView.reloadData()
             return
@@ -205,8 +221,8 @@ extension MainPageViewController: UISearchBarDelegate {
     
     func filtrarPartidosPorEquipo(nombreEquipo: String) -> [Partido] {
         return gamesList.filter { partido in
-            return partido.localTeam.nameTeam.lowercased().contains(nombreEquipo.lowercased())
-            || partido.rivalTeam.nameTeam.lowercased().contains(nombreEquipo.lowercased())
+            return partido.localTeam.nameTeam.lowercased().hasPrefix(nombreEquipo.lowercased())
+            || partido.rivalTeam.nameTeam.lowercased().hasPrefix(nombreEquipo.lowercased())
         }
     }
 }

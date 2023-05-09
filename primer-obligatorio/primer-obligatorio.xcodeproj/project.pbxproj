@@ -22,7 +22,7 @@
 		F5C984852A07EF1E00E4997F /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984842A07EF1E00E4997F /* ExtensionColor.swift */; };
 		F5C984892A08498F00E4997F /* ExtensionUITextFieldDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */; };
 		F5C9848F2A09C3BA00E4997F /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9848E2A09C3BA00E4997F /* ExtensionArray.swift */; };
-		F5C984922A09D3A600E4997F /* ConstantVars.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984912A09D3A600E4997F /* ConstantVars.swift */; };
+		F5C984922A09D3A600E4997F /* ConstantVar.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984912A09D3A600E4997F /* ConstantVar.swift */; };
 		F5FA209B2A048E20009A8C76 /* DetailsPartidoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */; };
 		F5FCD25429F9F48A00D661E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */; };
 		F5FCD25629F9F48A00D661E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25529F9F48A00D661E2 /* SceneDelegate.swift */; };
@@ -51,7 +51,7 @@
 		F5C984842A07EF1E00E4997F /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		F5C984882A08498F00E4997F /* ExtensionUITextFieldDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionUITextFieldDelegate.swift; sourceTree = "<group>"; };
 		F5C9848E2A09C3BA00E4997F /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
-		F5C984912A09D3A600E4997F /* ConstantVars.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantVars.swift; sourceTree = "<group>"; };
+		F5C984912A09D3A600E4997F /* ConstantVar.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConstantVar.swift; sourceTree = "<group>"; };
 		F5FA209A2A048E20009A8C76 /* DetailsPartidoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsPartidoViewController.swift; sourceTree = "<group>"; };
 		F5FCD25029F9F48A00D661E2 /* primer-obligatorio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "primer-obligatorio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -218,7 +218,7 @@
 				F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */,
 				F5FCD25529F9F48A00D661E2 /* SceneDelegate.swift */,
 				F5FCD27329FA1B2000D661E2 /* UtilityFunction.swift */,
-				F5C984912A09D3A600E4997F /* ConstantVars.swift */,
+				F5C984912A09D3A600E4997F /* ConstantVar.swift */,
 			);
 			path = Resource;
 			sourceTree = "<group>";
@@ -308,7 +308,7 @@
 				F5FCD27429FA1B2000D661E2 /* UtilityFunction.swift in Sources */,
 				F52215792A0046090018746B /* Partido.swift in Sources */,
 				F50C178B2A033D9B00880F6D /* CustomCollectionViewCell.swift in Sources */,
-				F5C984922A09D3A600E4997F /* ConstantVars.swift in Sources */,
+				F5C984922A09D3A600E4997F /* ConstantVar.swift in Sources */,
 				F5C984812A0715AD00E4997F /* ExtensionDate.swift in Sources */,
 				F5FCD27029FA00BD00D661E2 /* SingUpViewController.swift in Sources */,
 				F5C984852A07EF1E00E4997F /* ExtensionColor.swift in Sources */,

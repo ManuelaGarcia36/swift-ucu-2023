@@ -8,7 +8,7 @@
 import UIKit
 
 class CustomCollectionViewCell: UICollectionViewCell {
-
+    
     @IBOutlet weak var imageBanner: UIImageView!
     
     static let reuseIdentifier :String = "CustomCollectionViewCell"
@@ -17,7 +17,7 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
         // Initialization code
     }
-
+    
     func setup(image: UIImage!){
         imageBanner.image = image
         imageBanner.contentMode = .scaleAspectFill

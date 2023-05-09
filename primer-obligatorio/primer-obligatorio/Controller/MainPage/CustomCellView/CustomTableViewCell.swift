@@ -32,7 +32,7 @@ class CustomTableViewCell: UITableViewCell {
     
     weak var delegate: CustomTableViewCellDelegate?
     var partidoActual: Partido?
-
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         
@@ -60,17 +60,37 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func setup(partido: Partido){
-       
         switch(partido.status) {
         case .acertado:
             // FIXME: Generalizar logica y mejorarla
             headerCellView.backgroundColor = greenBackgroundCard
             headerLabel.backgroundColor = greenBackgroundLabelCard
             headerLabel.text = " Acertado "
+            // fixme
             firstRivalResultText.text = String(partido.homeTeamGoals)
             secondRivalResultText.text = String(partido.awayTeamGoals)
             firstRivalResultText.isEnabled = false
             secondRivalResultText.isEnabled = false
+            
+            moreDetailsButton.isHidden = false
+            buttonView.layer.borderColor = lightBlueTableViewDetails.cgColor
+            
+            // dar fondo a picker
+            gameResultView.backgroundColor = blueBackgroundTableView
+            // borde
+            gameResultView.layer.borderColor = lightBlueTableViewDetails.cgColor
+            gameResultView.layer.borderWidth = 1.0
+            gameResultView.layer.cornerRadius = 10.0
+            gameResultView.layer.backgroundColor = blueBackgroundTableView.cgColor
+            
+            firstRivalResultText.backgroundColor = blueBackgroundTableView
+            secondRivalResultText.backgroundColor = blueBackgroundTableView
+            
+            firstRivalResultText.isEnabled = false
+            secondRivalResultText.isEnabled = false
+            
+            cardPrincipalView.backgroundColor = blueBackgroundTableView
+            buttonView.backgroundColor = blueBackgroundTableView
             
         case .jugado:
             headerCellView.backgroundColor = greyBackgroundCard
@@ -82,6 +102,30 @@ class CustomTableViewCell: UITableViewCell {
             firstRivalResultText.text = "-"
             secondRivalResultText.text = "-"
             
+            moreDetailsButton.isHidden = false
+            buttonView.layer.borderColor = lightBlueTableViewDetails.cgColor
+            
+            // dar fondo a picker
+            gameResultView.backgroundColor = blueBackgroundTableView
+            // borde
+            gameResultView.layer.borderColor = lightBlueTableViewDetails.cgColor
+            gameResultView.layer.borderWidth = 1.0
+            gameResultView.layer.cornerRadius = 10.0
+            gameResultView.layer.backgroundColor = blueBackgroundTableView.cgColor
+            
+            firstRivalResultText.backgroundColor = blueBackgroundTableView
+            secondRivalResultText.backgroundColor = blueBackgroundTableView
+            
+            firstRivalResultText.isEnabled = false
+            secondRivalResultText.isEnabled = false
+            
+            cardPrincipalView.backgroundColor = blueBackgroundTableView
+            buttonView.backgroundColor = blueBackgroundTableView
+            
+            //fixme: mejorar
+            firstRivalResultText.text = String(partido.homeTeamGoals)
+            secondRivalResultText.text = String(partido.awayTeamGoals)
+            
         case .errado:
             headerCellView.backgroundColor = redBackgroundCard
             headerLabel.backgroundColor = redBackgroundLabelCard
@@ -90,8 +134,29 @@ class CustomTableViewCell: UITableViewCell {
             firstRivalResultText.isEnabled = false
             secondRivalResultText.isEnabled = false
             
+            // fixme
             firstRivalResultText.text = String(partido.homeTeamGoals)
             secondRivalResultText.text = String(partido.awayTeamGoals)
+            
+            moreDetailsButton.isHidden = false
+            buttonView.layer.borderColor = lightBlueTableViewDetails.cgColor
+            // dar fondo a picker
+            gameResultView.backgroundColor = blueBackgroundTableView
+            // borde
+            gameResultView.layer.borderColor = lightBlueTableViewDetails.cgColor
+            gameResultView.layer.borderWidth = 1.0
+            gameResultView.layer.cornerRadius = 10.0
+            gameResultView.layer.backgroundColor = blueBackgroundTableView.cgColor
+            
+            firstRivalResultText.backgroundColor = blueBackgroundTableView
+            secondRivalResultText.backgroundColor = blueBackgroundTableView
+            
+            firstRivalResultText.isEnabled = false
+            secondRivalResultText.isEnabled = false
+            
+            cardPrincipalView.backgroundColor = blueBackgroundTableView
+            buttonView.backgroundColor = blueBackgroundTableView
+            
             
         case .pendiente:
             headerCellView.backgroundColor = blueBackgroundCard
@@ -99,7 +164,6 @@ class CustomTableViewCell: UITableViewCell {
             headerLabel.text = " Pendiente "
             
             moreDetailsButton.isHidden = true
-            
             
             // dar fondo a picker
             gameResultView.backgroundColor = blueBackgroundPickerCard
