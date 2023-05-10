@@ -8,9 +8,11 @@
 import Foundation
 import UIKit
 
-class DetailsPartidoViewController: UIViewController {
+// MiniDetails
+class DetailsGameViewController: UIViewController {
     
     // first sub view
+    @IBOutlet var contentView: UIView!
     @IBOutlet weak var statusGameView: UIView!
     @IBOutlet weak var dateLabel: UILabel!
     @IBOutlet weak var statusLabel: UILabel!
@@ -23,7 +25,7 @@ class DetailsPartidoViewController: UIViewController {
     @IBOutlet weak var secondRivalImage: UIImageView!
     @IBOutlet weak var secondRivalLabel: UILabel!
     
-    var partidoActual: Game?
+    var actualGame: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -31,39 +33,30 @@ class DetailsPartidoViewController: UIViewController {
     }
     
     func setup(){
-        if let partido = partidoActual {
+        contentView.backgroundColor = blueBackgroundTableView
+        if let partido = actualGame {
             switch (partido.status){
             case .acertado:
                 statusGameView.backgroundColor = greenBackgroundCard
                 statusLabel.backgroundColor = greenBackgroundLabelCard
-                dateLabel.textColor = .white
-                statusLabel.textColor = .white
                 statusLabel.text = " Acertado "
-                statusLabel.layer.cornerRadius = 5.0
-                statusLabel.clipsToBounds = true
-                dateLabel.text = Date.dateFromToCustomString(date: partido.dateGame ?? Date())
             case .errado:
                 statusGameView.backgroundColor = redBackgroundCard
                 statusLabel.backgroundColor = redBackgroundLabelCard
-                dateLabel.textColor = .white
-                statusLabel.textColor = .white
                 statusLabel.text = " Errado "
-                statusLabel.layer.cornerRadius = 5.0
-                statusLabel.clipsToBounds = true
-                dateLabel.text = Date.dateFromToCustomString(date: partido.dateGame ?? Date())
             case .jugado:
                 statusGameView.backgroundColor = greyBackgroundCard
                 statusLabel.backgroundColor = greyBackgroundLabelCard
-                dateLabel.textColor = .white
-                statusLabel.textColor = .white
                 statusLabel.text = " Jugado sin/resulados"
-                statusLabel.layer.cornerRadius = 5.0
-                statusLabel.clipsToBounds = true
-                dateLabel.text = Date.dateFromToCustomString(date: partido.dateGame ?? Date())
             case .pendiente:
                 break;
             }
-            
+            // commons
+            dateLabel.textColor = .white
+            statusLabel.textColor = .white
+            statusLabel.layer.cornerRadius = 5.0
+            statusLabel.clipsToBounds = true
+            dateLabel.text = Date.dateFromToCustomString(date: partido.dateGame ?? Date())
             firstRivalImage.image = partido.localTeam.imageTeam
             firstRivalNameLabel.text = partido.localTeam.nameTeam
             firstRivalNameLabel.textColor = .white

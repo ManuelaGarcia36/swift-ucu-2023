@@ -16,6 +16,7 @@ extension UIColor {
     }
 }
 
+// set colors project fast
 let blueLogoView = UIColor(hex: 0x161b28)
 let blueBackgroundTableView = UIColor(hex: 0x202045)
 let lightBlueTableViewDetails = UIColor(hex: 0x5c77c2)

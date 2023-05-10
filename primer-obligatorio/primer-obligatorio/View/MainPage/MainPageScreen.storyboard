@@ -158,10 +158,10 @@
             </objects>
             <point key="canvasLocation" x="687.78625954198469" y="4.9295774647887329"/>
         </scene>
-        <!--Details Partido View Controller-->
+        <!--Details Game View Controller-->
         <scene sceneID="rT9-PB-WGJ">
             <objects>
-                <viewController id="XnS-RP-AYw" customClass="DetailsPartidoViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XnS-RP-AYw" customClass="DetailsGameViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mft-EI-Dyf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,6 +258,7 @@
                     </view>
                     <navigationItem key="navigationItem" id="FRn-tE-1p4"/>
                     <connections>
+                        <outlet property="contentView" destination="mft-EI-Dyf" id="S2a-KN-fdc"/>
                         <outlet property="dateLabel" destination="igY-Pw-LaQ" id="Ot4-bQ-hYh"/>
                         <outlet property="firstRivalImage" destination="Wmx-Wl-GqW" id="k8K-lA-HcH"/>
                         <outlet property="firstRivalNameLabel" destination="4IN-tK-xKw" id="O94-eB-acb"/>

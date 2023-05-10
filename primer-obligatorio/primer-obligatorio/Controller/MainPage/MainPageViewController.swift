@@ -62,8 +62,8 @@ class MainPageViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsPartidoViewController, let partido = sender as? Game {
-            detailsPartidoVC.partidoActual = partido
+        if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsGameViewController, let partido = sender as? Game {
+            detailsPartidoVC.actualGame = partido
         }
     }
     
@@ -83,36 +83,32 @@ class MainPageViewController: UIViewController {
     @IBAction func filterButton(_ sender: Any) {
         gamesList = partidosIniciales
         
-        let alert =  UIAlertController(title: "Filtrar partidos", message: "", preferredStyle: .alert)
-        let verAcertadosAction = UIAlertAction(title: "Ver acertados", style: .default, handler: { [self] action in
+        let alert = UIAlertController(title: "Filtrar partidos", message: nil, preferredStyle: .actionSheet)
+        alert.addAction(UIAlertAction(title: "Ver acertados", style: .default, handler: { [self] action in
             self.filtrarPorEstado(.acertado)
-        })
-        let verErradosAction = UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
+        }))
+        alert.addAction(UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
             self.filtrarPorEstado(.errado)
-        })
+        }))
         let verPendientesAction = UIAlertAction(title: "Ver pendientes", style: .default, handler: { [self] action in
             self.filtrarPorEstado(.pendiente)
         })
-        let verSinResAction = UIAlertAction(title: "Ver jugados sin/res", style: .default, handler: { [self] action in
-            self.filtrarPorEstado(.jugado)
-        })
-        let verTodosAction = UIAlertAction(title: "Ver todos", style: .default) { [self] action in
-            self.eliminarFiltro()
-        }
-        alert.addAction(verAcertadosAction)
-        alert.addAction(verErradosAction)
+        verPendientesAction.setValue(redBackgroundLabelCard, forKey: "titleTextColor")
         alert.addAction(verPendientesAction)
-        alert.addAction(verSinResAction)
-        alert.addAction(verTodosAction)
-        alert.preferredAction = verTodosAction
-        
-        self.present(alert, animated: true)
+        alert.addAction(UIAlertAction(title: "Ver jugados s/resultado", style: .default, handler: { [self] action in
+            self.filtrarPorEstado(.jugado)
+        }))
+        alert.addAction(UIAlertAction(title: "Ver todos", style: .cancel, handler: { [self] action in
+            self.eliminarFiltro()
+        }))
+        alert.overrideUserInterfaceStyle = .dark
+        self.present(alert, animated: true, completion: nil)
     }
 }
 
 extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDelegate, UITableViewDelegate{
     
-    // Funcion para el tap del button de la cell detalles
+    // funcion para el tap del button de la cell detalles
     func customTableViewCellDidTapButton(with partido: Game?) {
         guard let partido = partido else { return }
         performSegue(withIdentifier: "DetailsSegue", sender: partido)
@@ -163,7 +159,7 @@ extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDel
         let values = keys[indexPath.section]
         let partidoss = dictionary[values, default: []]
         let partido = partidoss[indexPath.row]
-        cell.partidoActual = partido
+        cell.actualGame = partido
         cell.delegate = self
         cell.moreDetailsButton.addTarget(cell, action: #selector(CustomTableViewCell.customTableViewCellDidTapButton(_:)), for: .touchUpInside)
         
