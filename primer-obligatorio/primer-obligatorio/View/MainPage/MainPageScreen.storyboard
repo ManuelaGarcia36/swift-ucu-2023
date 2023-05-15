@@ -83,14 +83,20 @@
                                         <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Opw-Li-0NL">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imagen-penca" translatesAutoresizingMaskIntoConstraints="NO" id="Fa5-OK-oBc">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="imagen-penca" translatesAutoresizingMaskIntoConstraints="NO" id="Fa5-OK-oBc">
                                                     <rect key="frame" x="0.0" y="0.0" width="393" height="50"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" constant="50" id="CjB-ru-ZEh"/>
+                                                    </constraints>
                                                 </imageView>
                                             </subviews>
                                             <color key="backgroundColor" red="0.088906116780000002" green="0.1079819873" blue="0.1506907344" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                             <constraints>
+                                                <constraint firstItem="Fa5-OK-oBc" firstAttribute="leading" secondItem="Opw-Li-0NL" secondAttribute="leading" id="MfW-lN-ibw"/>
                                                 <constraint firstAttribute="height" constant="50" id="e3b-IL-3XE"/>
+                                                <constraint firstAttribute="trailing" secondItem="Fa5-OK-oBc" secondAttribute="trailing" id="imx-qx-emq"/>
+                                                <constraint firstItem="Fa5-OK-oBc" firstAttribute="centerY" secondItem="Opw-Li-0NL" secondAttribute="centerY" id="kMK-fE-UEG"/>
+                                                <constraint firstItem="Fa5-OK-oBc" firstAttribute="centerX" secondItem="Opw-Li-0NL" secondAttribute="centerX" id="omk-gM-4Ml"/>
                                             </constraints>
                                         </view>
                                     </subviews>
