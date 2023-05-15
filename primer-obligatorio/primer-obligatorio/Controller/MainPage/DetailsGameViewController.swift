@@ -25,15 +25,24 @@ class DetailsGameViewController: UIViewController {
     @IBOutlet weak var secondRivalImage: UIImageView!
     @IBOutlet weak var secondRivalLabel: UILabel!
     
+    // details sub view
+    @IBOutlet weak var detailsTableView: UITableView!
     var actualGame: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        detailsTableView.register(FirstTableViewCell.nib(), forCellReuseIdentifier: FirstTableViewCell.identifier)
+        detailsTableView.register(RivalTableViewCell.nib(), forCellReuseIdentifier: RivalTableViewCell.identifier)
+        detailsTableView.delegate = self
+        detailsTableView.dataSource = self
+        
     }
     
     func setup(){
         contentView.backgroundColor = blueBackgroundTableView
+        detailsTableView.backgroundColor = blueBackgroundTableView
         if let partido = actualGame {
             switch (partido.status){
             case .acertado:
@@ -69,3 +78,40 @@ class DetailsGameViewController: UIViewController {
         }
     }
 }
+
+extension DetailsGameViewController: UITableViewDelegate {
+    
+}
+
+extension DetailsGameViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return actualGame?.observations.count  ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let game = actualGame {
+            
+            let sortedObservations =  game.observations.sorted { $0.minuto < $1.minuto }
+            let observation = sortedObservations[indexPath.row]
+            
+            if observation.equipo == "local" {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: FirstTableViewCell.identifier, for: indexPath) as? FirstTableViewCell
+                else { return .init()}
+                let nombreImage = "\(observation.tipo)"
+                let image =  UIImage(named: nombreImage) ?? UIImage()
+                cell.setup(minuto: observation.minuto, nombre: observation.nombre, icono: image)
+                return cell
+            } else if observation.equipo == "visitante" {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: RivalTableViewCell.identifier, for: indexPath) as? RivalTableViewCell
+                else { return .init()}
+                let image =  UIImage(named: "\(observation.tipo)") ?? UIImage()
+                cell.setup(minuto: observation.minuto, nombre: observation.nombre, icono: image)
+                return cell
+            }
+        }
+        return UITableViewCell()
+    }
+}
+

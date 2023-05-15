@@ -38,7 +38,7 @@ class MainPageViewController: UIViewController {
         // tableView
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: "CustomTableViewCell", bundle: nil), forCellReuseIdentifier: "CustomTableViewCell")
+        tableView.register(UINib(nibName: CustomTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseIdentifier)
         tableView.backgroundColor = blueBackgroundTableView
         
         // CollectionView
@@ -150,7 +150,7 @@ extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDel
     
     // inicializacion de las celdas
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: "CustomTableViewCell", for: indexPath) as? CustomTableViewCell
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseIdentifier, for: indexPath) as? CustomTableViewCell
         else { return .init()}
         
         let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })

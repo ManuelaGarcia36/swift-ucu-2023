@@ -244,14 +244,22 @@
                                     <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="60" id="aD3-Qr-fKO"/>
                                 </constraints>
                             </view>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="oK2-t6-V14">
+                                <rect key="frame" x="0.0" y="363" width="393" height="455"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                            </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="b2O-yI-h19"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
                             <constraint firstItem="Ysy-MB-79G" firstAttribute="top" secondItem="9pE-UY-eht" secondAttribute="bottom" id="4iS-bD-8xI"/>
                             <constraint firstItem="9pE-UY-eht" firstAttribute="top" secondItem="b2O-yI-h19" secondAttribute="top" id="Ggw-yA-Lvq"/>
+                            <constraint firstItem="oK2-t6-V14" firstAttribute="top" secondItem="Ysy-MB-79G" secondAttribute="bottom" id="Hfc-9p-5VS"/>
                             <constraint firstItem="9pE-UY-eht" firstAttribute="trailing" secondItem="b2O-yI-h19" secondAttribute="trailing" id="MJg-Po-5hF"/>
+                            <constraint firstItem="b2O-yI-h19" firstAttribute="trailing" secondItem="oK2-t6-V14" secondAttribute="trailing" id="NMu-OU-hwt"/>
+                            <constraint firstItem="oK2-t6-V14" firstAttribute="leading" secondItem="b2O-yI-h19" secondAttribute="leading" id="Sfk-Fg-5aj"/>
                             <constraint firstItem="9pE-UY-eht" firstAttribute="leading" secondItem="b2O-yI-h19" secondAttribute="leading" id="Slj-4s-qqr"/>
+                            <constraint firstItem="b2O-yI-h19" firstAttribute="bottom" secondItem="oK2-t6-V14" secondAttribute="bottom" id="Tl0-Uk-5MJ"/>
                             <constraint firstItem="Ysy-MB-79G" firstAttribute="trailing" secondItem="b2O-yI-h19" secondAttribute="trailing" id="Y8z-M3-Qnu"/>
                             <constraint firstItem="Ysy-MB-79G" firstAttribute="leading" secondItem="b2O-yI-h19" secondAttribute="leading" id="jpi-uN-mUB"/>
                         </constraints>
@@ -260,6 +268,7 @@
                     <connections>
                         <outlet property="contentView" destination="mft-EI-Dyf" id="S2a-KN-fdc"/>
                         <outlet property="dateLabel" destination="igY-Pw-LaQ" id="Ot4-bQ-hYh"/>
+                        <outlet property="detailsTableView" destination="oK2-t6-V14" id="hHo-hM-OhQ"/>
                         <outlet property="firstRivalImage" destination="Wmx-Wl-GqW" id="k8K-lA-HcH"/>
                         <outlet property="firstRivalNameLabel" destination="4IN-tK-xKw" id="O94-eB-acb"/>
                         <outlet property="resultGameLabel" destination="lFy-7S-krM" id="aE6-vO-toJ"/>

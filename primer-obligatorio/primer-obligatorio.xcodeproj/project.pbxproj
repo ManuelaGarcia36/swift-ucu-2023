@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F509A0052A102B7A00414B88 /* FirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509A0032A102B7A00414B88 /* FirstTableViewCell.swift */; };
+		F509A0062A102B7A00414B88 /* FirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509A0042A102B7A00414B88 /* FirstTableViewCell.xib */; };
+		F509A00B2A12B4E200414B88 /* RivalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509A0092A12B4E200414B88 /* RivalTableViewCell.swift */; };
+		F509A00C2A12B4E200414B88 /* RivalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509A00A2A12B4E200414B88 /* RivalTableViewCell.xib */; };
+		F509A00E2A12CAD700414B88 /* Observation.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509A00D2A12CAD700414B88 /* Observation.swift */; };
 		F50C178B2A033D9B00880F6D /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */; };
 		F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */; };
 		F52215772A0045EC0018746B /* Team.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215762A0045EC0018746B /* Team.swift */; };
@@ -35,6 +40,11 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F509A0032A102B7A00414B88 /* FirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTableViewCell.swift; sourceTree = "<group>"; };
+		F509A0042A102B7A00414B88 /* FirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstTableViewCell.xib; sourceTree = "<group>"; };
+		F509A0092A12B4E200414B88 /* RivalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalTableViewCell.swift; sourceTree = "<group>"; };
+		F509A00A2A12B4E200414B88 /* RivalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RivalTableViewCell.xib; sourceTree = "<group>"; };
+		F509A00D2A12CAD700414B88 /* Observation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Observation.swift; sourceTree = "<group>"; };
 		F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		F52215762A0045EC0018746B /* Team.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Team.swift; sourceTree = "<group>"; };
@@ -101,6 +111,8 @@
 			children = (
 				F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */,
 				F522158A2A0092280018746B /* CustomTableViewCell.swift */,
+				F509A0032A102B7A00414B88 /* FirstTableViewCell.swift */,
+				F509A0092A12B4E200414B88 /* RivalTableViewCell.swift */,
 			);
 			path = CustomCellView;
 			sourceTree = "<group>";
@@ -154,6 +166,8 @@
 		F5C984972A09D43100E4997F /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
+				F509A00A2A12B4E200414B88 /* RivalTableViewCell.xib */,
+				F509A0042A102B7A00414B88 /* FirstTableViewCell.xib */,
 				F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */,
 				F522158B2A0092280018746B /* CustomTableViewCell.xib */,
 			);
@@ -204,6 +218,7 @@
 				F52215762A0045EC0018746B /* Team.swift */,
 				F52215782A0046090018746B /* Game.swift */,
 				F5C9847D2A07148100E4997F /* StatusGame.swift */,
+				F509A00D2A12CAD700414B88 /* Observation.swift */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -279,11 +294,13 @@
 			buildActionMask = 2147483647;
 			files = (
 				F52215832A0066390018746B /* MainPageScreen.storyboard in Resources */,
+				F509A0062A102B7A00414B88 /* FirstTableViewCell.xib in Resources */,
 				F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */,
 				F5FCD26029F9F48F00D661E2 /* LaunchScreen.storyboard in Resources */,
 				F522158D2A0092280018746B /* CustomTableViewCell.xib in Resources */,
 				F5FCD25D29F9F48F00D661E2 /* Assets.xcassets in Resources */,
 				F5FCD25B29F9F48A00D661E2 /* LoginScreen.storyboard in Resources */,
+				F509A00C2A12B4E200414B88 /* RivalTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -296,10 +313,13 @@
 			files = (
 				F5C9847E2A07148100E4997F /* StatusGame.swift in Sources */,
 				F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */,
+				F509A0052A102B7A00414B88 /* FirstTableViewCell.swift in Sources */,
 				F5C9848F2A09C3BA00E4997F /* ExtensionArray.swift in Sources */,
 				F5FCD26E29FA005F00D661E2 /* SignInViewController.swift in Sources */,
+				F509A00B2A12B4E200414B88 /* RivalTableViewCell.swift in Sources */,
 				F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */,
 				F5FCD25829F9F48A00D661E2 /* ViewController.swift in Sources */,
+				F509A00E2A12CAD700414B88 /* Observation.swift in Sources */,
 				F522157B2A004DA10018746B /* MainViewController.swift in Sources */,
 				F5FCD27429FA1B2000D661E2 /* UtilityFunction.swift in Sources */,
 				F52215792A0046090018746B /* Game.swift in Sources */,

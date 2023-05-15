@@ -9,6 +9,8 @@ import UIKit
 
 class CustomTableViewCell: UITableViewCell {
     
+    static let reuseIdentifier :String = "CustomTableViewCell"
+    
     // Vistas mas grandes
     @IBOutlet weak var myContentView: UIView!
     @IBOutlet weak var headerCellView: UIView!

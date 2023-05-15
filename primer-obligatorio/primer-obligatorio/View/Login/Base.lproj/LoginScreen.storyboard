@@ -88,8 +88,8 @@
                                 <rect key="frame" x="10" y="82" width="367" height="73"/>
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
-                            <stackView opaque="NO" contentMode="scaleToFill" misplaced="YES" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Thi-0l-YSm">
-                                <rect key="frame" x="124" y="222" width="240" height="368.33333333333326"/>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Thi-0l-YSm">
+                                <rect key="frame" x="30" y="236.99999999999997" width="240" height="368.33333333333326"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crear cuenta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkh-vt-JIO">
                                         <rect key="frame" x="0.0" y="0.0" width="240" height="25.333333333333332"/>
@@ -158,6 +158,7 @@
                                             <constraint firstAttribute="bottom" secondItem="vrO-AM-p0j" secondAttribute="bottom" id="6Gk-7o-hbu"/>
                                             <constraint firstItem="3ag-U3-ujL" firstAttribute="top" secondItem="5QD-Jb-AyU" secondAttribute="top" id="Co2-6g-nP2"/>
                                             <constraint firstItem="3ag-U3-ujL" firstAttribute="leading" secondItem="5QD-Jb-AyU" secondAttribute="leading" id="H21-hB-uv5"/>
+                                            <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="vrO-AM-p0j" secondAttribute="trailing" constant="5" id="SrY-6u-9vt"/>
                                             <constraint firstItem="vrO-AM-p0j" firstAttribute="height" secondItem="3ag-U3-ujL" secondAttribute="height" id="W17-gs-lfF"/>
                                             <constraint firstItem="vrO-AM-p0j" firstAttribute="top" secondItem="5QD-Jb-AyU" secondAttribute="top" id="dXo-0Q-HIS"/>
                                             <constraint firstAttribute="bottom" secondItem="3ag-U3-ujL" secondAttribute="bottom" id="pWe-fV-mN2"/>
@@ -174,7 +175,6 @@
                         <constraints>
                             <constraint firstItem="ogA-Gb-Z5z" firstAttribute="trailing" secondItem="Thi-0l-YSm" secondAttribute="trailing" constant="30" id="6ET-BC-qHL"/>
                             <constraint firstItem="Thi-0l-YSm" firstAttribute="centerY" secondItem="ogA-Gb-Z5z" secondAttribute="centerY" id="Dgg-Fl-d60"/>
-                            <constraint firstItem="Thi-0l-YSm" firstAttribute="centerX" secondItem="ogA-Gb-Z5z" secondAttribute="centerX" id="LWc-ul-YmZ"/>
                             <constraint firstItem="Thi-0l-YSm" firstAttribute="leading" secondItem="ogA-Gb-Z5z" secondAttribute="leading" constant="30" id="xxo-xo-cYt"/>
                         </constraints>
                     </view>
@@ -321,7 +321,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="vJ3-Pa-ll9"/>
+        <segue reference="jJM-q0-c0Z"/>
         <segue reference="2BP-bX-o5D"/>
     </inferredMetricsTieBreakers>
     <resources>
