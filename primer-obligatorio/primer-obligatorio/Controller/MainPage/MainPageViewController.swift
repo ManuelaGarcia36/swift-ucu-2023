@@ -39,6 +39,7 @@ class MainPageViewController: UIViewController {
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: CustomTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName: "EmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyTableViewCell")
         tableView.backgroundColor = blueBackgroundTableView
         
         // CollectionView
@@ -49,6 +50,7 @@ class MainPageViewController: UIViewController {
         
         // filters
         searchBar.backgroundColor = blueBackgroundTableView
+        searchBar.searchTextField.textColor = .white
         filterButton.backgroundColor = blueBackgroundTableView
         
         let image = UIImage(systemName: "line.3.horizontal.decrease.circle")
@@ -135,36 +137,51 @@ extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDel
     
     // numero de secciones en total dividido por fecha
     func numberOfSections(in tableView: UITableView) -> Int {
-        let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
-        return dictionary.count
+        if gamesList.isEmpty {
+            return 1
+        } else {
+            let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
+            return dictionary.count
+        }
     }
     
     // numero de filas por secciones
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
-        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
-        let keys = sortedDictionary.map { $0.key }
-        let values = keys[section]
-        return dictionary[values, default: []].count
+        if gamesList.isEmpty {
+            return 1
+        }else {
+            let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
+            let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
+            let keys = sortedDictionary.map { $0.key }
+            let values = keys[section]
+            return dictionary[values, default: []].count
+        }
     }
     
     // inicializacion de las celdas
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseIdentifier, for: indexPath) as? CustomTableViewCell
-        else { return .init()}
-        
-        let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
-        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
-        let keys = sortedDictionary.map { $0.key }
-        let values = keys[indexPath.section]
-        let partidoss = dictionary[values, default: []]
-        let partido = partidoss[indexPath.row]
-        cell.actualGame = partido
-        cell.delegate = self
-        cell.moreDetailsButton.addTarget(cell, action: #selector(CustomTableViewCell.customTableViewCellDidTapButton(_:)), for: .touchUpInside)
-        
-        cell.setup(partido: partido)
-        return cell
+        if gamesList.isEmpty{
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as? EmptyTableViewCell
+            else { return .init()}
+            cell.setup(message: "Sin resultados encontrados")
+            return cell
+        } else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseIdentifier, for: indexPath) as? CustomTableViewCell
+            else { return .init()}
+            
+            let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
+            let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
+            let keys = sortedDictionary.map { $0.key }
+            let values = keys[indexPath.section]
+            let partidoss = dictionary[values, default: []]
+            let partido = partidoss[indexPath.row]
+            cell.actualGame = partido
+            cell.delegate = self
+            cell.moreDetailsButton.addTarget(cell, action: #selector(CustomTableViewCell.customTableViewCellDidTapButton(_:)), for: .touchUpInside)
+            
+            cell.setup(partido: partido)
+            return cell
+        }
     }
 }
 

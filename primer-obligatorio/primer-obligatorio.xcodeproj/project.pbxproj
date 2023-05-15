@@ -21,6 +21,8 @@
 		F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215842A0087EE0018746B /* MainPageViewController.swift */; };
 		F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522158A2A0092280018746B /* CustomTableViewCell.swift */; };
 		F522158D2A0092280018746B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F522158B2A0092280018746B /* CustomTableViewCell.xib */; };
+		F54D25732A12EBF300D67734 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D25712A12EBF300D67734 /* EmptyTableViewCell.swift */; };
+		F54D25742A12EBF300D67734 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D25722A12EBF300D67734 /* EmptyTableViewCell.xib */; };
 		F5C9847E2A07148100E4997F /* StatusGame.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9847D2A07148100E4997F /* StatusGame.swift */; };
 		F5C984812A0715AD00E4997F /* ExtensionDate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984802A0715AD00E4997F /* ExtensionDate.swift */; };
 		F5C984832A0715BA00E4997F /* ExtensionString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984822A0715BA00E4997F /* ExtensionString.swift */; };
@@ -54,6 +56,8 @@
 		F52215842A0087EE0018746B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
 		F522158A2A0092280018746B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
 		F522158B2A0092280018746B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
+		F54D25712A12EBF300D67734 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
+		F54D25722A12EBF300D67734 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		F5C9847D2A07148100E4997F /* StatusGame.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StatusGame.swift; sourceTree = "<group>"; };
 		F5C984802A0715AD00E4997F /* ExtensionDate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionDate.swift; sourceTree = "<group>"; };
 		F5C984822A0715BA00E4997F /* ExtensionString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionString.swift; sourceTree = "<group>"; };
@@ -110,6 +114,7 @@
 			isa = PBXGroup;
 			children = (
 				F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */,
+				F54D25712A12EBF300D67734 /* EmptyTableViewCell.swift */,
 				F522158A2A0092280018746B /* CustomTableViewCell.swift */,
 				F509A0032A102B7A00414B88 /* FirstTableViewCell.swift */,
 				F509A0092A12B4E200414B88 /* RivalTableViewCell.swift */,
@@ -166,6 +171,7 @@
 		F5C984972A09D43100E4997F /* CustomCell */ = {
 			isa = PBXGroup;
 			children = (
+				F54D25722A12EBF300D67734 /* EmptyTableViewCell.xib */,
 				F509A00A2A12B4E200414B88 /* RivalTableViewCell.xib */,
 				F509A0042A102B7A00414B88 /* FirstTableViewCell.xib */,
 				F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */,
@@ -293,6 +299,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F54D25742A12EBF300D67734 /* EmptyTableViewCell.xib in Resources */,
 				F52215832A0066390018746B /* MainPageScreen.storyboard in Resources */,
 				F509A0062A102B7A00414B88 /* FirstTableViewCell.xib in Resources */,
 				F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */,
@@ -318,6 +325,7 @@
 				F5FCD26E29FA005F00D661E2 /* SignInViewController.swift in Sources */,
 				F509A00B2A12B4E200414B88 /* RivalTableViewCell.swift in Sources */,
 				F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */,
+				F54D25732A12EBF300D67734 /* EmptyTableViewCell.swift in Sources */,
 				F5FCD25829F9F48A00D661E2 /* ViewController.swift in Sources */,
 				F509A00E2A12CAD700414B88 /* Observation.swift in Sources */,
 				F522157B2A004DA10018746B /* MainViewController.swift in Sources */,
