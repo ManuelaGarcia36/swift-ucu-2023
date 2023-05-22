@@ -22,11 +22,11 @@ class SingUpViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myView.backgroundColor = blueLogoView
-        myStackView.backgroundColor = blueLogoView
+        myView.backgroundColor = UIColor.blueLogoView
+        myStackView.backgroundColor = UIColor.blueLogoView
         
         pencaImage.image = UIImage(systemName: "imagen-penca")
-        pencaImage.backgroundColor = blueLogoView
+        pencaImage.backgroundColor = UIColor.blueLogoView
     }
     
     @IBAction func saveBtn(_ sender: Any) {
@@ -41,7 +41,9 @@ class SingUpViewController: UIViewController {
                 } else if !pass.isValidPassword(password: pass) {
                     UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
                 }
-                
+                let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+                let destinationVC = storyboard.instantiateViewController(withIdentifier: "SignInViewController") as! SignInViewController
+                self.navigationController?.pushViewController(destinationVC, animated: true)
                 // TODO: AGREGAR UN SAVE
             }
         }

@@ -41,21 +41,21 @@ class DetailsGameViewController: UIViewController {
     }
     
     func setup(){
-        contentView.backgroundColor = blueBackgroundTableView
-        detailsTableView.backgroundColor = blueBackgroundTableView
+        contentView.backgroundColor = UIColor.blueBackgroundTableView
+        detailsTableView.backgroundColor = UIColor.blueBackgroundTableView
         if let partido = actualGame {
             switch (partido.status){
             case .acertado:
-                statusGameView.backgroundColor = greenBackgroundCard
-                statusLabel.backgroundColor = greenBackgroundLabelCard
+                statusGameView.backgroundColor = UIColor.greenBackgroundCard
+                statusLabel.backgroundColor = UIColor.greenBackgroundLabelCard
                 statusLabel.text = " Acertado "
             case .errado:
-                statusGameView.backgroundColor = redBackgroundCard
-                statusLabel.backgroundColor = redBackgroundLabelCard
+                statusGameView.backgroundColor = UIColor.redBackgroundCard
+                statusLabel.backgroundColor = UIColor.redBackgroundLabelCard
                 statusLabel.text = " Errado "
             case .jugado:
-                statusGameView.backgroundColor = greyBackgroundCard
-                statusLabel.backgroundColor = greyBackgroundLabelCard
+                statusGameView.backgroundColor = UIColor.greyBackgroundCard
+                statusLabel.backgroundColor = UIColor.greyBackgroundLabelCard
                 statusLabel.text = " Jugado sin/resulados"
             case .pendiente:
                 break;
@@ -73,7 +73,7 @@ class DetailsGameViewController: UIViewController {
             secondRivalLabel.text = partido.rivalTeam.nameTeam
             secondRivalLabel.textColor = .white
             resultGameLabel.text = "\(partido.homeTeamGoals) - \(partido.awayTeamGoals)"
-            resultGameView.backgroundColor = lightBlueTableViewDetails
+            resultGameView.backgroundColor = UIColor.lightBlueTableViewDetails
             resultGameLabel.textColor = .white
         }
     }

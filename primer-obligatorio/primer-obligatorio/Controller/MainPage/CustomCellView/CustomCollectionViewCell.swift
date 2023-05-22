@@ -11,11 +11,14 @@ class CustomCollectionViewCell: UICollectionViewCell {
     
     @IBOutlet weak var imageBanner: UIImageView!
     
-    static let reuseIdentifier :String = "CustomCollectionViewCell"
+    static let identifier = "CustomCollectionViewCell"
+    
+    static func nib() -> UINib {
+        return UINib(nibName: self.identifier, bundle: nil)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
     
     func setup(image: UIImage!){

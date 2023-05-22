@@ -79,7 +79,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="hdp-gE-gLo">
             <objects>
-                <viewController id="eSu-6y-rMn" userLabel="Sign Up View Controller" customClass="SingUpViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eSu-6y-rMn" userLabel="Sign Up View Controller" customClass="SingUpViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H11-i5-n4O">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -128,8 +128,7 @@
                                             <color key="baseBackgroundColor" red="0.31653743979999999" green="0.46051841970000001" blue="0.81945055720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </buttonConfiguration>
                                         <connections>
-                                            <action selector="saveBtn:" destination="eSu-6y-rMn" eventType="touchUpInside" id="ZnF-OW-S2O"/>
-                                            <segue destination="Sm3-gA-5I9" kind="show" id="VHo-5c-4hx"/>
+                                            <action selector="saveBtn:" destination="eSu-6y-rMn" eventType="touchUpInside" id="vp3-76-7ny"/>
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QD-Jb-AyU">
@@ -196,7 +195,7 @@
         <!--Sing In View Controller-->
         <scene sceneID="ku4-mw-ygq">
             <objects>
-                <viewController id="Sm3-gA-5I9" userLabel="Sing In View Controller" customClass="SignInViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sm3-gA-5I9" userLabel="Sing In View Controller" customClass="SignInViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MZo-US-sn0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -258,9 +257,6 @@
                                             </button>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="No tienes cuenta?" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OVA-0T-DTb">
                                                 <rect key="frame" x="0.0" y="0.0" width="137" height="50"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="50" id="44I-GU-ta9"/>
-                                                </constraints>
                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
@@ -278,6 +274,7 @@
                                     </view>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="id8-Hm-T7z" secondAttribute="trailing" constant="10" id="Iij-ms-Yp8"/>
                                     <constraint firstItem="J8y-qi-gaA" firstAttribute="width" secondItem="wuG-Sa-fMY" secondAttribute="width" multiplier="0.3" id="ctR-Gy-XWj"/>
                                 </constraints>
                             </stackView>

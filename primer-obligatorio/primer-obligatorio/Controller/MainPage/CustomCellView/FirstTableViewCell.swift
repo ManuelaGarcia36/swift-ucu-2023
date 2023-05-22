@@ -25,7 +25,7 @@ class FirstTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        backgroundColor = blueBackgroundTableView
+        backgroundColor = UIColor.blueBackgroundTableView
     }
 
     func setup(minuto: Int, nombre: String, icono: UIImage){

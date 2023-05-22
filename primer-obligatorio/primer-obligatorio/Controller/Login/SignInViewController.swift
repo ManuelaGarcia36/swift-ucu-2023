@@ -20,14 +20,14 @@ class SignInViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        myView.backgroundColor = blueLogoView
-        myStackView.backgroundColor = blueLogoView
+        myView.backgroundColor = UIColor.blueLogoView
+        myStackView.backgroundColor = UIColor.blueLogoView
         
         pencaImage.image =  UIImage(systemName: "imagen-penca")
-        pencaImage.backgroundColor = blueLogoView
+        pencaImage.backgroundColor = UIColor.blueLogoView
     }
     
-    @IBAction func loginButton(_ sender: Any) {
+    @IBAction func loginButton(_  sender: Any) {
         if let user = emailText.text, let pass = passwordText.text{
             if user == "" && pass == "" {
                 UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter user and password")
@@ -39,10 +39,15 @@ class SignInViewController: UIViewController {
                 } else if !pass.isValidPassword(password: pass) {
                     UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
                 } else {
-                    //Entro
-                    performSegue(withIdentifier: "MainViewController", sender: self)
+                   // if ViewController().validateUser(user: User(name: user, password: pass)) {
+                        let storyboard = UIStoryboard(name: "MainPageScreen", bundle: nil)
+                        let destinationVC = storyboard.instantiateViewController(withIdentifier: "MainPageViewController") as! MainPageViewController
+                        self.navigationController?.pushViewController(destinationVC, animated: true)
+                    //}
                 }
             }
         }
     }
 }
+
+

@@ -9,23 +9,25 @@ import UIKit
 
 class EmptyTableViewCell: UITableViewCell {
     
+    static let identifier = "EmptyTableViewCell"
+    
+    static func nib() -> UINib {
+        return UINib(nibName: self.identifier, bundle: nil)
+    }
     
     @IBOutlet weak var messageLabel: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
     func setup(message: String){
         messageLabel.text = message
         messageLabel.textColor = .white
-        backgroundColor = blueBackgroundTableView
+        backgroundColor = UIColor.blueBackgroundTableView
     }
 }
