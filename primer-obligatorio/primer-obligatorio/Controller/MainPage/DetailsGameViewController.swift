@@ -25,28 +25,37 @@ class DetailsGameViewController: UIViewController {
     @IBOutlet weak var secondRivalImage: UIImageView!
     @IBOutlet weak var secondRivalLabel: UILabel!
     
+    // details sub view
+    @IBOutlet weak var detailsTableView: UITableView!
     var actualGame: Game?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         setup()
+        
+        detailsTableView.register(FirstTableViewCell.nib(), forCellReuseIdentifier: FirstTableViewCell.identifier)
+        detailsTableView.register(RivalTableViewCell.nib(), forCellReuseIdentifier: RivalTableViewCell.identifier)
+        detailsTableView.delegate = self
+        detailsTableView.dataSource = self
+        
     }
     
     func setup(){
-        contentView.backgroundColor = blueBackgroundTableView
+        contentView.backgroundColor = UIColor.blueBackgroundTableView
+        detailsTableView.backgroundColor = UIColor.blueBackgroundTableView
         if let partido = actualGame {
             switch (partido.status){
             case .acertado:
-                statusGameView.backgroundColor = greenBackgroundCard
-                statusLabel.backgroundColor = greenBackgroundLabelCard
+                statusGameView.backgroundColor = UIColor.greenBackgroundCard
+                statusLabel.backgroundColor = UIColor.greenBackgroundLabelCard
                 statusLabel.text = " Acertado "
             case .errado:
-                statusGameView.backgroundColor = redBackgroundCard
-                statusLabel.backgroundColor = redBackgroundLabelCard
+                statusGameView.backgroundColor = UIColor.redBackgroundCard
+                statusLabel.backgroundColor = UIColor.redBackgroundLabelCard
                 statusLabel.text = " Errado "
             case .jugado:
-                statusGameView.backgroundColor = greyBackgroundCard
-                statusLabel.backgroundColor = greyBackgroundLabelCard
+                statusGameView.backgroundColor = UIColor.greyBackgroundCard
+                statusLabel.backgroundColor = UIColor.greyBackgroundLabelCard
                 statusLabel.text = " Jugado sin/resulados"
             case .pendiente:
                 break;
@@ -64,8 +73,45 @@ class DetailsGameViewController: UIViewController {
             secondRivalLabel.text = partido.rivalTeam.nameTeam
             secondRivalLabel.textColor = .white
             resultGameLabel.text = "\(partido.homeTeamGoals) - \(partido.awayTeamGoals)"
-            resultGameView.backgroundColor = lightBlueTableViewDetails
+            resultGameView.backgroundColor = UIColor.lightBlueTableViewDetails
             resultGameLabel.textColor = .white
         }
     }
 }
+
+extension DetailsGameViewController: UITableViewDelegate {
+    
+}
+
+extension DetailsGameViewController: UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return actualGame?.observations.count  ?? 0
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        if let game = actualGame {
+            
+            let sortedObservations =  game.observations.sorted { $0.minuto < $1.minuto }
+            let observation = sortedObservations[indexPath.row]
+            
+            if observation.equipo == "local" {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: FirstTableViewCell.identifier, for: indexPath) as? FirstTableViewCell
+                else { return .init()}
+                let nombreImage = "\(observation.tipo)"
+                let image =  UIImage(named: nombreImage) ?? UIImage()
+                cell.setup(minuto: observation.minuto, nombre: observation.nombre, icono: image)
+                return cell
+            } else if observation.equipo == "visitante" {
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: RivalTableViewCell.identifier, for: indexPath) as? RivalTableViewCell
+                else { return .init()}
+                let image =  UIImage(named: "\(observation.tipo)") ?? UIImage()
+                cell.setup(minuto: observation.minuto, nombre: observation.nombre, icono: image)
+                return cell
+            }
+        }
+        return UITableViewCell()
+    }
+}
+
