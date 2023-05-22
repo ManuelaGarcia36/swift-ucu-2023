@@ -12,6 +12,7 @@ class MainPageViewController: UIViewController {
     
     // Lista de partidos y equipos
     private var gamesList: [(Date, [Game])]!
+    private var gamesListForSearch: [(Date, [Game])]!
     
     // outlets
     @IBOutlet weak var tableView: UITableView!
@@ -32,6 +33,7 @@ class MainPageViewController: UIViewController {
         // initial
         pageControl.currentPage = 0
         setStructure(partidos: partidosIniciales);
+        gamesListForSearch = gamesList
         
         // tableView
         tableView.dataSource = self
@@ -60,7 +62,7 @@ class MainPageViewController: UIViewController {
         headerView.backgroundColor = UIColor.blueBackgroundTableView
     }
     
-    // FIXME: DELETE THIS?
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsGameViewController, let partido = sender as? Game {
             detailsPartidoVC.actualGame = partido
@@ -70,65 +72,99 @@ class MainPageViewController: UIViewController {
     func setStructure(partidos: [Game]){
         let dictionary = Dictionary(grouping: partidos, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
         let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
-    
+        
         gamesList = sortedDictionary
     }
     
     // funcion para filtrar partidos por tipo de estado
-    func filtrarPorEstado(_ status: StatusGame) {
+    func statusFilter(_ status: StatusGame) {
         isFilterButtonOn = true
-        gamesList = gamesList.map { (key, value) in
-            let filteredGames = value.filter { $0.status == status }
-            return (key, filteredGames)
+        
+        let filteredGamesList = gamesListForSearch.map { (date, games) in
+            let filteredGames = games.filter { game in
+                return game.status == status
+            }
+            return (date, filteredGames)
         }
-        self.tableView.reloadData()
+        
+        gamesListForSearch = filteredGamesList.filter { !$0.1.isEmpty }
+        tableView.reloadData()
     }
     
-    func eliminarFiltro() {
+    func removeFilters() {
         isFilterButtonOn = false
-        setStructure(partidos: partidosIniciales)
-        self.tableView.reloadData()
+        gamesListForSearch = gamesList
+        tableView.reloadData()
     }
     
     @IBAction func filterButton(_ sender: Any) {
-        setStructure(partidos: partidosIniciales)
+        gamesListForSearch = gamesList
         
         let alert = UIAlertController(title: "Filtrar partidos", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Ver acertados", style: .default, handler: { [self] action in
-            self.filtrarPorEstado(.acertado)
+            self.statusFilter(.acertado)
         }))
         alert.addAction(UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
-            self.filtrarPorEstado(.errado)
+            self.statusFilter(.errado)
         }))
         let verPendientesAction = UIAlertAction(title: "Ver pendientes", style: .default, handler: { [self] action in
-            self.filtrarPorEstado(.pendiente)
+            self.statusFilter(.pendiente)
         })
         verPendientesAction.setValue(UIColor.redBackgroundLabelCard, forKey: "titleTextColor")
         alert.addAction(verPendientesAction)
         alert.addAction(UIAlertAction(title: "Ver jugados s/resultado", style: .default, handler: { [self] action in
-            self.filtrarPorEstado(.jugado)
+            self.statusFilter(.jugado)
         }))
         alert.addAction(UIAlertAction(title: "Ver todos", style: .cancel, handler: { [self] action in
-            self.eliminarFiltro()
+            self.removeFilters()
         }))
         alert.overrideUserInterfaceStyle = .dark
         self.present(alert, animated: true, completion: nil)
     }
+    
+    // valid
+    func isGameListEmpty() -> Bool {
+        return gamesListForSearch.contains { $0.1.isEmpty == false }
+    }
 }
 
 extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDelegate, UITableViewDelegate{
+    
+    // La modificacion se hace sobre el original
+    func updateResultGame(_ index: Int, goalLocal: Int, goalVisit: Int) {
+        let row = index % 1000
+        let section = index / 1000
+        // FIXME: BUG: Si esta con el filter button temrina actualizando otro elemento por el uso de los dos arreglos 
+        guard let sectionGames = gamesList[safe: section]?.1 else {
+            return // Salir si la sección no existe en la lista
+        }
+        
+        guard let game = sectionGames[safe: row] else {
+            return // Salir si la fila no existe en la sección
+        }
+        
+        var updatedGame = game // Crear una copia mutable del juego
+        updatedGame.homeTeamGoals = goalLocal
+        updatedGame.awayTeamGoals = goalVisit
+        
+        var updatedSectionGames = sectionGames // Crear una copia mutable de la lista de juegos de la sección
+        updatedSectionGames[row] = updatedGame // Actualizar el juego en la lista
+        
+        gamesList[section].1 = updatedSectionGames // Asignar la lista de juegos actualizada a la sección correspondiente en gamesList
+    }
+    
     func didSelectedTheButton(_ index: Int) {
         // division to get section and row number
         let row = index % 1000
         let section = index / 1000
         let game = gamesList[safe: section]?.1[safe: row];
-       guard let partido = game else { return }
-       performSegue(withIdentifier: "DetailsSegue", sender: partido)
+        guard let partido = game else { return }
+        performSegue(withIdentifier: "DetailsSegue", sender: partido)
     }
     
     // setup headers section
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let firstElement = gamesList[safe: section]?.1.first {
+        if let firstElement = gamesListForSearch[safe: section]?.1.first {
             let dateString = Date.dateFromToCustomString(date: firstElement.dateGame ?? Date())
             let label = UILabel()
             label.backgroundColor = UIColor.blueBackgroundTableView
@@ -144,26 +180,25 @@ extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDel
     
     // numero de secciones en total dividido por fecha
     func numberOfSections(in tableView: UITableView) -> Int {
-        if gamesList.isEmpty {
+        if !isGameListEmpty() {
             return 1
         } else {
-          //  let dictionary = Dictionary(grouping: gamesList, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
-            return gamesList.count
+            return gamesListForSearch.count
         }
     }
     
     // numero de filas por secciones
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if gamesList.isEmpty {
+        if !isGameListEmpty() {
             return 1
         } else {
-            let values = gamesList[section].1
+            let values = gamesListForSearch[section].1
             return values.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if gamesList.isEmpty {
+        if !isGameListEmpty() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as? EmptyTableViewCell else {
                 return UITableViewCell()
             }
@@ -174,17 +209,18 @@ extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDel
                 return UITableViewCell()
             }
             
-            let values = gamesList[indexPath.section].1
+            let values = gamesListForSearch[indexPath.section].1
             let partido = values[indexPath.row]
             
-            // ViewController Assign for protocol delegate
             cell.delegate = self
-            // to use indexPath.section and .row in value tag
-            cell.moreDetailsButton.tag = (indexPath.section * 1000) + indexPath.row
+            //cell.moreDetailsButton.tag = indexPath.section * 1000 + indexPath.row // Utilizar indexPath.section y .row directamente
+            cell.tag = indexPath.section * 1000 + indexPath.row // Utilizar indexPath.section y .row directamente
+            
             cell.setup(partido: partido)
             return cell
         }
     }
+    
 }
 
 extension MainPageViewController: UICollectionViewDataSource {
@@ -224,25 +260,23 @@ extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollecti
 
 extension MainPageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
-        searchEquipo = []
         if searchText.isEmpty && !isFilterButtonOn {
-            setStructure(partidos: partidosIniciales)
+            gamesListForSearch = gamesList
             tableView.reloadData()
             return
         }
-        gamesList = filtrarPartidosPorEquipo(nombreEquipo: searchText)
+        gamesListForSearch = teamNameFilter(teamName: searchText)
         tableView.reloadData()
     }
     
-    func filtrarPartidosPorEquipo(nombreEquipo: String) -> [(Date, [Game])] {
-        let filteredGamesList = gamesList.map { (date, games) in
+    func teamNameFilter(teamName: String) -> [(Date, [Game])] {
+        let filteredGamesList = gamesListForSearch.map { (date, games) in
             let filteredGames = games.filter { game in
-                return game.localTeam.nameTeam.lowercased().hasPrefix(nombreEquipo.lowercased())
-                    || game.rivalTeam.nameTeam.lowercased().hasPrefix(nombreEquipo.lowercased())
+                return game.localTeam.nameTeam.lowercased().hasPrefix(teamName.lowercased())
+                || game.rivalTeam.nameTeam.lowercased().hasPrefix(teamName.lowercased())
             }
             return (date, filteredGames)
         }
-        return filteredGamesList
+        return filteredGamesList.filter { !$0.1.isEmpty }
     }
-
 }

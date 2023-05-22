@@ -83,8 +83,6 @@ class CustomTableViewCell: UITableViewCell {
         
         firstRivalResultText.text = String(game.homeTeamGoals)
         secondRivalResultText.text = String(game.awayTeamGoals)
-        firstRivalResultText.isEnabled = false
-        secondRivalResultText.isEnabled = false
         firstRivalResultText.backgroundColor = UIColor.blueBackgroundTableView
         secondRivalResultText.backgroundColor = UIColor.blueBackgroundTableView
         gameResultView.backgroundColor = UIColor.blueBackgroundTableView
@@ -123,12 +121,6 @@ class CustomTableViewCell: UITableViewCell {
             buttonView.backgroundColor = UIColor.blueBackgroundViewPendingCard
             buttonView.layer.borderColor = UIColor.blueBackgroundViewPendingCard.cgColor
             buttonView.layer.borderWidth = 0
-            
-            firstRivalResultText.text = "-"
-            secondRivalResultText.text = "-"
-            //fixme: update data
-            //firstRivalResultText.text = String(partido.homeTeamGoals)
-            //secondRivalResultText.text = String(partido.awayTeamGoals)
         }
     }
     
@@ -145,24 +137,21 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-
     @IBAction func moreDetailsTaped(_ sender: UIButton) {
-        delegate?.didSelectedTheButton(sender.tag)
+        delegate?.didSelectedTheButton(tag)
     }
     
-    func updateViewResult() {
-        if (firstRivalResultText.text != "-" && secondRivalResultText.text != "-") {
-            firstRivalResultText.backgroundColor = UIColor.blueBackgroundTableView
-            secondRivalResultText.backgroundColor = UIColor.blueBackgroundTableView
-            
-            firstRivalResultText.isEnabled = false
-            secondRivalResultText.isEnabled = false
-        }
+    func updateResults() {
+        let firstResult = Int(firstRivalResultText.text ?? "") ?? 0
+        let secondResult = Int(secondRivalResultText.text ?? "") ?? 0
+        delegate?.updateResultGame(tag, goalLocal: firstResult, goalVisit: secondResult)
     }
 }
 
 protocol CustomTableViewCellDelegate: AnyObject{
     func didSelectedTheButton(_ index: Int)
+    
+    func updateResultGame(_ index: Int, goalLocal: Int, goalVisit: Int)
 }
 
 extension CustomTableViewCell: UITextFieldDelegate {
@@ -176,23 +165,23 @@ extension CustomTableViewCell: UITextFieldDelegate {
         guard allowedCharacters.isSuperset(of: characterSet) else {
             return false
         }
+        
         let currentText = (textField.text ?? "") as NSString
         let updatedText = currentText.replacingCharacters(in: range, with: string)
-        
-        // Verificar si el valor es menor que 99 y 0
+        print(currentText)
+        print(updatedText)
+        // Verificar si el valor es menor que 100 y mayor o igual a 0
         if let number = Int(updatedText), number < 100 && number >= 0 {
             if textField == firstRivalResultText {
                 firstRivalResultText.text = updatedText
             } else if textField == secondRivalResultText {
                 secondRivalResultText.text = updatedText
             }
-            updateViewResult()
-            return true
         }
-        return false
+        return true
     }
     
-    func textFieldDidBeginEditing(_ textField: UITextField) {
-        textField.text = ""
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        updateResults()
     }
 }

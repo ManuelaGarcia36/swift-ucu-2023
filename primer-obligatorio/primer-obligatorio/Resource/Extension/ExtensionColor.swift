@@ -15,7 +15,7 @@ extension UIColor {
         self.init(red: red, green: green, blue: blue, alpha: alpha)
     }
     
-    // set colors project fast
+    // initial set colors project fast
     static let blueLogoView = UIColor(hex: 0x161b28)
     static let blueBackgroundTableView = UIColor(hex: 0x202045)
     static let lightBlueTableViewDetails = UIColor(hex: 0x5c77c2)
