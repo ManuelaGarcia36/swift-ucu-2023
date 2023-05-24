@@ -23,7 +23,10 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
     
+    @IBOutlet weak var deleteUserButton: UIButton!
+    
     private var isFilterButtonOn: Bool!
+    private var currentUser: UserResponse!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -62,6 +65,9 @@ class MainPageViewController: UIViewController {
         headerView.backgroundColor = UIColor.blueBackgroundTableView
     }
     
+    func setup(user: UserResponse){
+        currentUser = user;
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsGameViewController, let partido = sender as? Game {
@@ -125,6 +131,25 @@ class MainPageViewController: UIViewController {
     // valid
     func isGameListEmpty() -> Bool {
         return gamesListForSearch.contains { $0.1.isEmpty == false }
+    }
+    
+    @IBAction func deleteUserWithAPI(_ sender: Any) {
+        APIClient.shared.requestItem(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/user/me",
+                                     method: .delete,
+                                     params: [:],
+                                     token: currentUser.token,
+                                     sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, String>, Error>) in
+            switch result {
+            case .success(let data):
+                print("Mensaje:", data["message"])
+                let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+                let destinationVC = storyboard.instantiateViewController(withIdentifier: "ViewControllerID") as! ViewController
+                destinationVC.modalPresentationStyle = .fullScreen
+                self.present(destinationVC, animated: true)
+            case .failure(let error):
+                print("Error:", error)
+            }
+        }
     }
 }
 

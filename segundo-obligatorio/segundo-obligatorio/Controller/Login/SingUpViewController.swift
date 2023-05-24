@@ -57,12 +57,14 @@ class SingUpViewController: UIViewController {
         APIClient.shared.requestItem(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/user",
                                      method: .post,
                                      params: parameters,
+                                     token: "",
                                      sessionPolicy: .publicDomain) { [weak self] (result: Result<UserResponse, Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let data):
                 self.userResponse = data
                 if self.userResponse?.token != nil {
+                    //FIXME NOTIFICATION USER UtilityFunction().simpleAlert(vc: self, title: "User successfully created! ", message: "Estas listo para hacer login")
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
                         let destinationVC = storyboard.instantiateViewController(withIdentifier: "SignInViewControllerID") as! SignInViewController

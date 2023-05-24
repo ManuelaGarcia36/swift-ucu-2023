@@ -12,7 +12,7 @@
         <!--Main Page View Controller-->
         <scene sceneID="jmn-Hg-kEr">
             <objects>
-                <viewController storyboardIdentifier="MainPageViewControllerID" id="TNt-Ua-MPp" customClass="MainPageViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="MainPageViewControllerID" id="TNt-Ua-MPp" customClass="MainPageViewController" customModule="segundo_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ui9-TX-K4A">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -122,6 +122,15 @@
                                         <constraint firstItem="KOG-HI-bo3" firstAttribute="top" secondItem="tOu-a0-6yB" secondAttribute="bottom" constant="5" id="thv-jX-pwx"/>
                                     </constraints>
                                 </view>
+                                <button key="tableFooterView" opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" id="qXL-IF-D1w">
+                                    <rect key="frame" x="0.0" y="474" width="393" height="44"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <state key="normal" title="Button"/>
+                                    <buttonConfiguration key="configuration" style="plain" title="Delete user"/>
+                                    <connections>
+                                        <action selector="deleteUserWithAPI:" destination="TNt-Ua-MPp" eventType="touchUpInside" id="deB-J6-ORH"/>
+                                    </connections>
+                                </button>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" rowHeight="17" id="1cr-t1-l7f">
                                         <rect key="frame" x="0.0" y="429" width="393" height="17"/>
@@ -152,6 +161,7 @@
                     <navigationItem key="navigationItem" id="ybx-C0-C92"/>
                     <connections>
                         <outlet property="collectionView" destination="tOu-a0-6yB" id="D8T-8x-Hqp"/>
+                        <outlet property="deleteUserButton" destination="qXL-IF-D1w" id="4wG-7L-yA3"/>
                         <outlet property="filterButton" destination="xdB-P0-f3W" id="N8V-5G-cNz"/>
                         <outlet property="headerView" destination="XST-7Y-eQI" id="YBa-Cp-o86"/>
                         <outlet property="labelSearch" destination="WQV-H7-6zg" id="Ted-fY-x51"/>
@@ -167,7 +177,7 @@
         <!--Details Game View Controller-->
         <scene sceneID="rT9-PB-WGJ">
             <objects>
-                <viewController id="XnS-RP-AYw" customClass="DetailsGameViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="XnS-RP-AYw" customClass="DetailsGameViewController" customModule="segundo_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="mft-EI-Dyf">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

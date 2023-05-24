@@ -23,6 +23,7 @@ class APIClient {
     @discardableResult private func request(urlString: String,
                                             method: Method = .get,
                                             params: [String: Any] = [:],
+                                            token: String,
                                             sessionPolicy: SessionPolicy = .publicDomain,
                                             onCompletion: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
         
@@ -42,7 +43,7 @@ class APIClient {
         // Headers
         request.setValue("application/json", forHTTPHeaderField: "Content-Type")
         if sessionPolicy == .privateDomain {
-            request.setValue("Bearer 2b8a4a4a-3d4e-4c8c-8b5d-61c1d1ec1f8e", forHTTPHeaderField: "Authorization") // Set Authorization header
+            request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization") // Set Authorization header
         }
         
         // Body
@@ -69,10 +70,11 @@ class APIClient {
     @discardableResult func requestItem<T: Decodable>(urlString: String,
                                                       method: Method = .get,
                                                       params: [String: Any] = [:],
+                                                      token: String,
                                                       sessionPolicy: SessionPolicy = .privateDomain,
                                                       onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
         
-        request(urlString: urlString, method: method, params: params, sessionPolicy: sessionPolicy) { result in
+        request(urlString: urlString, method: method, params: params,token: token, sessionPolicy: sessionPolicy) { result in
             switch result {
             case .success(let data):
                 do {
@@ -85,6 +87,4 @@ class APIClient {
             }
         }
     }
-    
 }
-

@@ -11,7 +11,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ViewControllerID" id="BYZ-38-t0r" customClass="ViewController" customModule="segundo_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -79,7 +79,7 @@
         <!--Sign Up View Controller-->
         <scene sceneID="hdp-gE-gLo">
             <objects>
-                <viewController storyboardIdentifier="SingUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eSu-6y-rMn" userLabel="Sign Up View Controller" customClass="SingUpViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SingUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eSu-6y-rMn" userLabel="Sign Up View Controller" customClass="SingUpViewController" customModule="segundo_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H11-i5-n4O">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -195,7 +195,7 @@
         <!--Sing In View Controller-->
         <scene sceneID="ku4-mw-ygq">
             <objects>
-                <viewController storyboardIdentifier="SignInViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sm3-gA-5I9" userLabel="Sing In View Controller" customClass="SignInViewController" customModule="primer_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="SignInViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sm3-gA-5I9" userLabel="Sing In View Controller" customClass="SignInViewController" customModule="segundo_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MZo-US-sn0">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -307,8 +307,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jJM-q0-c0Z"/>
-        <segue reference="2BP-bX-o5D"/>
+        <segue reference="vJ3-Pa-ll9"/>
+        <segue reference="NUR-E3-Ium"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="imagen-penca" width="805" height="153"/>

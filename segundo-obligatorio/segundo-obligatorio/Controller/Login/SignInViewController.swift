@@ -46,6 +46,12 @@ class SignInViewController: UIViewController {
         }
     }
     
+    func getTokenUser() -> String  {
+        print("dandole el user")
+        let tok = userResponse?.token ?? ""
+        print(tok)
+        return tok;
+    }
 
     func loginWithAPI(email: String, password: String) {
         let parameters: [String: Any] = [
@@ -56,22 +62,25 @@ class SignInViewController: UIViewController {
         APIClient.shared.requestItem(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/user/login",
                                      method: .post,
                                      params: parameters,
+                                     token: "",
                                      sessionPolicy: .publicDomain) { [weak self] (result: Result<UserResponse, Error>) in
             guard let self = self else { return }
             switch result {
             case .success(let data):
                 self.userResponse = data
                 if self.userResponse?.token != nil {
+                    print("El user tiene token, bienvenido ")
                     DispatchQueue.main.async {
                         let storyboard = UIStoryboard(name: "MainPageScreen", bundle: nil)
                         let destinationVC = storyboard.instantiateViewController(withIdentifier: "MainPageViewControllerID") as! MainPageViewController
                         destinationVC.modalPresentationStyle = .fullScreen
+                        destinationVC.setup(user: data);
                         self.present(destinationVC, animated: true)
                     }
                 }
             case .failure(let error):
                 // Ocurrió un error durante la solicitud
-                print("API request error: \(error)")
+                UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "\(error)")
             }
         }
     }
