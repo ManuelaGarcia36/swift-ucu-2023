@@ -23,7 +23,7 @@ class MainPageViewController: UIViewController {
     let userRepository = UserRepository.shared
     var currentUser: UserResponse!
 
-    var bannerURLs: [URL] = []
+    var bannerURLs: [String] = []
     private var isFilterButtonOn: Bool!
     private var filterType: StatusGame?
     
@@ -94,11 +94,13 @@ class MainPageViewController: UIViewController {
                                      token: currentUser.token,
                                      sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, [String]>, Error>) in
             switch result {
-            case .success(let imageUrls):
-                let urlStringList = imageUrls.values.flatMap { $0 }
-                let urlList = urlStringList.compactMap { URL(string: $0) }
-                self.bannerURLs = urlList
-                self.collectionView.reloadData()
+            case .success(let response):
+                if let bannerURLs = response["bannerURLs"] {
+                    self.bannerURLs = bannerURLs
+                    self.collectionView.reloadData()
+                } else {
+                    print("No se encontró la clave 'bannerURLs' en la respuesta")
+                }
             case .failure(let error):
                 print("Error al obtener las URLs de las imágenes:", error)
             }
@@ -106,7 +108,7 @@ class MainPageViewController: UIViewController {
     }
     
     func loadMatchesDataWithAPI() {
-        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/?order=ASC",
+        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/?page=1&pageSize=30&order=ASC",
                                      method: .get,
                                      params: [:],
                                      token: currentUser.token,
@@ -198,6 +200,7 @@ class MainPageViewController: UIViewController {
         guard let list = matchesFilterDictionaryList else {
             return true
         }
+        // searchBar set Optional([]) in the case of empty text
         if let array = list as? [(Date, [MatchResponse])], array.isEmpty {
             return true
         }
@@ -217,16 +220,33 @@ class MainPageViewController: UIViewController {
             }
         }
     }
+    
+    func patchMatchWithAPI(matchId: Int, goalsHome: Int, goalsAway: Int) {
+        let params: [String: Any] = [
+            "homeGoals": goalsHome,
+            "awayGoals": goalsAway
+        ]
+        
+        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/\(matchId)",
+                                     method: .patch,
+                                     params: params,
+                                     token: currentUser.token,
+                                     sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, Int>, Error>) in
+            switch result {
+            case .success(let data):
+                // Success patch
+                print("Succes patch: \(data)")
+                print(matchId)
+                // Handle the response data here
+            case .failure(let error):
+                print("Error in patch:", error)
+            }
+        }
+    
+
+    }
 }
 
-
-
-
-/**
- *
- * BANNERS
- *
- */
 extension MainPageViewController: CustomTableViewCellDelegate {
     
     func didSelectedTheButton(cell: UITableViewCell) {
@@ -257,33 +277,31 @@ extension MainPageViewController: CustomTableViewCellDelegate {
          }
          let sectionIndex = indexPath.section
          let rowIndex = indexPath.row
-         guard sectionIndex >= 0 && sectionIndex < matchesDictionaryList.count else {
+         guard sectionIndex >= 0 && sectionIndex < matchesFilterDictionaryList.count else {
              return // invalido
          }
-         let section = matchesDictionaryList[sectionIndex] // Obtener la sección correspondiente al índice
+         let section = matchesFilterDictionaryList[sectionIndex] // Obtener la sección correspondiente al índice
          guard rowIndex >= 0 && rowIndex < section.1.count else { // Verificar si el índice de fila es válido
              return
          }
          let match = section.1[rowIndex]  // Obtener el elemento correspondiente al índice de fila
+         print("match: \(match) ")
+         print("elemento a actualizar: \(goalLocal) \(goalVisit) ")
+        
          var updatedGame = match // Crear una copia mutable del juego
          updatedGame.homeTeamGoals = goalLocal
          updatedGame.awayTeamGoals = goalVisit
          
-         //var updatedSectionGames = sectionGames // Crear una copia mutable de la lista de juegos de la sección
-         //updatedSectionGames[row] = updatedGame // Actualizar el juego en la lista
+        patchMatchWithAPI(matchId: 25, goalsHome: goalLocal, goalsAway: goalVisit)
+        
+        // var updatedSectionGames = section // Crear una copia mutable de la lista de juegos de la sección
+         //updatedSectionGames[rowIndex] = updatedGame // Actualizar el juego en la lista
          
-         //gamesListNew[section].1 = updatedSectionGames // Asignar la lista de juegos actualizada a la sección correspondiente en gamesList
+         //matchesFilterDictionaryList[section].1 = updatedSectionGames // Asignar la lista de juegos actualizada a la sección correspondiente en gamesList
      }
     
 }
 
-
-
-/**
- *
- * MATCHES
- *
- */
 extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -317,7 +335,7 @@ extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
             let values = matchesFilterDictionaryList[indexPath.section].1
             let partido = values[indexPath.row]
             cell.delegate = self
-            cell.setup(partido: partido)
+            cell.setup(match: partido)
             return cell
         }
     }

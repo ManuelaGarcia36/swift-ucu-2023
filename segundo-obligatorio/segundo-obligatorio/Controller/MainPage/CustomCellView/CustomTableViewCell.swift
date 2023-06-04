@@ -8,6 +8,13 @@
 import UIKit
 import Kingfisher
 
+
+protocol CustomTableViewCellDelegate: AnyObject{
+    func didSelectedTheButton(cell: UITableViewCell)
+
+    func updateResultGame(cell: UITableViewCell, goalLocal: Int, goalVisit: Int)
+}
+
 class CustomTableViewCell: UITableViewCell {
     
     static let reuseIdentifier :String = "CustomTableViewCell"
@@ -87,17 +94,19 @@ class CustomTableViewCell: UITableViewCell {
         firstRivalResultText.textColor = .white
         secondRivalResultText.textColor = .white
         
+        firstRivalResultText.isEnabled = false
+        secondRivalResultText.isEnabled = false
+        
         // FIXME
         let name = String(game.homeTeamLogo)
-        let url = URL(string: "https://\(name)")
-        firstRivalImage.kf.setImage(with: url!)
+        
+        let url = URL.makeURL(withString: name)
+        firstRivalImage.kf.setImage(with: url)
         
         firstRivalLabel.text = game.homeTeamName
-        // secondRivalImage.image = game.rivalTeam.imageTeam
-        
         let name2 = String(game.awayTeamLogo)
-        let url2 = URL(string: "https://\(name2)")
-        secondRivalImage.kf.setImage(with: url2!)
+        let url2 = URL.makeURL(withString: name2)
+        secondRivalImage.kf.setImage(with: url2)
         
         secondRivalLabel.text = game.awayTeamName
         
@@ -128,7 +137,7 @@ class CustomTableViewCell: UITableViewCell {
         case .not_predicted:
             firstRivalResultText.text = "-"
             secondRivalResultText.text = "-"
-            headerLabel.text = " Jugado sin resultados "
+            headerLabel.text = " Jugado sin resultados  "
         case .pending:
             headerLabel.text = " Pendiente "
             // pongo el color de fondo para la card result diferente al resto
@@ -144,16 +153,16 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    func setup(partido: MatchResponse){
-        switch(partido.status) {
+    func setup(match: MatchResponse){
+        switch(match.status) {
         case .correct:
-            changeColors(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
+            changeColors(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         case .not_predicted:
-            changeColors(primaryColor: UIColor.greyBackgroundCard, secundaryColor: UIColor.greyBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
+            changeColors(primaryColor: UIColor.greyBackgroundCard, secundaryColor: UIColor.greyBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         case .incorrect:
-            changeColors(primaryColor: UIColor.redBackgroundCard, secundaryColor: UIColor.redBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
+            changeColors(primaryColor: UIColor.redBackgroundCard, secundaryColor: UIColor.redBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         case .pending:
-            changeColors(primaryColor: UIColor.blueBackgroundCard, secundaryColor: UIColor.blueBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
+            changeColors(primaryColor: UIColor.blueBackgroundCard, secundaryColor: UIColor.blueBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         }
     }
     
@@ -164,44 +173,30 @@ class CustomTableViewCell: UITableViewCell {
     func updateResults() {
         let firstResult = Int(firstRivalResultText.text ?? "") ?? 0
         let secondResult = Int(secondRivalResultText.text ?? "") ?? 0
+        print("yendo a actualizar resultados con \(firstResult) y \(secondResult)")
+        
         delegate?.updateResultGame(cell: self, goalLocal: firstResult, goalVisit: secondResult)
     }
 }
 
-protocol CustomTableViewCellDelegate: AnyObject{
-    func didSelectedTheButton(cell: UITableViewCell)
-
-    func updateResultGame(cell: UITableViewCell, goalLocal: Int, goalVisit: Int)
-}
-
 extension CustomTableViewCell: UITextFieldDelegate {
     
-    // al momento de ingresar caracteres hace la validacion para poder permitir solo numeros entre el 0 y el 99 y cuando los resultados fueron modificados, entonces establecerlos como finales
-    // fixme: no deberia ser estado final solo deberia guardarse
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         let allowedCharacters = CharacterSet.decimalDigits
         let characterSet = CharacterSet(charactersIn: string)
-        
         guard allowedCharacters.isSuperset(of: characterSet) else {
             return false
         }
-        
         let currentText = (textField.text ?? "") as NSString
         let updatedText = currentText.replacingCharacters(in: range, with: string)
-        print(currentText)
-        print(updatedText)
-        // Verificar si el valor es menor que 100 y mayor o igual a 0
-        if let number = Int(updatedText), number < 100 && number >= 0 {
+        if let number = Int(updatedText), number < 100 && number >= 0 {  // Verificar si el valor es valido
             if textField == firstRivalResultText {
                 firstRivalResultText.text = updatedText
             } else if textField == secondRivalResultText {
                 secondRivalResultText.text = updatedText
             }
         }
-        return true
-    }
-    
-    func textFieldDidEndEditing(_ textField: UITextField) {
         updateResults()
+        return true
     }
 }

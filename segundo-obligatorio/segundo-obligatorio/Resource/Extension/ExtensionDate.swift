@@ -13,7 +13,7 @@ extension Date {
     // dado un date devuelve un string con el formato de header necesario para la tabla
     static func dateFromToCustomString(date: Date) -> String {
         let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "EEEE dd/MM"
+        dateFormatter.dateFormat = "EEEE dd/MM/yyyy"
         return dateFormatter.string(from: date)
     }
 }

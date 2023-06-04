@@ -22,10 +22,9 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setup(image: URL!){
-        // FIXIME: ADD NORMALIZED DATA 
-        let url = URL(string: "https://\(image!)")
-        imageBanner.kf.setImage(with: url!)
+    func setup(image: String){
+        let url = URL.makeURL(withString: image)
+        imageBanner.kf.setImage(with: url)
         imageBanner.contentMode = .scaleAspectFill
     }
 }

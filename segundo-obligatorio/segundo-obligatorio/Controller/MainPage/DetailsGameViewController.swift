@@ -72,13 +72,13 @@ class DetailsGameViewController: UIViewController {
             if let details = matchDetails {
                 dateLabel.text = Date.dateFromToCustomString(date: details.date)
                 
-                let url = URL(string: "https://\(details.homeTeamLogo)")
+                let url = URL.makeURL(withString: details.homeTeamLogo)
                 firstRivalImage.kf.setImage(with: url!)
                 
                 firstRivalNameLabel.text = details.homeTeamName
                 firstRivalNameLabel.textColor = .white
                 
-                let url2 = URL(string: "https://\(details.awayTeamLogo)")
+                let url2 = URL.makeURL(withString: details.awayTeamLogo)
                 secondRivalImage.kf.setImage(with: url2!)
                
                 secondRivalLabel.text = details.awayTeamName
