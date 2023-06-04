@@ -8,17 +8,17 @@
 
 /* Begin PBXBuildFile section */
 		193FB1E3274AF120DD1A9A8E /* Pods_segundo_obligatorio.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D951474AAE04623B84B10D93 /* Pods_segundo_obligatorio.framework */; };
-		F509A0052A102B7A00414B88 /* DetailHomeTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509A0032A102B7A00414B88 /* DetailHomeTeamTableViewCell.swift */; };
-		F509A0062A102B7A00414B88 /* DetailHomeTeamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509A0042A102B7A00414B88 /* DetailHomeTeamTableViewCell.xib */; };
-		F509A00B2A12B4E200414B88 /* DetailAwayTeamTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509A0092A12B4E200414B88 /* DetailAwayTeamTableViewCell.swift */; };
-		F509A00C2A12B4E200414B88 /* DetailAwayTeamTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509A00A2A12B4E200414B88 /* DetailAwayTeamTableViewCell.xib */; };
+		F509A0052A102B7A00414B88 /* FirstTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509A0032A102B7A00414B88 /* FirstTableViewCell.swift */; };
+		F509A0062A102B7A00414B88 /* FirstTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509A0042A102B7A00414B88 /* FirstTableViewCell.xib */; };
+		F509A00B2A12B4E200414B88 /* RivalTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F509A0092A12B4E200414B88 /* RivalTableViewCell.swift */; };
+		F509A00C2A12B4E200414B88 /* RivalTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F509A00A2A12B4E200414B88 /* RivalTableViewCell.xib */; };
 		F50C178B2A033D9B00880F6D /* CustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */; };
 		F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */; };
 		F522157B2A004DA10018746B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522157A2A004DA10018746B /* MainViewController.swift */; };
 		F52215832A0066390018746B /* MainPageScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F52215822A0066390018746B /* MainPageScreen.storyboard */; };
 		F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F52215842A0087EE0018746B /* MainPageViewController.swift */; };
-		F522158C2A0092280018746B /* MatchCustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522158A2A0092280018746B /* MatchCustomTableViewCell.swift */; };
-		F522158D2A0092280018746B /* MatchCustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F522158B2A0092280018746B /* MatchCustomTableViewCell.xib */; };
+		F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F522158A2A0092280018746B /* CustomTableViewCell.swift */; };
+		F522158D2A0092280018746B /* CustomTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F522158B2A0092280018746B /* CustomTableViewCell.xib */; };
 		F54D25732A12EBF300D67734 /* EmptyTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54D25712A12EBF300D67734 /* EmptyTableViewCell.swift */; };
 		F54D25742A12EBF300D67734 /* EmptyTableViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F54D25722A12EBF300D67734 /* EmptyTableViewCell.xib */; };
 		F56D21492A27E6FC00D37F67 /* MatchResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F56D21482A27E6FC00D37F67 /* MatchResponse.swift */; };
@@ -51,17 +51,17 @@
 		049EF52C7EB1E789F3544AB8 /* Pods-segundo-obligatorio.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-segundo-obligatorio.release.xcconfig"; path = "Target Support Files/Pods-segundo-obligatorio/Pods-segundo-obligatorio.release.xcconfig"; sourceTree = "<group>"; };
 		8EB287AAE02E2A9C61F72AC7 /* Pods-segundo-obligatorio.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-segundo-obligatorio.debug.xcconfig"; path = "Target Support Files/Pods-segundo-obligatorio/Pods-segundo-obligatorio.debug.xcconfig"; sourceTree = "<group>"; };
 		D951474AAE04623B84B10D93 /* Pods_segundo_obligatorio.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_segundo_obligatorio.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F509A0032A102B7A00414B88 /* DetailHomeTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailHomeTeamTableViewCell.swift; sourceTree = "<group>"; };
-		F509A0042A102B7A00414B88 /* DetailHomeTeamTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailHomeTeamTableViewCell.xib; sourceTree = "<group>"; };
-		F509A0092A12B4E200414B88 /* DetailAwayTeamTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailAwayTeamTableViewCell.swift; sourceTree = "<group>"; };
-		F509A00A2A12B4E200414B88 /* DetailAwayTeamTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DetailAwayTeamTableViewCell.xib; sourceTree = "<group>"; };
+		F509A0032A102B7A00414B88 /* FirstTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstTableViewCell.swift; sourceTree = "<group>"; };
+		F509A0042A102B7A00414B88 /* FirstTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FirstTableViewCell.xib; sourceTree = "<group>"; };
+		F509A0092A12B4E200414B88 /* RivalTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RivalTableViewCell.swift; sourceTree = "<group>"; };
+		F509A00A2A12B4E200414B88 /* RivalTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = RivalTableViewCell.xib; sourceTree = "<group>"; };
 		F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		F522157A2A004DA10018746B /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		F52215822A0066390018746B /* MainPageScreen.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = MainPageScreen.storyboard; sourceTree = "<group>"; };
 		F52215842A0087EE0018746B /* MainPageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainPageViewController.swift; sourceTree = "<group>"; };
-		F522158A2A0092280018746B /* MatchCustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchCustomTableViewCell.swift; sourceTree = "<group>"; };
-		F522158B2A0092280018746B /* MatchCustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = MatchCustomTableViewCell.xib; sourceTree = "<group>"; };
+		F522158A2A0092280018746B /* CustomTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTableViewCell.swift; sourceTree = "<group>"; };
+		F522158B2A0092280018746B /* CustomTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomTableViewCell.xib; sourceTree = "<group>"; };
 		F54D25712A12EBF300D67734 /* EmptyTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyTableViewCell.swift; sourceTree = "<group>"; };
 		F54D25722A12EBF300D67734 /* EmptyTableViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyTableViewCell.xib; sourceTree = "<group>"; };
 		F56D21482A27E6FC00D37F67 /* MatchResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchResponse.swift; sourceTree = "<group>"; };
@@ -159,9 +159,9 @@
 			children = (
 				F50C17892A033D9B00880F6D /* CustomCollectionViewCell.swift */,
 				F54D25712A12EBF300D67734 /* EmptyTableViewCell.swift */,
-				F522158A2A0092280018746B /* MatchCustomTableViewCell.swift */,
-				F509A0032A102B7A00414B88 /* DetailHomeTeamTableViewCell.swift */,
-				F509A0092A12B4E200414B88 /* DetailAwayTeamTableViewCell.swift */,
+				F522158A2A0092280018746B /* CustomTableViewCell.swift */,
+				F509A0032A102B7A00414B88 /* FirstTableViewCell.swift */,
+				F509A0092A12B4E200414B88 /* RivalTableViewCell.swift */,
 			);
 			path = CustomCellView;
 			sourceTree = "<group>";
@@ -216,10 +216,10 @@
 			isa = PBXGroup;
 			children = (
 				F54D25722A12EBF300D67734 /* EmptyTableViewCell.xib */,
-				F509A00A2A12B4E200414B88 /* DetailAwayTeamTableViewCell.xib */,
-				F509A0042A102B7A00414B88 /* DetailHomeTeamTableViewCell.xib */,
+				F509A00A2A12B4E200414B88 /* RivalTableViewCell.xib */,
+				F509A0042A102B7A00414B88 /* FirstTableViewCell.xib */,
 				F50C178A2A033D9B00880F6D /* CustomCollectionViewCell.xib */,
-				F522158B2A0092280018746B /* MatchCustomTableViewCell.xib */,
+				F522158B2A0092280018746B /* CustomTableViewCell.xib */,
 			);
 			path = CustomCell;
 			sourceTree = "<group>";
@@ -350,13 +350,13 @@
 			files = (
 				F54D25742A12EBF300D67734 /* EmptyTableViewCell.xib in Resources */,
 				F52215832A0066390018746B /* MainPageScreen.storyboard in Resources */,
-				F509A0062A102B7A00414B88 /* DetailHomeTeamTableViewCell.xib in Resources */,
+				F509A0062A102B7A00414B88 /* FirstTableViewCell.xib in Resources */,
 				F50C178C2A033D9B00880F6D /* CustomCollectionViewCell.xib in Resources */,
 				F5FCD26029F9F48F00D661E2 /* LaunchScreen.storyboard in Resources */,
-				F522158D2A0092280018746B /* MatchCustomTableViewCell.xib in Resources */,
+				F522158D2A0092280018746B /* CustomTableViewCell.xib in Resources */,
 				F5FCD25D29F9F48F00D661E2 /* Assets.xcassets in Resources */,
 				F5FCD25B29F9F48A00D661E2 /* LoginScreen.storyboard in Resources */,
-				F509A00C2A12B4E200414B88 /* DetailAwayTeamTableViewCell.xib in Resources */,
+				F509A00C2A12B4E200414B88 /* RivalTableViewCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -411,11 +411,11 @@
 			files = (
 				F5C9847E2A07148100E4997F /* StatusGame.swift in Sources */,
 				F52215852A0087EE0018746B /* MainPageViewController.swift in Sources */,
-				F509A0052A102B7A00414B88 /* DetailHomeTeamTableViewCell.swift in Sources */,
+				F509A0052A102B7A00414B88 /* FirstTableViewCell.swift in Sources */,
 				F5C9848F2A09C3BA00E4997F /* ExtensionArray.swift in Sources */,
 				F5FCD26E29FA005F00D661E2 /* SignInViewController.swift in Sources */,
-				F509A00B2A12B4E200414B88 /* DetailAwayTeamTableViewCell.swift in Sources */,
-				F522158C2A0092280018746B /* MatchCustomTableViewCell.swift in Sources */,
+				F509A00B2A12B4E200414B88 /* RivalTableViewCell.swift in Sources */,
+				F522158C2A0092280018746B /* CustomTableViewCell.swift in Sources */,
 				F54D25732A12EBF300D67734 /* EmptyTableViewCell.swift in Sources */,
 				F58926F42A1C4E7600940209 /* ApiClient.swift in Sources */,
 				F56D214D2A2BB53E00D37F67 /* UserRepository.swift in Sources */,

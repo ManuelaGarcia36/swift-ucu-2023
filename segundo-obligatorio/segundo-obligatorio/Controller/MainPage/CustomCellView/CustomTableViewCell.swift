@@ -8,9 +8,9 @@
 import UIKit
 import Kingfisher
 
-class MatchCustomTableViewCell: UITableViewCell {
+class CustomTableViewCell: UITableViewCell {
     
-    static let reuseIdentifier :String = "MatchCustomTableViewCell"
+    static let reuseIdentifier :String = "CustomTableViewCell"
     
     static func nib() -> UINib {
         return UINib(nibName: self.reuseIdentifier, bundle: nil)
@@ -38,7 +38,7 @@ class MatchCustomTableViewCell: UITableViewCell {
     @IBOutlet weak var buttonView: UIView!
     
     // opcional en caso de que no la tengamos
-    weak var delegate: MatchCustomTableViewCellDelegate?
+    weak var delegate: CustomTableViewCellDelegate?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -168,13 +168,13 @@ class MatchCustomTableViewCell: UITableViewCell {
     }
 }
 
-protocol MatchCustomTableViewCellDelegate: AnyObject{
+protocol CustomTableViewCellDelegate: AnyObject{
     func didSelectedTheButton(cell: UITableViewCell)
 
     func updateResultGame(cell: UITableViewCell, goalLocal: Int, goalVisit: Int)
 }
 
-extension MatchCustomTableViewCell: UITextFieldDelegate {
+extension CustomTableViewCell: UITextFieldDelegate {
     
     // al momento de ingresar caracteres hace la validacion para poder permitir solo numeros entre el 0 y el 99 y cuando los resultados fueron modificados, entonces establecerlos como finales
     // fixme: no deberia ser estado final solo deberia guardarse
