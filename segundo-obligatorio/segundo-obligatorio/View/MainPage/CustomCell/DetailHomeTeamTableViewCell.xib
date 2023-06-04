@@ -9,7 +9,7 @@
     <objects>
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="FirstTableViewCell" id="KGk-i7-Jjw" customClass="FirstTableViewCell" customModule="primer_obligatorio" customModuleProvider="target">
+        <tableViewCell contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" reuseIdentifier="DetailHomeTeamTableViewCell" id="KGk-i7-Jjw" customClass="DetailHomeTeamTableViewCell">
             <rect key="frame" x="0.0" y="0.0" width="449" height="44"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
             <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="KGk-i7-Jjw" id="H2p-sc-9uM">
@@ -17,15 +17,12 @@
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="190'" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mnW-GN-YD7">
-                        <rect key="frame" x="15" y="10" width="30" height="24"/>
-                        <constraints>
-                            <constraint firstAttribute="width" constant="30" id="rUl-2B-0JU"/>
-                        </constraints>
+                        <rect key="frame" x="15.000000000000002" y="10" width="27.666666666666671" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NYc-JL-r7F">
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="NYc-JL-r7F" userLabel="eventUIImage">
                         <rect key="frame" x="205.66666666666666" y="3" width="38" height="38"/>
                         <constraints>
                             <constraint firstAttribute="height" constant="38" id="Tc1-U3-cip"/>
@@ -33,7 +30,7 @@
                         </constraints>
                     </imageView>
                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iKk-Mk-ucP">
-                        <rect key="frame" x="50" y="10" width="150.66666666666666" height="24"/>
+                        <rect key="frame" x="15" y="10" width="185.66666666666666" height="24"/>
                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
@@ -45,19 +42,19 @@
                     <constraint firstItem="iKk-Mk-ucP" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="IKV-1V-iWQ"/>
                     <constraint firstItem="NYc-JL-r7F" firstAttribute="leading" secondItem="iKk-Mk-ucP" secondAttribute="trailing" constant="5" id="SXN-ZO-bll"/>
                     <constraint firstItem="mnW-GN-YD7" firstAttribute="top" secondItem="H2p-sc-9uM" secondAttribute="top" constant="10" id="eiG-ya-YUD"/>
+                    <constraint firstItem="iKk-Mk-ucP" firstAttribute="leading" secondItem="mnW-GN-YD7" secondAttribute="leading" id="fEW-uE-Zle"/>
                     <constraint firstItem="NYc-JL-r7F" firstAttribute="centerX" secondItem="H2p-sc-9uM" secondAttribute="centerX" id="hfl-LA-NJO"/>
                     <constraint firstItem="iKk-Mk-ucP" firstAttribute="centerY" secondItem="mnW-GN-YD7" secondAttribute="centerY" id="r0I-yR-tgU"/>
                     <constraint firstAttribute="bottom" secondItem="iKk-Mk-ucP" secondAttribute="bottom" constant="10" id="tLc-ES-fVu"/>
                     <constraint firstItem="NYc-JL-r7F" firstAttribute="centerY" secondItem="H2p-sc-9uM" secondAttribute="centerY" id="vKY-yK-lky"/>
                     <constraint firstItem="NYc-JL-r7F" firstAttribute="centerY" secondItem="mnW-GN-YD7" secondAttribute="centerY" id="wQz-X4-g7b"/>
-                    <constraint firstItem="iKk-Mk-ucP" firstAttribute="leading" secondItem="mnW-GN-YD7" secondAttribute="trailing" constant="5" id="wsi-ex-u50"/>
                 </constraints>
             </tableViewCellContentView>
             <viewLayoutGuide key="safeArea" id="njF-e1-oar"/>
             <connections>
-                <outlet property="detailsLabel" destination="iKk-Mk-ucP" id="dzD-Zc-1cb"/>
-                <outlet property="iconImage" destination="NYc-JL-r7F" id="by8-iS-dGk"/>
+                <outlet property="eventImage" destination="NYc-JL-r7F" id="odF-ka-Zl6"/>
                 <outlet property="minutLabel" destination="mnW-GN-YD7" id="tXS-ZR-fFr"/>
+                <outlet property="playerNameLabel" destination="iKk-Mk-ucP" id="m7k-z1-M3s"/>
             </connections>
             <point key="canvasLocation" x="190.07633587786259" y="19.718309859154932"/>
         </tableViewCell>

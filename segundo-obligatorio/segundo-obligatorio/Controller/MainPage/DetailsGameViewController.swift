@@ -35,8 +35,8 @@ class DetailsGameViewController: UIViewController {
         super.viewDidLoad()
         setup()
         
-        detailsTableView.register(FirstTableViewCell.nib(), forCellReuseIdentifier: FirstTableViewCell.identifier)
-        detailsTableView.register(RivalTableViewCell.nib(), forCellReuseIdentifier: RivalTableViewCell.identifier)
+        detailsTableView.register(DetailHomeTeamTableViewCell.nib(), forCellReuseIdentifier: DetailHomeTeamTableViewCell.identifier)
+        detailsTableView.register(DetailAwayTeamTableViewCell.nib(), forCellReuseIdentifier: DetailAwayTeamTableViewCell.identifier)
         detailsTableView.delegate = self
         detailsTableView.dataSource = self
         
@@ -112,14 +112,14 @@ extension DetailsGameViewController: UITableViewDataSource {
             let observation = sortedObservations[indexPath.row]
             
             if observation.side == "home" {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: FirstTableViewCell.identifier, for: indexPath) as? FirstTableViewCell
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailHomeTeamTableViewCell.identifier, for: indexPath) as? DetailHomeTeamTableViewCell
                 else { return .init()}
                 let nombreImage = "\(observation.event)"
                 let image =  UIImage(named: nombreImage)!
                 cell.setup(minuto: observation.minute, nombre: observation.playerName, icono: image)
                 return cell
             } else if observation.side == "away" {
-                guard let cell = tableView.dequeueReusableCell(withIdentifier: RivalTableViewCell.identifier, for: indexPath) as? RivalTableViewCell
+                guard let cell = tableView.dequeueReusableCell(withIdentifier: DetailAwayTeamTableViewCell.identifier, for: indexPath) as? DetailAwayTeamTableViewCell
                 else { return .init()}
                 let image =  UIImage(named: "\(observation.event)")!
                 cell.setup(minuto: observation.minute, nombre: observation.playerName, icono: image)

@@ -38,7 +38,7 @@ class MainPageViewController: UIViewController {
         // TableView
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.register(UINib(nibName: CustomTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseIdentifier)
+        tableView.register(UINib(nibName: MatchCustomTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: MatchCustomTableViewCell.reuseIdentifier)
         tableView.register(UINib(nibName: EmptyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: EmptyTableViewCell.identifier)
         tableView.backgroundColor = UIColor.blueBackgroundTableView
         
@@ -206,7 +206,7 @@ class MainPageViewController: UIViewController {
     }
 }
 
-extension MainPageViewController: CustomTableViewCellDelegate {
+extension MainPageViewController: MatchCustomTableViewCellDelegate {
     func didSelectedTheButton(cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let sectionIndex = indexPath.section
@@ -282,7 +282,7 @@ extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
             cell.setup(message: "Sin resultados encontrados")
             return cell
         } else {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseIdentifier, for: indexPath) as? CustomTableViewCell else {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: MatchCustomTableViewCell.reuseIdentifier, for: indexPath) as? MatchCustomTableViewCell else {
                 return UITableViewCell()
             }
             let values = gamesListNew[indexPath.section].1

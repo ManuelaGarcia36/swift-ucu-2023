@@ -1,40 +1,41 @@
 //
-//  SecondTableViewCell.swift
+//  LocalTableViewCell.swift
 //  primer-obligatorio
 //
-//  Created by Manuela Garcia Lira on 15/5/23.
+//  Created by Manuela Garcia Lira on 13/5/23.
 //
 
 import UIKit
 
-class RivalTableViewCell: UITableViewCell {
-
-    static let identifier = "RivalTableViewCell"
-    
-    static func nib() -> UINib {
-        return UINib(nibName: self.identifier, bundle: nil)
-    }
+class DetailHomeTeamTableViewCell: UITableViewCell {
     
     // outlets
     @IBOutlet weak var minutLabel: UILabel!
-    @IBOutlet weak var iconImage: UIImageView!
-    @IBOutlet weak var detailLabel: UILabel!
+    @IBOutlet weak var eventImage: UIImageView!
+    @IBOutlet weak var playerNameLabel: UILabel!
+    
+    static let identifier = "DetailHomeTeamTableViewCell"
+    
+    static func nib() -> UINib {
+        return UINib(nibName: identifier, bundle: nil)
+    }
     
     override func awakeFromNib() {
         super.awakeFromNib()
         backgroundColor = UIColor.blueBackgroundTableView
     }
-
+    
     func setup(minuto: Int, nombre: String, icono: UIImage){
         minutLabel.text = "\(minuto)'"
         minutLabel.textColor = .white
         
-        detailLabel.textColor = .white
-        detailLabel.text = nombre
-        iconImage.image = icono
+        playerNameLabel.textColor = .white
+        playerNameLabel.text = nombre
+        eventImage.image = icono
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
     }
+    
 }
