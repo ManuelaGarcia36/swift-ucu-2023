@@ -8,7 +8,7 @@
 import Foundation
 
 class AuthService {
-    static let shared = AuthService() // Singleton para acceder al servicio
+    static let shared = AuthService()
     
     func login(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void) {
         let parameters: [String: Any] = [

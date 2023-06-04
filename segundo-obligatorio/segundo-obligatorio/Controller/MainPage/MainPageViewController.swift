@@ -25,10 +25,11 @@ class MainPageViewController: UIViewController {
 
     var bannerURLs: [URL] = []
     private var isFilterButtonOn: Bool!
+    private var filterType: StatusGame?
     
     private var matches: [MatchResponse]? // data
-    private var gamesListNew: [(Date, [MatchResponse])]! //dictionary
-    private var gamesListForSearchNew: [(Date, [MatchResponse])]! // copy
+    private var matchesDictionaryList: [(Date, [MatchResponse])]! //dictionary
+    private var matchesFilterDictionaryList: [(Date, [MatchResponse])]! // copy
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,6 +57,7 @@ class MainPageViewController: UIViewController {
         let image = UIImage(systemName: "line.3.horizontal.decrease.circle")
         filterButton.setImage(image, for: .normal)
         filterButton.setTitle("", for: .normal)
+        filterButton.tintColor = UIColor.lightBlueTableViewDetails
         
         pageControl.backgroundColor = UIColor.blueBackgroundTableView
         labelSearch.backgroundColor = UIColor.blueBackgroundTableView
@@ -137,46 +139,53 @@ class MainPageViewController: UIViewController {
         let dictionary = Dictionary(grouping: matchesList, by: { Calendar.current.startOfDay(for: $0.date ) })
         let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
     
-        gamesListNew = sortedDictionary
+        matchesDictionaryList = sortedDictionary
+        matchesFilterDictionaryList = matchesDictionaryList
     }
     
-    func statusFilter(_ status: StatusGame) {
+    func statusFilter() {
+        matchesFilterDictionaryList = matchesDictionaryList // siempre parte de la lista original
         isFilterButtonOn = true
-        
-        let filteredGamesList = gamesListForSearchNew.map { (date, games) in
+        self.filterButton.tintColor = UIColor.red
+        let filteredGamesList = matchesFilterDictionaryList.map { (date, games) in
             let filteredGames = games.filter { game in
-                return game.status == status
+                return game.status == filterType
             }
             return (date, filteredGames)
         }
-        
-        gamesListForSearchNew = filteredGamesList.filter { !$0.1.isEmpty }
+        matchesFilterDictionaryList = filteredGamesList.filter { !$0.1.isEmpty }
         tableView.reloadData()
     }
     
     func removeFilters() {
         isFilterButtonOn = false
-        gamesListForSearchNew = gamesListNew
+        filterType = nil
+        self.filterButton.tintColor = UIColor.lightBlueTableViewDetails
+        matchesFilterDictionaryList = matchesDictionaryList
         tableView.reloadData()
     }
     
     @IBAction func filterButton(_ sender: Any) {
-        gamesListForSearchNew = gamesListNew
+        matchesFilterDictionaryList = matchesDictionaryList
         
         let alert = UIAlertController(title: "Filtrar partidos", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Ver acertados", style: .default, handler: { [self] action in
-            self.statusFilter(.correct)
+            self.filterType = .correct
+            self.statusFilter()
         }))
         alert.addAction(UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
-            self.statusFilter(.incorrect)
+            self.filterType = .incorrect
+            self.statusFilter()
         }))
         let verPendientesAction = UIAlertAction(title: "Ver pendientes", style: .default, handler: { [self] action in
-            self.statusFilter(.pending)
+            self.filterType = .pending
+            self.statusFilter()
         })
         verPendientesAction.setValue(UIColor.redBackgroundLabelCard, forKey: "titleTextColor")
         alert.addAction(verPendientesAction)
         alert.addAction(UIAlertAction(title: "Ver jugados s/resultado", style: .default, handler: { [self] action in
-            self.statusFilter(.not_predicted)
+            self.filterType = .not_predicted
+            self.statusFilter()
         }))
         alert.addAction(UIAlertAction(title: "Ver todos", style: .cancel, handler: { [self] action in
             self.removeFilters()
@@ -185,11 +194,15 @@ class MainPageViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    func isGameListEmptyNew() -> Bool {
-        guard let gamesList = gamesListNew else {
+    func isMatchesListEmpty() -> Bool {
+        guard let list = matchesFilterDictionaryList else {
             return true
         }
-        return false
+        if let array = list as? [(Date, [MatchResponse])], array.isEmpty {
+            return true
+        }
+        
+        return list.contains { $0.1.isEmpty == true }
     }
     
     @IBAction func deleteUserWithAPI(_ sender: Any) {
@@ -206,13 +219,22 @@ class MainPageViewController: UIViewController {
     }
 }
 
+
+
+
+/**
+ *
+ * BANNERS
+ *
+ */
 extension MainPageViewController: CustomTableViewCellDelegate {
+    
     func didSelectedTheButton(cell: UITableViewCell) {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let sectionIndex = indexPath.section
         let rowIndex = indexPath.row
-        guard sectionIndex >= 0 && sectionIndex < gamesListNew.count else { return }
-        let section = gamesListNew[sectionIndex] // sección correspondiente
+        guard sectionIndex >= 0 && sectionIndex < matchesDictionaryList.count else { return }
+        let section = matchesDictionaryList[sectionIndex] // sección correspondiente
         guard rowIndex >= 0 && rowIndex < section.1.count else { return }
         let matchSelected = section.1[rowIndex] // fila correspondiente
         getDetailsMatchesDataWithAPI(matchId: matchSelected.matchId) { result in
@@ -235,10 +257,10 @@ extension MainPageViewController: CustomTableViewCellDelegate {
          }
          let sectionIndex = indexPath.section
          let rowIndex = indexPath.row
-         guard sectionIndex >= 0 && sectionIndex < gamesListNew.count else {
+         guard sectionIndex >= 0 && sectionIndex < matchesDictionaryList.count else {
              return // invalido
          }
-         let section = gamesListNew[sectionIndex] // Obtener la sección correspondiente al índice
+         let section = matchesDictionaryList[sectionIndex] // Obtener la sección correspondiente al índice
          guard rowIndex >= 0 && rowIndex < section.1.count else { // Verificar si el índice de fila es válido
              return
          }
@@ -255,27 +277,34 @@ extension MainPageViewController: CustomTableViewCellDelegate {
     
 }
 
+
+
+/**
+ *
+ * MATCHES
+ *
+ */
 extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if isGameListEmptyNew() {
+        if isMatchesListEmpty() {
             return 1
         } else {
-            return gamesListNew.count
+            return matchesFilterDictionaryList.count
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isGameListEmptyNew() {
+        if isMatchesListEmpty() {
             return 1
         } else {
-            let values = gamesListNew[section].1
+            let values = matchesFilterDictionaryList[section].1
             return values.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if isGameListEmptyNew() {
+        if isMatchesListEmpty() {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else {
                 return UITableViewCell()
             }
@@ -285,7 +314,7 @@ extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseIdentifier, for: indexPath) as? CustomTableViewCell else {
                 return UITableViewCell()
             }
-            let values = gamesListNew[indexPath.section].1
+            let values = matchesFilterDictionaryList[indexPath.section].1
             let partido = values[indexPath.row]
             cell.delegate = self
             cell.setup(partido: partido)
@@ -294,10 +323,10 @@ extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if isGameListEmptyNew() {
+        if isMatchesListEmpty() {
             return ""
         }
-        let entry = gamesListNew[section]
+        let entry = matchesFilterDictionaryList[section]
         let date = entry.0 // Acceder a la clave del elemento
         return Date.dateFromToCustomString(date: date)
     }
@@ -349,16 +378,17 @@ extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollecti
 extension MainPageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty && !isFilterButtonOn {
-            gamesListForSearchNew = gamesListNew
-            tableView.reloadData()
-            return
+            matchesFilterDictionaryList = matchesDictionaryList
+            
+        } else if searchText.isEmpty && isFilterButtonOn {
+            statusFilter()
         }
-        gamesListForSearchNew = teamNameFilter(teamName: searchText)
+        matchesFilterDictionaryList = filterByTeamName(teamName: searchText)
         tableView.reloadData()
     }
     
-    func teamNameFilter(teamName: String) -> [(Date, [MatchResponse])] {
-        let filteredGamesList = gamesListForSearchNew.map { (date, games) in
+    func filterByTeamName(teamName: String) -> [(Date, [MatchResponse])] {
+        let filteredGamesList = matchesFilterDictionaryList.map { (date, games) in
             let filteredGames = games.filter { game in
                 return game.homeTeamName.lowercased().hasPrefix(teamName.lowercased())
                 || game.awayTeamName.lowercased().hasPrefix(teamName.lowercased())
