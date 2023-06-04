@@ -42,34 +42,22 @@ class SingUpViewController: UIViewController {
                 } else if !pass.isValidPassword(password: pass) {
                     UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
                 }
-               
+                
                 createUserWithAPI(email: user, password: pass)
             }
         }
     }
     
     func createUserWithAPI(email: String, password: String) {
-        let parameters: [String: Any] = [
-            "email": email,
-            "password": password
-        ]
-        
-        APIClient.shared.requestItem(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/user",
-                                     method: .post,
-                                     params: parameters,
-                                     token: "",
-                                     sessionPolicy: .publicDomain) { [weak self] (result: Result<UserResponse, Error>) in
+        AuthService.shared.createUser(email: email, password: password) { [weak self] (result) in
             guard let self = self else { return }
             switch result {
             case .success(let data):
-                self.userResponse = data
-                if self.userResponse?.token != nil {
-                    //FIXME NOTIFICATION USER UtilityFunction().simpleAlert(vc: self, title: "User successfully created! ", message: "Estas listo para hacer login")
-                    DispatchQueue.main.async {
-                        let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-                        let destinationVC = storyboard.instantiateViewController(withIdentifier: "SignInViewControllerID") as! SignInViewController
-                        self.present(destinationVC, animated: true)
-                    }
+                UserRepository.shared.saveUserResponse(data)
+                DispatchQueue.main.async {
+                    let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+                    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SignInViewControllerID") as! SignInViewController
+                    self.present(destinationVC, animated: true)
                 }
             case .failure(let error):
                 // Ocurrió un error durante la solicitud

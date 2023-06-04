@@ -26,22 +26,15 @@ class RivalTableViewCell: UITableViewCell {
     }
 
     func setup(minuto: Int, nombre: String, icono: UIImage){
-       // minutLabel.text = "103'"
         minutLabel.text = "\(minuto)'"
         minutLabel.textColor = .white
         
-       // detailLabel.text = "Sebastian cabrera martinez"
         detailLabel.textColor = .white
         detailLabel.text = nombre
         iconImage.image = icono
-        //iconImage.image = UIImage(named: "amarilla")
-        
     }
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
-    
 }

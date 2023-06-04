@@ -8,9 +8,9 @@
 import Foundation
 import UIKit
 
-enum StatusGame {
-   case pendiente
-   case jugado
-   case acertado
-   case errado
+enum StatusGame: String, Codable {
+   case pending
+   case not_predicted
+   case correct
+   case incorrect
 }

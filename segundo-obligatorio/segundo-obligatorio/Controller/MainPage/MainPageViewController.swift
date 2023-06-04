@@ -8,13 +8,9 @@
 import Foundation
 import UIKit
 
+
 class MainPageViewController: UIViewController {
     
-    // Lista de partidos y equipos
-    private var gamesList: [(Date, [Game])]!
-    private var gamesListForSearch: [(Date, [Game])]!
-    
-    // outlets
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var collectionView: UICollectionView!
@@ -22,27 +18,28 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var labelSearch: UILabel!
     @IBOutlet weak var searchBar: UISearchBar!
     @IBOutlet weak var filterButton: UIButton!
-    
     @IBOutlet weak var deleteUserButton: UIButton!
     
+    let userRepository = UserRepository.shared
+    var currentUser: UserResponse!
+
+    var bannerURLs: [URL] = []
     private var isFilterButtonOn: Bool!
-    private var currentUser: UserResponse!
+    
+    private var matches: [MatchResponse]? // data
+    private var gamesListNew: [(Date, [MatchResponse])]! //dictionary
+    private var gamesListForSearchNew: [(Date, [MatchResponse])]! // copy
     
     override func viewDidLoad() {
         super.viewDidLoad()
         isFilterButtonOn = false
-        // Establecer el margen de separación para las celdas de otras secciones si lo necesitas
-        tableView.separatorInsetReference = .fromAutomaticInsets
-        // initial
         pageControl.currentPage = 0
-        setStructure(partidos: partidosIniciales);
-        gamesListForSearch = gamesList
-        
-        // tableView
+    
+        // TableView
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UINib(nibName: CustomTableViewCell.reuseIdentifier, bundle: nil), forCellReuseIdentifier: CustomTableViewCell.reuseIdentifier)
-        tableView.register(UINib(nibName: "EmptyTableViewCell", bundle: nil), forCellReuseIdentifier: "EmptyTableViewCell")
+        tableView.register(UINib(nibName: EmptyTableViewCell.identifier, bundle: nil), forCellReuseIdentifier: EmptyTableViewCell.identifier)
         tableView.backgroundColor = UIColor.blueBackgroundTableView
         
         // CollectionView
@@ -51,7 +48,7 @@ class MainPageViewController: UIViewController {
         collectionView.backgroundColor = UIColor.blueBackgroundTableView
         collectionView.register(UINib(nibName: CustomCollectionViewCell.identifier, bundle: nil), forCellWithReuseIdentifier: CustomCollectionViewCell.identifier)
         
-        // filters
+        // Filters
         searchBar.backgroundColor = UIColor.blueBackgroundTableView
         searchBar.searchTextField.textColor = .white
         filterButton.backgroundColor = UIColor.blueBackgroundTableView
@@ -65,61 +62,121 @@ class MainPageViewController: UIViewController {
         headerView.backgroundColor = UIColor.blueBackgroundTableView
     }
     
-    func setup(user: UserResponse){
-        currentUser = user;
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        // Ocultar el botón de retroceso en la barra de navegacion de esta vista
+        // TODO: Agregar un boton que sea para mirar el perfil y permitirle hacer el logout o delete user
+        self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "DetailsSegue", let detailsPartidoVC = segue.destination as? DetailsGameViewController, let partido = sender as? Game {
-            detailsPartidoVC.actualGame = partido
+    override func viewWillDisappear(_ animated: Bool) {
+        super.viewWillDisappear(animated)
+        // Restaurar la visibilidad del botón de retroceso en la barra de navegación para otras pantallas como la de detalles
+        self.navigationController?.setNavigationBarHidden(false, animated: animated)
+    }
+    
+    func setup() {
+        guard let user = userRepository.getUserResponse() else {
+            print("No se encontró user válido")
+            return
+        }
+        currentUser = user;
+        getBanners();
+        loadMatchesDataWithAPI();
+    }
+    
+    func getBanners() {
+        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/files",
+                                     method: .get,
+                                     params: [:],
+                                     token: currentUser.token,
+                                     sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, [String]>, Error>) in
+            switch result {
+            case .success(let imageUrls):
+                let urlStringList = imageUrls.values.flatMap { $0 }
+                let urlList = urlStringList.compactMap { URL(string: $0) }
+                self.bannerURLs = urlList
+                self.collectionView.reloadData()
+            case .failure(let error):
+                print("Error al obtener las URLs de las imágenes:", error)
+            }
         }
     }
     
-    func setStructure(partidos: [Game]){
-        let dictionary = Dictionary(grouping: partidos, by: { Calendar.current.startOfDay(for: $0.dateGame ?? Date()) })
-        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
-        
-        gamesList = sortedDictionary
+    func loadMatchesDataWithAPI() {
+        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/?order=ASC",
+                                     method: .get,
+                                     params: [:],
+                                     token: currentUser.token,
+                                     sessionPolicy: .privateDomain) { (result: Result<MatchResponseWrapper, Error>) in
+            switch result {
+            case .success(let data):
+                self.matches = data.matches
+                self.parseDictionarySortedMatches()
+                self.tableView.reloadData()
+            case .failure(let error):
+                print("Error:", error)
+            }
+        }
     }
     
-    // funcion para filtrar partidos por tipo de estado
+    func getDetailsMatchesDataWithAPI(matchId: Int, completion: @escaping (Result<MatchDetailResponse, Error>) -> Void) {
+        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/\(matchId)",
+                                     method: .get,
+                                     params: [:],
+                                     token: currentUser.token,
+                                     sessionPolicy: .privateDomain) { (result: Result<MatchDetailResponse, Error>) in
+            completion(result)
+        }
+    }
+    
+    func parseDictionarySortedMatches(){
+        guard let matchesList = matches else {
+            return
+        }
+        let dictionary = Dictionary(grouping: matchesList, by: { Calendar.current.startOfDay(for: $0.date ) })
+        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
+    
+        gamesListNew = sortedDictionary
+    }
+    
     func statusFilter(_ status: StatusGame) {
         isFilterButtonOn = true
         
-        let filteredGamesList = gamesListForSearch.map { (date, games) in
+        let filteredGamesList = gamesListForSearchNew.map { (date, games) in
             let filteredGames = games.filter { game in
                 return game.status == status
             }
             return (date, filteredGames)
         }
         
-        gamesListForSearch = filteredGamesList.filter { !$0.1.isEmpty }
+        gamesListForSearchNew = filteredGamesList.filter { !$0.1.isEmpty }
         tableView.reloadData()
     }
     
     func removeFilters() {
         isFilterButtonOn = false
-        gamesListForSearch = gamesList
+        gamesListForSearchNew = gamesListNew
         tableView.reloadData()
     }
     
     @IBAction func filterButton(_ sender: Any) {
-        gamesListForSearch = gamesList
+        gamesListForSearchNew = gamesListNew
         
         let alert = UIAlertController(title: "Filtrar partidos", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Ver acertados", style: .default, handler: { [self] action in
-            self.statusFilter(.acertado)
+            self.statusFilter(.correct)
         }))
         alert.addAction(UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
-            self.statusFilter(.errado)
+            self.statusFilter(.incorrect)
         }))
         let verPendientesAction = UIAlertAction(title: "Ver pendientes", style: .default, handler: { [self] action in
-            self.statusFilter(.pendiente)
+            self.statusFilter(.pending)
         })
         verPendientesAction.setValue(UIColor.redBackgroundLabelCard, forKey: "titleTextColor")
         alert.addAction(verPendientesAction)
         alert.addAction(UIAlertAction(title: "Ver jugados s/resultado", style: .default, handler: { [self] action in
-            self.statusFilter(.jugado)
+            self.statusFilter(.not_predicted)
         }))
         alert.addAction(UIAlertAction(title: "Ver todos", style: .cancel, handler: { [self] action in
             self.removeFilters()
@@ -128,24 +185,20 @@ class MainPageViewController: UIViewController {
         self.present(alert, animated: true, completion: nil)
     }
     
-    // valid
-    func isGameListEmpty() -> Bool {
-        return gamesListForSearch.contains { $0.1.isEmpty == false }
+    func isGameListEmptyNew() -> Bool {
+        guard let gamesList = gamesListNew else {
+            return true
+        }
+        return false
     }
     
     @IBAction func deleteUserWithAPI(_ sender: Any) {
-        APIClient.shared.requestItem(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/user/me",
-                                     method: .delete,
-                                     params: [:],
-                                     token: currentUser.token,
-                                     sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, String>, Error>) in
+        AuthService.shared.deleteUser { [weak self] (result) in
             switch result {
             case .success(let data):
-                print("Mensaje:", data["message"])
                 let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
                 let destinationVC = storyboard.instantiateViewController(withIdentifier: "ViewControllerID") as! ViewController
-                destinationVC.modalPresentationStyle = .fullScreen
-                self.present(destinationVC, animated: true)
+                self?.navigationController?.pushViewController(destinationVC, animated: true)
             case .failure(let error):
                 print("Error:", error)
             }
@@ -153,78 +206,77 @@ class MainPageViewController: UIViewController {
     }
 }
 
-extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDelegate, UITableViewDelegate{
-    
-    // La modificacion se hace sobre el original
-    func updateResultGame(_ index: Int, goalLocal: Int, goalVisit: Int) {
-        let row = index % 1000
-        let section = index / 1000
-        // FIXME: BUG: Si esta con el filter button temrina actualizando otro elemento por el uso de los dos arreglos
-        guard let sectionGames = gamesList[safe: section]?.1 else {
-            return // Salir si la sección no existe en la lista
+extension MainPageViewController: CustomTableViewCellDelegate {
+    func didSelectedTheButton(cell: UITableViewCell) {
+        guard let indexPath = tableView.indexPath(for: cell) else { return }
+        let sectionIndex = indexPath.section
+        let rowIndex = indexPath.row
+        guard sectionIndex >= 0 && sectionIndex < gamesListNew.count else { return }
+        let section = gamesListNew[sectionIndex] // sección correspondiente
+        guard rowIndex >= 0 && rowIndex < section.1.count else { return }
+        let matchSelected = section.1[rowIndex] // fila correspondiente
+        getDetailsMatchesDataWithAPI(matchId: matchSelected.matchId) { result in
+            switch result {
+            case .success(let details):
+                let storyboard = UIStoryboard(name: "MainPageScreen", bundle: nil)
+                let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailsGameID") as! DetailsGameViewController
+                destinationVC.matchDetails = details
+                destinationVC.matchSelected = matchSelected
+                self.navigationController?.pushViewController(destinationVC, animated: true)
+            case .failure(let error):
+                print("Error:", error)
+            }
         }
-        
-        guard let game = sectionGames[safe: row] else {
-            return // Salir si la fila no existe en la sección
-        }
-        
-        var updatedGame = game // Crear una copia mutable del juego
-        updatedGame.homeTeamGoals = goalLocal
-        updatedGame.awayTeamGoals = goalVisit
-        
-        var updatedSectionGames = sectionGames // Crear una copia mutable de la lista de juegos de la sección
-        updatedSectionGames[row] = updatedGame // Actualizar el juego en la lista
-        
-        gamesList[section].1 = updatedSectionGames // Asignar la lista de juegos actualizada a la sección correspondiente en gamesList
     }
     
-    func didSelectedTheButton(_ index: Int) {
-        // division to get section and row number
-        let row = index % 1000
-        let section = index / 1000
-        let game = gamesList[safe: section]?.1[safe: row];
-        guard let partido = game else { return }
-        performSegue(withIdentifier: "DetailsSegue", sender: partido)
-    }
+    func updateResultGame(cell: UITableViewCell, goalLocal: Int, goalVisit: Int) {
+         guard let indexPath = tableView.indexPath(for: cell) else {
+             return
+         }
+         let sectionIndex = indexPath.section
+         let rowIndex = indexPath.row
+         guard sectionIndex >= 0 && sectionIndex < gamesListNew.count else {
+             return // invalido
+         }
+         let section = gamesListNew[sectionIndex] // Obtener la sección correspondiente al índice
+         guard rowIndex >= 0 && rowIndex < section.1.count else { // Verificar si el índice de fila es válido
+             return
+         }
+         let match = section.1[rowIndex]  // Obtener el elemento correspondiente al índice de fila
+         var updatedGame = match // Crear una copia mutable del juego
+         updatedGame.homeTeamGoals = goalLocal
+         updatedGame.awayTeamGoals = goalVisit
+         
+         //var updatedSectionGames = sectionGames // Crear una copia mutable de la lista de juegos de la sección
+         //updatedSectionGames[row] = updatedGame // Actualizar el juego en la lista
+         
+         //gamesListNew[section].1 = updatedSectionGames // Asignar la lista de juegos actualizada a la sección correspondiente en gamesList
+     }
     
-    // setup headers section
-    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        if let firstElement = gamesListForSearch[safe: section]?.1.first {
-            let dateString = Date.dateFromToCustomString(date: firstElement.dateGame ?? Date())
-            let label = UILabel()
-            label.backgroundColor = UIColor.blueBackgroundTableView
-            label.textColor = .white
-            label.translatesAutoresizingMaskIntoConstraints = false
-            label.text = dateString
-            let containerView = UIView()
-            containerView.addSubview(label)
-            return containerView
-        }
-        return UIView()
-    }
+}
+
+extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
     
-    // numero de secciones en total dividido por fecha
     func numberOfSections(in tableView: UITableView) -> Int {
-        if !isGameListEmpty() {
+        if isGameListEmptyNew() {
             return 1
         } else {
-            return gamesListForSearch.count
+            return gamesListNew.count
         }
     }
     
-    // numero de filas por secciones
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if !isGameListEmpty() {
+        if isGameListEmptyNew() {
             return 1
         } else {
-            let values = gamesListForSearch[section].1
+            let values = gamesListNew[section].1
             return values.count
         }
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if !isGameListEmpty() {
-            guard let cell = tableView.dequeueReusableCell(withIdentifier: "EmptyTableViewCell", for: indexPath) as? EmptyTableViewCell else {
+        if isGameListEmptyNew() {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: EmptyTableViewCell.identifier, for: indexPath) as? EmptyTableViewCell else {
                 return UITableViewCell()
             }
             cell.setup(message: "Sin resultados encontrados")
@@ -233,35 +285,46 @@ extension MainPageViewController: UITableViewDataSource , CustomTableViewCellDel
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseIdentifier, for: indexPath) as? CustomTableViewCell else {
                 return UITableViewCell()
             }
-            
-            let values = gamesListForSearch[indexPath.section].1
+            let values = gamesListNew[indexPath.section].1
             let partido = values[indexPath.row]
-            
             cell.delegate = self
-            //cell.moreDetailsButton.tag = indexPath.section * 1000 + indexPath.row // Utilizar indexPath.section y .row directamente
-            cell.tag = indexPath.section * 1000 + indexPath.row // Utilizar indexPath.section y .row directamente
-            
             cell.setup(partido: partido)
             return cell
         }
     }
     
+    func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
+        if isGameListEmptyNew() {
+            return ""
+        }
+        let entry = gamesListNew[section]
+        let date = entry.0 // Acceder a la clave del elemento
+        return Date.dateFromToCustomString(date: date)
+    }
+
+    func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
+        guard let headerView = view as? UITableViewHeaderFooterView else {
+            return
+        }
+        
+        headerView.tintColor = UIColor.blueBackgroundTableView
+        headerView.textLabel?.textColor = UIColor.white
+    }
+
 }
 
 extension MainPageViewController: UICollectionViewDataSource {
     
-    // cantidad de imagenes en las secciones
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let cantBanners = bannersActivos.count
+        let cantBanners = bannerURLs.count
         pageControl.numberOfPages = cantBanners
         return cantBanners
     }
     
-    // cargo los banners en cada cell
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell
         else { return .init()}
-        let elemt = bannersActivos[indexPath.row]
+        let elemt = bannerURLs[indexPath.row]
         cell.setup(image: elemt)
         return cell
     }
@@ -286,19 +349,19 @@ extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollecti
 extension MainPageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty && !isFilterButtonOn {
-            gamesListForSearch = gamesList
+            gamesListForSearchNew = gamesListNew
             tableView.reloadData()
             return
         }
-        gamesListForSearch = teamNameFilter(teamName: searchText)
+        gamesListForSearchNew = teamNameFilter(teamName: searchText)
         tableView.reloadData()
     }
     
-    func teamNameFilter(teamName: String) -> [(Date, [Game])] {
-        let filteredGamesList = gamesListForSearch.map { (date, games) in
+    func teamNameFilter(teamName: String) -> [(Date, [MatchResponse])] {
+        let filteredGamesList = gamesListForSearchNew.map { (date, games) in
             let filteredGames = games.filter { game in
-                return game.localTeam.nameTeam.lowercased().hasPrefix(teamName.lowercased())
-                || game.rivalTeam.nameTeam.lowercased().hasPrefix(teamName.lowercased())
+                return game.homeTeamName.lowercased().hasPrefix(teamName.lowercased())
+                || game.awayTeamName.lowercased().hasPrefix(teamName.lowercased())
             }
             return (date, filteredGames)
         }

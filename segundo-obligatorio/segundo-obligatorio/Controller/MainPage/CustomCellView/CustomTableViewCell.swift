@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CustomTableViewCell: UITableViewCell {
     
@@ -53,6 +54,16 @@ class CustomTableViewCell: UITableViewCell {
         secondRivalResultText.backgroundColor = UIColor.blueBackgroundTableView
         myContentView.layer.borderColor = UIColor.lightBlueTableViewDetails.cgColor
         myContentView.layer.borderWidth = 1.0
+        myContentView.layer.cornerRadius = 5.0
+        myContentView.clipsToBounds = true
+        headerCellView.layer.cornerRadius = 5.0
+        headerCellView.clipsToBounds = true
+        headerCellView.layer.maskedCorners = [.layerMinXMinYCorner, .layerMaxXMinYCorner]
+        buttonView.layer.cornerRadius = 5.0
+        buttonView.clipsToBounds = true
+        buttonView.layer.maskedCorners = [.layerMaxXMaxYCorner, .layerMinXMaxYCorner]
+
+        
         // delegate for result text fields and keyboard
         firstRivalResultText.delegate = self
         secondRivalResultText.delegate = self
@@ -65,7 +76,7 @@ class CustomTableViewCell: UITableViewCell {
         moreDetailsButton.tintColor = .white
     }
     
-    func changeColors(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, game: Game){
+    func changeColors(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, game: MatchResponse){
         // header card
         headerCellView.backgroundColor = primaryColor
         headerLabel.backgroundColor = secundaryColor
@@ -76,10 +87,19 @@ class CustomTableViewCell: UITableViewCell {
         firstRivalResultText.textColor = .white
         secondRivalResultText.textColor = .white
         
-        firstRivalImage.image = game.localTeam.imageTeam
-        firstRivalLabel.text = game.localTeam.nameTeam
-        secondRivalImage.image = game.rivalTeam.imageTeam
-        secondRivalLabel.text = game.rivalTeam.nameTeam
+        // FIXME
+        let name = String(game.homeTeamLogo)
+        let url = URL(string: "https://\(name)")
+        firstRivalImage.kf.setImage(with: url!)
+        
+        firstRivalLabel.text = game.homeTeamName
+        // secondRivalImage.image = game.rivalTeam.imageTeam
+        
+        let name2 = String(game.awayTeamLogo)
+        let url2 = URL(string: "https://\(name2)")
+        secondRivalImage.kf.setImage(with: url2!)
+        
+        secondRivalLabel.text = game.awayTeamName
         
         firstRivalResultText.text = String(game.homeTeamGoals)
         secondRivalResultText.text = String(game.awayTeamGoals)
@@ -101,15 +121,15 @@ class CustomTableViewCell: UITableViewCell {
         
         switch(game.status) {
             
-        case .acertado:
+        case .correct:
             headerLabel.text = " Acertado "
-        case .errado:
+        case .incorrect:
             headerLabel.text = " Errado "
-        case .jugado:
+        case .not_predicted:
             firstRivalResultText.text = "-"
             secondRivalResultText.text = "-"
             headerLabel.text = " Jugado sin resultados "
-        case .pendiente:
+        case .pending:
             headerLabel.text = " Pendiente "
             // pongo el color de fondo para la card result diferente al resto
             firstRivalResultText.backgroundColor = UIColor.blueBackgroundPickerCard
@@ -124,34 +144,34 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    func setup(partido: Game){
+    func setup(partido: MatchResponse){
         switch(partido.status) {
-        case .acertado:
+        case .correct:
             changeColors(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
-        case .jugado:
+        case .not_predicted:
             changeColors(primaryColor: UIColor.greyBackgroundCard, secundaryColor: UIColor.greyBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
-        case .errado:
+        case .incorrect:
             changeColors(primaryColor: UIColor.redBackgroundCard, secundaryColor: UIColor.redBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
-        case .pendiente:
+        case .pending:
             changeColors(primaryColor: UIColor.blueBackgroundCard, secundaryColor: UIColor.blueBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: partido)
         }
     }
     
     @IBAction func moreDetailsTaped(_ sender: UIButton) {
-        delegate?.didSelectedTheButton(tag)
+        delegate?.didSelectedTheButton(cell: self)
     }
     
     func updateResults() {
         let firstResult = Int(firstRivalResultText.text ?? "") ?? 0
         let secondResult = Int(secondRivalResultText.text ?? "") ?? 0
-        delegate?.updateResultGame(tag, goalLocal: firstResult, goalVisit: secondResult)
+        delegate?.updateResultGame(cell: self, goalLocal: firstResult, goalVisit: secondResult)
     }
 }
 
 protocol CustomTableViewCellDelegate: AnyObject{
-    func didSelectedTheButton(_ index: Int)
-    
-    func updateResultGame(_ index: Int, goalLocal: Int, goalVisit: Int)
+    func didSelectedTheButton(cell: UITableViewCell)
+
+    func updateResultGame(cell: UITableViewCell, goalLocal: Int, goalVisit: Int)
 }
 
 extension CustomTableViewCell: UITextFieldDelegate {

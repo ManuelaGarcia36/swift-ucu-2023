@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class CustomCollectionViewCell: UICollectionViewCell {
     
@@ -21,8 +22,10 @@ class CustomCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func setup(image: UIImage!){
-        imageBanner.image = image
+    func setup(image: URL!){
+        // FIXIME: ADD NORMALIZED DATA 
+        let url = URL(string: "https://\(image!)")
+        imageBanner.kf.setImage(with: url!)
         imageBanner.contentMode = .scaleAspectFill
     }
 }

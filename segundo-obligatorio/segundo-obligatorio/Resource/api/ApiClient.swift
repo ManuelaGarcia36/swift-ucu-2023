@@ -3,7 +3,6 @@ import UIKit
 
 class APIClient {
     
-    
     enum Method: String {
         case get = "GET"
         case post = "POST"
@@ -66,11 +65,37 @@ class APIClient {
         return task
     }
     
+    @discardableResult
+    func requestBase<T: Decodable>(urlString: String,
+                                      method: Method = .get,
+                                      params: [String: Any] = [:],
+                                      token: String = "",
+                                      sessionPolicy: SessionPolicy = .privateDomain,
+                                      onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
+
+        request(urlString: urlString, method: method, params: params, token: token, sessionPolicy: sessionPolicy) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    
+                    let decoder = JSONDecoder()
+                    decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
+                    onCompletion(.success(try decoder.decode(T.self, from: data)))
+                } catch {
+                    onCompletion(.failure(error))
+                }
+            case .failure(let error):
+                onCompletion(.failure(error))
+            }
+        }
+    }
     
-    @discardableResult func requestItem<T: Decodable>(urlString: String,
+    
+    @discardableResult
+    func requestActiveBannerImages<T: Decodable>(urlString: String,
                                                       method: Method = .get,
                                                       params: [String: Any] = [:],
-                                                      token: String,
+                                                      token: String = "",
                                                       sessionPolicy: SessionPolicy = .privateDomain,
                                                       onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
         

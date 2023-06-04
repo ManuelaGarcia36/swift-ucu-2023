@@ -13,3 +13,10 @@ struct UserResponse: Codable {
     let email: String
     let token: String
 }
+
+// todo: separar
+enum CustomError: Error {
+    case invalidToken
+    case userNotFound
+    case otherError(String)  // Puedes agregar más casos según tus necesidades
+}
