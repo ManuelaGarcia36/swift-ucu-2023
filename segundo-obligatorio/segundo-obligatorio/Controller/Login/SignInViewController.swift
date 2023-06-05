@@ -16,7 +16,7 @@ class SignInViewController: UIViewController {
     @IBOutlet weak var emailText: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var loginButton: UIButton!
-    var userResponse: UserResponse?
+    var userResponse: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -56,11 +56,10 @@ class SignInViewController: UIViewController {
                     let storyboard = UIStoryboard(name: "MainPageScreen", bundle: nil)
                     let destinationVC = storyboard.instantiateViewController(withIdentifier: "MainPageViewControllerID") as! MainPageViewController
                     destinationVC.modalPresentationStyle = .fullScreen
-                    destinationVC.setup()
                     self.navigationController?.pushViewController(destinationVC, animated: true)
                 }
             case .failure(let error):
-                UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "\(error)")
+                UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "\(error.localizedDescription)")
             }
         }
     }

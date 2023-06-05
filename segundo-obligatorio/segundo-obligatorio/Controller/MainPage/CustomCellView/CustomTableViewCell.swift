@@ -83,7 +83,7 @@ class CustomTableViewCell: UITableViewCell {
         moreDetailsButton.tintColor = .white
     }
     
-    func initCompoents(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, game: MatchResponse){
+    func initCompoents(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, game: Match){
         // header card
         headerCellView.backgroundColor = primaryColor
         headerLabel.backgroundColor = secundaryColor
@@ -166,7 +166,7 @@ class CustomTableViewCell: UITableViewCell {
         }
     }
     
-    func setup(match: MatchResponse){
+    func setup(match: Match){
         switch(match.status) {
         case .correct:
             initCompoents(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)

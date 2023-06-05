@@ -12,6 +12,23 @@ struct ErrorResponse: Decodable {
 }
 
 enum NetworkError : Error {
-    case userNotFound
-    case timeOut
+    case customError(message: String)
+    case invalidToken(String = "Invalid token")
+    case userNotFound(String = "User not found")
+    case unknownError(String = "Error detected")
+}
+
+extension NetworkError: LocalizedError {
+    var errorDescription: String? {
+        switch self {
+        case .customError(let message):
+            return message
+        case .invalidToken:
+            return "Invalid token"
+        case .userNotFound:
+            return "User not found"
+        case .unknownError:
+            return "Unknown Error"
+        }
+    }
 }

@@ -18,7 +18,7 @@ class SingUpViewController: UIViewController {
     @IBOutlet weak var mailTex: UITextField!
     @IBOutlet weak var passwordText: UITextField!
     @IBOutlet weak var createButton: UIButton!
-    var userResponse: UserResponse?
+    var userResponse: User?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -55,10 +55,15 @@ class SingUpViewController: UIViewController {
             case .success(let data):
                 UserRepository.shared.saveUserResponse(data)
                 DispatchQueue.main.async {
-                    let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
-                    let destinationVC = storyboard.instantiateViewController(withIdentifier: "SignInViewControllerID") as! SignInViewController
-                    self.present(destinationVC, animated: true)
-                }
+                   let alertController = UIAlertController(title: "Creación exitosa", message: "El usuario se ha creado satisfactoriamente.", preferredStyle: .alert)
+                   let okAction = UIAlertAction(title: "OK", style: .default) { _ in
+                       let storyboard = UIStoryboard(name: "LoginScreen", bundle: nil)
+                       let destinationVC = storyboard.instantiateViewController(withIdentifier: "SignInViewControllerID") as! SignInViewController
+                       self.present(destinationVC, animated: true)
+                   }
+                   alertController.addAction(okAction)
+                   self.present(alertController, animated: true, completion: nil)
+               }
             case .failure(let error):
                 // Ocurrió un error durante la solicitud
                 print("API request error: \(error)")

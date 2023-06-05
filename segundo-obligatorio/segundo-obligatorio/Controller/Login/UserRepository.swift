@@ -10,13 +10,13 @@ import Foundation
 class UserRepository {
     static let shared = UserRepository() // Singleton
     
-    private var userResponse: UserResponse?
+    private var userResponse: User?
     
-    func saveUserResponse(_ userResponse: UserResponse) {
+    func saveUserResponse(_ userResponse: User) {
         self.userResponse = userResponse
     }
     
-    func getUserResponse() -> UserResponse? {
+    func getUserResponse() -> User? {
         return userResponse
     }
 }

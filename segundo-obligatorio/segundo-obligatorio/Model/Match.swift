@@ -9,10 +9,10 @@ import Foundation
 import UIKit
 
 struct MatchResponseWrapper: Codable {
-    let matches: [MatchResponse]
+    let matches: [Match]
 }
 
-struct MatchResponse: Codable {
+struct Match: Codable {
     let matchId: Int
     let date: Date
     let homeTeamId: Int
@@ -21,7 +21,7 @@ struct MatchResponse: Codable {
     let awayTeamId: Int
     let awayTeamName: String
     let awayTeamLogo: String
-    let status: StatusGame
+    let status: Status
     var homeTeamGoals: Int?
     var awayTeamGoals: Int?
     var predictedHomeGoals: Int?
@@ -40,7 +40,7 @@ struct MatchResponse: Codable {
         awayTeamId = try container.decode(Int.self, forKey: .awayTeamId)
         awayTeamName = try container.decode(String.self, forKey: .awayTeamName)
         awayTeamLogo = try container.decode(String.self, forKey: .awayTeamLogo)
-        status = try container.decode(StatusGame.self, forKey: .status)
+        status = try container.decode(Status.self, forKey: .status)
         if status == .pending {
          predictedHomeGoals = try container.decodeIfPresent(Int.self, forKey: .predictedHomeGoals)
          predictedAwayGoals = try container.decodeIfPresent(Int.self, forKey: .predictedAwayGoals)

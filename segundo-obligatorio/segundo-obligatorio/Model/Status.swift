@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-enum StatusGame: String, Codable {
+enum Status: String, Codable {
    case pending
    case not_predicted
    case correct

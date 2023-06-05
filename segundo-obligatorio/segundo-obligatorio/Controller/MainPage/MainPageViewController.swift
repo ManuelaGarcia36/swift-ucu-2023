@@ -21,15 +21,14 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var deleteUserButton: UIButton!
     
     let userRepository = UserRepository.shared
-    var currentUser: UserResponse!
+    var currentUser: User!
 
-    var bannerURLs: [String] = []
     private var isFilterButtonOn: Bool = false
-    private var filterType: StatusGame?
-    
-    private var matches: [MatchResponse]? // data
-    private var matchesDictionaryList: [(Date, [MatchResponse])]! //dictionary
-    private var matchesFilterDictionaryList: [(Date, [MatchResponse])]! // copy
+    private var filterType: Status?
+
+    private var bannerURLs: [String] = []
+    private var matchesDictionaryList: [(Date, [Match])]! //dictionary
+    private var matchesFilterDictionaryList: [(Date, [Match])]! // copy
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -63,24 +62,24 @@ class MainPageViewController: UIViewController {
         pageControl.backgroundColor = UIColor.blueBackgroundTableView
         labelSearch.backgroundColor = UIColor.blueBackgroundTableView
         headerView.backgroundColor = UIColor.blueBackgroundTableView
+        setup()
     }
     
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        // Ocultar el botón de retroceso en la barra de navegacion de esta vista
-        // TODO: Agregar un boton que sea para mirar el perfil y permitirle hacer el logout o delete user
+        // Visibility of the back button
         self.navigationController?.setNavigationBarHidden(true, animated: animated)
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         super.viewWillDisappear(animated)
-        // Restaurar la visibilidad del botón de retroceso en la barra de navegación para otras pantallas como la de detalles
+        // Restore the visibility of the back button in the navigation bar for other screens
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
     func setup() {
         guard let user = userRepository.getUserResponse() else {
-            print("No se encontró user válido")
+            print("Error: Not valid user data")
             return
         }
         currentUser = user;
@@ -99,8 +98,6 @@ class MainPageViewController: UIViewController {
                 if let bannerURLs = response["bannerURLs"] {
                     self.bannerURLs = bannerURLs
                     self.collectionView.reloadData()
-                } else {
-                    print("No se encontró la clave 'bannerURLs' en la respuesta")
                 }
             case .failure(let error):
                 print("Error al obtener las URLs de las imágenes:", error)
@@ -116,8 +113,12 @@ class MainPageViewController: UIViewController {
                                      sessionPolicy: .privateDomain) { (result: Result<MatchResponseWrapper, Error>) in
             switch result {
             case .success(let data):
-                self.matches = data.matches
-                self.parseDictionarySortedMatches()
+    
+                let dictionary = Dictionary(grouping: data.matches, by: { Calendar.current.startOfDay(for: $0.date ) })
+                        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
+                    
+                self.matchesDictionaryList = sortedDictionary
+                self.matchesFilterDictionaryList = sortedDictionary
                 self.tableView.reloadData()
             case .failure(let error):
                 print("Error:", error)
@@ -125,25 +126,14 @@ class MainPageViewController: UIViewController {
         }
     }
     
-    func getDetailsMatchesDataWithAPI(matchId: Int, completion: @escaping (Result<MatchDetailResponse, Error>) -> Void) {
+    func getDetailsMatchesDataWithAPI(matchId: Int, completion: @escaping (Result<MatchDetail, Error>) -> Void) {
         APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/\(matchId)",
                                      method: .get,
                                      params: [:],
                                      token: currentUser.token,
-                                     sessionPolicy: .privateDomain) { (result: Result<MatchDetailResponse, Error>) in
+                                     sessionPolicy: .privateDomain) { (result: Result<MatchDetail, Error>) in
             completion(result)
         }
-    }
-    
-    func parseDictionarySortedMatches(){
-        guard let matchesList = matches else {
-            return
-        }
-        let dictionary = Dictionary(grouping: matchesList, by: { Calendar.current.startOfDay(for: $0.date ) })
-        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
-    
-        matchesDictionaryList = sortedDictionary
-        matchesFilterDictionaryList = matchesDictionaryList
     }
     
     func statusFilter() {
@@ -202,7 +192,7 @@ class MainPageViewController: UIViewController {
             return true
         }
         // searchBar set Optional([]) in the case of empty text
-        if let array = list as? [(Date, [MatchResponse])], array.isEmpty {
+        if let array = list as? [(Date, [Match])], array.isEmpty {
             return true
         }
         
@@ -406,7 +396,7 @@ extension MainPageViewController: UISearchBarDelegate {
         tableView.reloadData()
     }
     
-    func filterByTeamName(teamName: String) -> [(Date, [MatchResponse])] {
+    func filterByTeamName(teamName: String) -> [(Date, [Match])] {
         let filteredGamesList = matchesFilterDictionaryList.map { (date, games) in
             let filteredGames = games.filter { game in
                 return game.homeTeamName.lowercased().hasPrefix(teamName.lowercased())

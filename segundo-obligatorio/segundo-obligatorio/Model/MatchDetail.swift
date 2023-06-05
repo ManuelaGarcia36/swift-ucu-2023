@@ -6,7 +6,7 @@
 //
 import Foundation
 
-struct MatchDetailResponse: Codable {
+struct MatchDetail: Codable {
     let matchId: Int
     let date: Date
     let homeTeamName: String

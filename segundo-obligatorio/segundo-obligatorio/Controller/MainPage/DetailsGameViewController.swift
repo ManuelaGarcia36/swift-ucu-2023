@@ -28,8 +28,8 @@ class DetailsGameViewController: UIViewController {
     // details sub view
     @IBOutlet weak var detailsTableView: UITableView!
     
-    var matchSelected: MatchResponse?
-    var matchDetails: MatchDetailResponse?
+    var matchSelected: Match?
+    var matchDetails: MatchDetail?
     
     override func viewDidLoad() {
         super.viewDidLoad()

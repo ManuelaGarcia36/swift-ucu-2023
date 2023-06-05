@@ -81,10 +81,13 @@ class APIClient {
                     decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                     onCompletion(.success(try decoder.decode(T.self, from: data)))
                 } catch {
-                    onCompletion(.failure(NetworkError.userNotFound))
+                    if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
+                        onCompletion(.failure(NetworkError.customError(message: errorResponse.message)))
+                    }
                 }
             case .failure(let error):
-                onCompletion(.failure(error))
+                print("Error al obtener datos requestBase: \(error)")
+                onCompletion(.failure(NetworkError.unknownError()))
             }
         }
     }

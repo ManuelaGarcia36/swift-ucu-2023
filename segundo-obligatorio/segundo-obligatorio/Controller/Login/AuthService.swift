@@ -10,7 +10,7 @@ import Foundation
 class AuthService {
     static let shared = AuthService()
     
-    func login(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void) {
+    func login(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         let parameters: [String: Any] = [
             "email": email,
             "password": password
@@ -20,7 +20,7 @@ class AuthService {
                                      method: .post,
                                      params: parameters,
                                      token: "",
-                                     sessionPolicy: .publicDomain) { (result: Result<UserResponse, Error>) in
+                                     sessionPolicy: .publicDomain) { (result: Result<User, Error>) in
             switch result {
             case .success(let data):
                 completion(.success(data))
@@ -31,7 +31,7 @@ class AuthService {
         }
     }
     
-    func createUser(email: String, password: String, completion: @escaping (Result<UserResponse, Error>) -> Void) {
+    func createUser(email: String, password: String, completion: @escaping (Result<User, Error>) -> Void) {
         let parameters: [String: Any] = [
             "email": email,
             "password": password
@@ -41,7 +41,7 @@ class AuthService {
                                      method: .post,
                                      params: parameters,
                                      token: "",
-                                     sessionPolicy: .publicDomain) { (result: Result<UserResponse, Error>) in
+                                     sessionPolicy: .publicDomain) { (result: Result<User, Error>) in
             completion(result)
         }
     }
