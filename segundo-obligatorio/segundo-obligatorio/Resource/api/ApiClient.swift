@@ -19,7 +19,7 @@ class APIClient {
     
     private init() { }
     
-    @discardableResult private func request(urlString: String,
+    @discardableResult func request(urlString: String,
                                             method: Method = .get,
                                             params: [String: Any] = [:],
                                             token: String,
@@ -77,35 +77,11 @@ class APIClient {
             switch result {
             case .success(let data):
                 do {
-                    
                     let decoder = JSONDecoder()
                     decoder.dateDecodingStrategy = .formatted(DateFormatter.iso8601Full)
                     onCompletion(.success(try decoder.decode(T.self, from: data)))
                 } catch {
-                    onCompletion(.failure(error))
-                }
-            case .failure(let error):
-                onCompletion(.failure(error))
-            }
-        }
-    }
-    
-    
-    @discardableResult
-    func requestActiveBannerImages<T: Decodable>(urlString: String,
-                                                      method: Method = .get,
-                                                      params: [String: Any] = [:],
-                                                      token: String = "",
-                                                      sessionPolicy: SessionPolicy = .privateDomain,
-                                                      onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
-        
-        request(urlString: urlString, method: method, params: params,token: token, sessionPolicy: sessionPolicy) { result in
-            switch result {
-            case .success(let data):
-                do {
-                    onCompletion(.success(try JSONDecoder().decode(T.self, from: data)))
-                } catch {
-                    onCompletion(.failure(error))
+                    onCompletion(.failure(NetworkError.userNotFound))
                 }
             case .failure(let error):
                 onCompletion(.failure(error))

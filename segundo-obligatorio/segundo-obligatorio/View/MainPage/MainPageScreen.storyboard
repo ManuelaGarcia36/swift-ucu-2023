@@ -2,7 +2,7 @@
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21678"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
@@ -31,6 +31,7 @@
                                                 <constraint firstAttribute="height" constant="20" id="FCd-rc-iIg"/>
                                                 <constraint firstAttribute="width" constant="120" id="GgB-18-Bdq"/>
                                             </constraints>
+                                            <color key="pageIndicatorTintColor" red="0.12549019610000001" green="0.12549019610000001" blue="0.27058823529999998" alpha="0.8980392157" colorSpace="calibratedRGB"/>
                                             <connections>
                                                 <action selector="tapControlPanel:" destination="TNt-Ua-MPp" eventType="valueChanged" id="k28-fu-86w"/>
                                             </connections>
@@ -58,22 +59,23 @@
                                             </connections>
                                         </button>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="tOu-a0-6yB">
-                                            <rect key="frame" x="10" y="59.999999999999986" width="373" height="197.66666666666663"/>
-                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rZh-Xc-g0F">
-                                                <size key="itemSize" width="372" height="197.66666666666663"/>
+                                            <rect key="frame" x="0.0" y="59.999999999999986" width="393" height="197.66666666666663"/>
+                                            <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" minimumLineSpacing="10" minimumInteritemSpacing="10" id="rZh-Xc-g0F">
+                                                <size key="itemSize" width="392" height="198.66666666666663"/>
+                                                <size key="estimatedItemSize" width="372" height="198.69999999999999"/>
                                                 <size key="headerReferenceSize" width="0.0" height="0.0"/>
                                                 <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                                 <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                             </collectionViewFlowLayout>
                                             <cells>
                                                 <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="CustomCollectionViewCell" id="5ON-Xa-be1">
-                                                    <rect key="frame" x="0.0" y="0.0" width="372" height="197.66666666666663"/>
+                                                    <rect key="frame" x="0.0" y="-0.66666666666666663" width="392" height="198.66666666666663"/>
                                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="p7m-Ro-xiT">
-                                                        <rect key="frame" x="0.0" y="0.0" width="372" height="197.66666666666663"/>
-                                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES"/>
+                                                    <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="ClI-5c-6LN">
+                                                        <rect key="frame" x="0.0" y="0.0" width="392" height="198.66666666666663"/>
+                                                        <autoresizingMask key="autoresizingMask"/>
                                                     </collectionViewCellContentView>
-                                                    <size key="customSize" width="372" height="197.66666666666663"/>
+                                                    <size key="customSize" width="392" height="198.66666666666663"/>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
@@ -103,7 +105,7 @@
                                         <constraint firstItem="tOu-a0-6yB" firstAttribute="top" secondItem="Opw-Li-0NL" secondAttribute="bottom" constant="10" id="4Oy-8f-ckh"/>
                                         <constraint firstAttribute="trailing" secondItem="Opw-Li-0NL" secondAttribute="trailing" id="4cA-Q4-Kzr"/>
                                         <constraint firstItem="WQV-H7-6zg" firstAttribute="top" secondItem="KOG-HI-bo3" secondAttribute="bottom" constant="5" id="7YA-o5-Wt9"/>
-                                        <constraint firstAttribute="trailing" secondItem="tOu-a0-6yB" secondAttribute="trailing" constant="10" id="DMD-Di-0IW"/>
+                                        <constraint firstAttribute="trailing" secondItem="tOu-a0-6yB" secondAttribute="trailing" id="DMD-Di-0IW"/>
                                         <constraint firstItem="R5D-nC-APv" firstAttribute="top" secondItem="WQV-H7-6zg" secondAttribute="bottom" constant="10" id="EvW-PU-ET0"/>
                                         <constraint firstAttribute="bottom" secondItem="R5D-nC-APv" secondAttribute="bottom" id="Fyh-f1-dJK"/>
                                         <constraint firstItem="KOG-HI-bo3" firstAttribute="centerX" secondItem="XST-7Y-eQI" secondAttribute="centerX" id="K0m-B1-Ul7"/>
@@ -111,7 +113,7 @@
                                         <constraint firstItem="R5D-nC-APv" firstAttribute="leading" secondItem="XST-7Y-eQI" secondAttribute="leading" id="SQC-hE-K3N"/>
                                         <constraint firstAttribute="trailing" secondItem="xdB-P0-f3W" secondAttribute="trailing" id="Vuk-Y3-T33"/>
                                         <constraint firstItem="xdB-P0-f3W" firstAttribute="leading" secondItem="R5D-nC-APv" secondAttribute="trailing" id="Y6G-Xg-m0F"/>
-                                        <constraint firstItem="tOu-a0-6yB" firstAttribute="leading" secondItem="XST-7Y-eQI" secondAttribute="leading" constant="10" id="b8n-3a-MrS"/>
+                                        <constraint firstItem="tOu-a0-6yB" firstAttribute="leading" secondItem="XST-7Y-eQI" secondAttribute="leading" id="b8n-3a-MrS"/>
                                         <constraint firstItem="Opw-Li-0NL" firstAttribute="top" secondItem="XST-7Y-eQI" secondAttribute="top" id="ec6-Hz-89W"/>
                                         <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="WQV-H7-6zg" secondAttribute="trailing" constant="10" id="mqV-8g-mCd"/>
                                         <constraint firstItem="Opw-Li-0NL" firstAttribute="leading" secondItem="XST-7Y-eQI" secondAttribute="leading" id="nQl-ee-2va"/>

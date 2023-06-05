@@ -10,7 +10,7 @@ import Foundation
 class MatchesService {
     let apiClient = APIClient.shared
 
-    func getBanners(token: String, completion: @escaping (Result<[URL], Error>) -> Void) {
+    func getBanners(token: String, completion: @escaping (Result<[String], Error>) -> Void) {
         apiClient.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/files",
                               method: .get,
                               params: [:],
@@ -18,17 +18,19 @@ class MatchesService {
                               sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, [String]>, Error>) in
             switch result {
             case .success(let imageUrls):
-                let urlStringList = imageUrls.values.flatMap { $0 }
-                let urlList = urlStringList.compactMap { URL(string: $0) }
-                completion(.success(urlList))
+                if let bannerURLs = imageUrls["bannerURLs"] {
+                   completion(.success(bannerURLs))
+               } else {
+                   completion(.success([]))
+               }
             case .failure(let error):
                 completion(.failure(error))
             }
         }
     }
     
-    func loadMatchesData(token: String, completion: @escaping (Result<[MatchResponse], Error>) -> Void) {
-        apiClient.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/?order=ASC",
+    func getMatchesData(token: String, completion: @escaping (Result<[MatchResponse], Error>) -> Void) {
+        apiClient.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/?page=1&pageSize=30&order=ASC",
                               method: .get,
                               params: [:],
                               token: token,
@@ -48,7 +50,12 @@ class MatchesService {
                               params: [:],
                               token: token,
                               sessionPolicy: .privateDomain) { (result: Result<MatchDetailResponse, Error>) in
-            completion(result)
+            switch result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                completion(.failure(error))
+            }
         }
     }
 }

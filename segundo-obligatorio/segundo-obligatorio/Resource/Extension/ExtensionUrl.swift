@@ -15,7 +15,7 @@ extension URL {
             finalURLString = "https://" + urlString
         }
         if (urlString.contains("localhost") || urlString.contains("127.0.0.1")) {
-            finalURLString = "https://" // podria ir una url simil page not found
+            finalURLString = "https://foo" // TODO: podria ir una url simil page not found
         }
         return URL(string: finalURLString)
     }

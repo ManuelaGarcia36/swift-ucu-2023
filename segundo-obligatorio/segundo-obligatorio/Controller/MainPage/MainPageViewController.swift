@@ -24,7 +24,7 @@ class MainPageViewController: UIViewController {
     var currentUser: UserResponse!
 
     var bannerURLs: [String] = []
-    private var isFilterButtonOn: Bool!
+    private var isFilterButtonOn: Bool = false
     private var filterType: StatusGame?
     
     private var matches: [MatchResponse]? // data
@@ -44,6 +44,7 @@ class MainPageViewController: UIViewController {
         tableView.backgroundColor = UIColor.blueBackgroundTableView
         
         // CollectionView
+        collectionView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         collectionView.delegate = self
         collectionView.dataSource = self
         collectionView.backgroundColor = UIColor.blueBackgroundTableView
@@ -84,7 +85,7 @@ class MainPageViewController: UIViewController {
         }
         currentUser = user;
         getBanners();
-        loadMatchesDataWithAPI();
+        refreshTable();
     }
     
     func getBanners() {
@@ -221,6 +222,13 @@ class MainPageViewController: UIViewController {
         }
     }
     
+    func refreshTable() {
+        loadMatchesDataWithAPI()
+        
+        // FIXME
+        //removeFilters()
+    }
+    
     func patchMatchWithAPI(matchId: Int, goalsHome: Int, goalsAway: Int) {
         let params: [String: Any] = [
             "homeGoals": goalsHome,
@@ -234,10 +242,8 @@ class MainPageViewController: UIViewController {
                                      sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, Int>, Error>) in
             switch result {
             case .success(let data):
-                // Success patch
                 print("Succes patch: \(data)")
-                print(matchId)
-                // Handle the response data here
+                self.refreshTable()
             case .failure(let error):
                 print("Error in patch:", error)
             }
@@ -292,14 +298,9 @@ extension MainPageViewController: CustomTableViewCellDelegate {
          updatedGame.homeTeamGoals = goalLocal
          updatedGame.awayTeamGoals = goalVisit
          
-        patchMatchWithAPI(matchId: 25, goalsHome: goalLocal, goalsAway: goalVisit)
-        
-        // var updatedSectionGames = section // Crear una copia mutable de la lista de juegos de la sección
-         //updatedSectionGames[rowIndex] = updatedGame // Actualizar el juego en la lista
+         patchMatchWithAPI(matchId: match.matchId, goalsHome: goalLocal, goalsAway: goalVisit)
          
-         //matchesFilterDictionaryList[section].1 = updatedSectionGames // Asignar la lista de juegos actualizada a la sección correspondiente en gamesList
-     }
-    
+    }
 }
 
 extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {

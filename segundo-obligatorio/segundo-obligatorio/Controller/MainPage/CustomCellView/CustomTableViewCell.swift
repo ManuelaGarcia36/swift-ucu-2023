@@ -83,7 +83,7 @@ class CustomTableViewCell: UITableViewCell {
         moreDetailsButton.tintColor = .white
     }
     
-    func changeColors(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, game: MatchResponse){
+    func initCompoents(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, game: MatchResponse){
         // header card
         headerCellView.backgroundColor = primaryColor
         headerLabel.backgroundColor = secundaryColor
@@ -97,9 +97,7 @@ class CustomTableViewCell: UITableViewCell {
         firstRivalResultText.isEnabled = false
         secondRivalResultText.isEnabled = false
         
-        // FIXME
         let name = String(game.homeTeamLogo)
-        
         let url = URL.makeURL(withString: name)
         firstRivalImage.kf.setImage(with: url)
         
@@ -109,9 +107,16 @@ class CustomTableViewCell: UITableViewCell {
         secondRivalImage.kf.setImage(with: url2)
         
         secondRivalLabel.text = game.awayTeamName
-        
-        firstRivalResultText.text = String(game.homeTeamGoals)
-        secondRivalResultText.text = String(game.awayTeamGoals)
+        if let homeGoals = game.homeTeamGoals {
+            firstRivalResultText.text = String(homeGoals)
+        } else {
+            firstRivalResultText.text = ""
+        }
+        if let awayGoals = game.awayTeamGoals {
+            secondRivalResultText.text = String(awayGoals)
+        } else {
+            secondRivalResultText.text = ""
+        }
         firstRivalResultText.backgroundColor = UIColor.blueBackgroundTableView
         secondRivalResultText.backgroundColor = UIColor.blueBackgroundTableView
         gameResultView.backgroundColor = UIColor.blueBackgroundTableView
@@ -127,7 +132,7 @@ class CustomTableViewCell: UITableViewCell {
         buttonView.backgroundColor = UIColor.blueBackgroundTableView
         buttonView.layer.borderColor = UIColor.lightBlueTableViewDetails.cgColor
         buttonView.layer.borderWidth = 1.0
-        
+
         switch(game.status) {
             
         case .correct:
@@ -135,16 +140,24 @@ class CustomTableViewCell: UITableViewCell {
         case .incorrect:
             headerLabel.text = " Errado "
         case .not_predicted:
-            firstRivalResultText.text = "-"
-            secondRivalResultText.text = "-"
             headerLabel.text = " Jugado sin resultados  "
         case .pending:
             headerLabel.text = " Pendiente "
-            // pongo el color de fondo para la card result diferente al resto
             firstRivalResultText.backgroundColor = UIColor.blueBackgroundPickerCard
             secondRivalResultText.backgroundColor = UIColor.blueBackgroundPickerCard
             firstRivalResultText.isEnabled = true
             secondRivalResultText.isEnabled = true
+            if let homeGoals = game.predictedHomeGoals {
+                firstRivalResultText.text = String(homeGoals)
+            } else {
+                firstRivalResultText.text = ""
+            }
+
+            if let awayGoals = game.predictedAwayGoals {
+                secondRivalResultText.text = String(awayGoals)
+            } else {
+                secondRivalResultText.text = ""
+            }
             moreDetailsButton.isHidden = true
             cardPrincipalView.backgroundColor = UIColor.blueBackgroundViewPendingCard
             buttonView.backgroundColor = UIColor.blueBackgroundViewPendingCard
@@ -156,13 +169,13 @@ class CustomTableViewCell: UITableViewCell {
     func setup(match: MatchResponse){
         switch(match.status) {
         case .correct:
-            changeColors(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         case .not_predicted:
-            changeColors(primaryColor: UIColor.greyBackgroundCard, secundaryColor: UIColor.greyBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.greyBackgroundCard, secundaryColor: UIColor.greyBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         case .incorrect:
-            changeColors(primaryColor: UIColor.redBackgroundCard, secundaryColor: UIColor.redBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.redBackgroundCard, secundaryColor: UIColor.redBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         case .pending:
-            changeColors(primaryColor: UIColor.blueBackgroundCard, secundaryColor: UIColor.blueBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.blueBackgroundCard, secundaryColor: UIColor.blueBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
         }
     }
     
@@ -171,11 +184,15 @@ class CustomTableViewCell: UITableViewCell {
     }
     
     func updateResults() {
-        let firstResult = Int(firstRivalResultText.text ?? "") ?? 0
-        let secondResult = Int(secondRivalResultText.text ?? "") ?? 0
-        print("yendo a actualizar resultados con \(firstResult) y \(secondResult)")
-        
-        delegate?.updateResultGame(cell: self, goalLocal: firstResult, goalVisit: secondResult)
+       let firstResultText = firstRivalResultText.text ?? ""
+       let secondResultText = secondRivalResultText.text ?? ""
+        if let firstResult = Int(firstResultText), let secondResult = Int(secondResultText) {
+            print("Yendo a actualizar resultados con \(firstResult) y \(secondResult)")
+            delegate?.updateResultGame(cell: self, goalLocal: firstResult, goalVisit: secondResult)
+        } else {
+            print("Los valores no son números válidos: \(firstResultText), \(secondResultText)")
+            // Manejar el caso cuando los valores no son números válidos
+        }
     }
 }
 
@@ -195,8 +212,8 @@ extension CustomTableViewCell: UITextFieldDelegate {
             } else if textField == secondRivalResultText {
                 secondRivalResultText.text = updatedText
             }
+            updateResults()
         }
-        updateResults()
         return true
     }
 }

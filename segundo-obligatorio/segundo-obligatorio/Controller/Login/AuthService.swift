@@ -21,7 +21,13 @@ class AuthService {
                                      params: parameters,
                                      token: "",
                                      sessionPolicy: .publicDomain) { (result: Result<UserResponse, Error>) in
-            completion(result)
+            switch result {
+            case .success(let data):
+                completion(.success(data))
+            case .failure(let error):
+                print(error)
+                completion(.failure(error))
+            }
         }
     }
     

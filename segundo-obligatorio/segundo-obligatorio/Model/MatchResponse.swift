@@ -22,11 +22,13 @@ struct MatchResponse: Codable {
     let awayTeamName: String
     let awayTeamLogo: String
     let status: StatusGame
-    var homeTeamGoals: Int
-    var awayTeamGoals: Int
+    var homeTeamGoals: Int?
+    var awayTeamGoals: Int?
+    var predictedHomeGoals: Int?
+    var predictedAwayGoals: Int?
     
     private enum CodingKeys: String, CodingKey {
-        case matchId, date, homeTeamId, homeTeamName, homeTeamLogo, awayTeamId, awayTeamName, awayTeamLogo, status, homeTeamGoals, awayTeamGoals
+        case matchId, date, homeTeamId, homeTeamName, homeTeamLogo, awayTeamId, awayTeamName, awayTeamLogo, status, homeTeamGoals, awayTeamGoals, predictedHomeGoals, predictedAwayGoals
     }
     
     init(from decoder: Decoder) throws {
@@ -39,8 +41,13 @@ struct MatchResponse: Codable {
         awayTeamName = try container.decode(String.self, forKey: .awayTeamName)
         awayTeamLogo = try container.decode(String.self, forKey: .awayTeamLogo)
         status = try container.decode(StatusGame.self, forKey: .status)
-        homeTeamGoals = try container.decodeIfPresent(Int.self, forKey: .homeTeamGoals) ?? 0 // FIXME
-        awayTeamGoals = try container.decodeIfPresent(Int.self, forKey: .awayTeamGoals) ?? 0 // FIXME
+        if status == .pending {
+         predictedHomeGoals = try container.decodeIfPresent(Int.self, forKey: .predictedHomeGoals)
+         predictedAwayGoals = try container.decodeIfPresent(Int.self, forKey: .predictedAwayGoals)
+        } else {
+         homeTeamGoals = try container.decodeIfPresent(Int.self, forKey: .homeTeamGoals)
+         awayTeamGoals = try container.decodeIfPresent(Int.self, forKey: .awayTeamGoals)
+        }
         date = try container.decodeIfPresent(Date.self, forKey: .date) ?? Date() // FIXME
     }
 }
