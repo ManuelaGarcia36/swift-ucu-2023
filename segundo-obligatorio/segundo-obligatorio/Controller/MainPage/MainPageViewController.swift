@@ -81,7 +81,7 @@ class MainPageViewController: UIViewController {
     func setup() {
         matchService.fetchBannerUrls { [weak self] (bannerURLs, error) in
             if let error = error {
-                print("Error al obtener las URLs de las imágenes:", error)
+                print("Error getting image URLs: \(error)")
             } else if let bannerURLs = bannerURLs {
                 self?.bannerStringUrl = bannerURLs
                 self?.collectionView.reloadData()
@@ -90,7 +90,7 @@ class MainPageViewController: UIViewController {
         
         matchService.fetchMatchesData { [weak self] (data, error) in
             if let error = error {
-                print("Error al obtener las URLs de las imágenes:", error)
+                print("Error getting match data: \(error)")
             } else if let dictionary = data {
                 self?.matchesDictionaryList = dictionary
                 self?.matchesDictionaryListWithFilters = dictionary
@@ -116,7 +116,7 @@ class MainPageViewController: UIViewController {
     func reloadDataFromServer() {
         matchService.fetchMatchesData { [weak self] (data, error) in
             if let error = error {
-                print("Error al obtener las URLs de las imágenes:", error)
+                print("Error getting match data: \(error)")
             } else if let dictionary = data {
                 self?.matchesDictionaryList = dictionary
                 self?.matchesDictionaryListWithFilters = dictionary
@@ -182,7 +182,7 @@ class MainPageViewController: UIViewController {
                 let destinationVC = storyboard.instantiateViewController(withIdentifier: "ViewControllerID") as! ViewController
                 self?.navigationController?.pushViewController(destinationVC, animated: true)
             case .failure(let error):
-                print("Error al intentar eliminar usuario: ", error)
+                print("Error trying to delete user: \(error)")
             }
         }
     }
@@ -202,7 +202,7 @@ extension MainPageViewController: CustomTableViewCellDelegate {
         
         matchService.fetchDetailsMatchById(matchId: matchSelected.matchId) { [weak self] (matchDetail, error) in
             if let error = error {
-                print("Error:", error)
+                print("Unexpected error: \(error)")
             } else if let matchDetail = matchDetail {
                 let storyboard = UIStoryboard(name: "MainPageScreen", bundle: nil)
                 let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailsGameID") as! DetailsGameViewController
@@ -229,15 +229,13 @@ extension MainPageViewController: CustomTableViewCellDelegate {
         let match = section.1[rowIndex]
         matchService.patchMatchWithAPI(matchId: match.matchId, goalsHome: goalLocal, goalsAway: goalVisit) { [weak self] (error) in
             if let error = error {
-                print("Error al actualizar partido: \(error)")
-                self?.reloadDataFromServer() //FIXME: case with filters
+                print("Failed to update match: \(error)")
+                self?.reloadDataFromServer() //FIXME: not found case with filters
             } else {
-                print("Succesfully update")
-                self?.reloadDataFromServer() //FIXME: case with filters
+                print("Successful update")
+                self?.reloadDataFromServer() //FIXME: not found case with filters
             }
         }
-        
-        
     }
 }
 

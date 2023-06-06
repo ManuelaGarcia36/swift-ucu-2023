@@ -187,10 +187,9 @@ class CustomTableViewCell: UITableViewCell {
        let secondResultText = secondRivalResultText.text ?? ""
         if (firstResultText != "" && secondResultText != "") {
             if let firstResult = Int(firstResultText), let secondResult = Int(secondResultText) {
-                print("yendo a updater \(firstResultText), \(secondResultText)")
                 delegate?.updateResultGame(cell: self, goalLocal: firstResult, goalVisit: secondResult)
             } else {
-                print("Los valores ingresados por el usuario no son números válidos: \(firstResultText), \(secondResultText)")
+                print("The values entered by the user are not valid numbers: \(firstResultText), \(secondResultText)")
             }
         }
     }

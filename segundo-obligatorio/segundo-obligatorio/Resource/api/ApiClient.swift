@@ -86,7 +86,7 @@ class APIClient {
                     }
                 }
             case .failure(let error):
-                print("Error al obtener datos requestBase: \(error)")
+                print("Error getting request data: \(error)")
                 onCompletion(.failure(NetworkError.unknownError()))
             }
         }

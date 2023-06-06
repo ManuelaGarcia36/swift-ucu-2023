@@ -75,7 +75,7 @@
             <objects>
                 <viewController storyboardIdentifier="SingUpViewController" useStoryboardIdentifierAsRestorationIdentifier="YES" id="eSu-6y-rMn" userLabel="Sign Up View Controller" customClass="SingUpViewController" customModule="segundo_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="H11-i5-n4O">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" image="imagen-penca" translatesAutoresizingMaskIntoConstraints="NO" id="CJF-3R-dqh" userLabel="Image Penca">
@@ -83,7 +83,7 @@
                                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="25" translatesAutoresizingMaskIntoConstraints="NO" id="Thi-0l-YSm">
-                                <rect key="frame" x="30" y="236.99999999999997" width="333" height="368.33333333333326"/>
+                                <rect key="frame" x="30" y="276.33333333333337" width="333" height="368.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Crear cuenta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="wkh-vt-JIO">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="25.333333333333332"/>
@@ -92,7 +92,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="hK2-gy-oSD">
-                                        <rect key="frame" x="0.0" y="50.333333333333314" width="333" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="50.333333333333371" width="333" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -116,7 +116,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ztx-Ui-P9w" userLabel="createButton">
-                                        <rect key="frame" x="0.0" y="259" width="333" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="259.00000000000006" width="333" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Create" cornerStyle="capsule">
                                             <color key="baseBackgroundColor" red="0.31653743979999999" green="0.46051841970000001" blue="0.81945055720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -126,7 +126,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="5QD-Jb-AyU">
-                                        <rect key="frame" x="0.0" y="318.33333333333337" width="333" height="50"/>
+                                        <rect key="frame" x="0.0" y="318.33333333333331" width="333" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vrO-AM-p0j">
                                                 <rect key="frame" x="143.66666666666666" y="0.0" width="80.333333333333343" height="50"/>
@@ -191,11 +191,11 @@
             <objects>
                 <viewController storyboardIdentifier="SignInViewControllerID" useStoryboardIdentifierAsRestorationIdentifier="YES" id="Sm3-gA-5I9" userLabel="Sing In View Controller" customClass="SignInViewController" customModule="segundo_obligatorio" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="MZo-US-sn0">
-                        <rect key="frame" x="0.0" y="0.0" width="393" height="842"/>
+                        <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="wuG-Sa-fMY">
-                                <rect key="frame" x="30" y="251.99999999999997" width="333" height="338.33333333333326"/>
+                                <rect key="frame" x="30" y="291.33333333333337" width="333" height="338.33333333333337"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Ingresar a tu cuenta" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bE7-ui-OdD">
                                         <rect key="frame" x="0.0" y="0.0" width="333" height="25.333333333333332"/>
@@ -204,7 +204,7 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Email" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ddX-fH-MML">
-                                        <rect key="frame" x="0.0" y="45.333333333333314" width="333" height="20.333333333333329"/>
+                                        <rect key="frame" x="0.0" y="45.333333333333371" width="333" height="20.333333333333329"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <nil key="highlightedColor"/>
@@ -228,7 +228,7 @@
                                         <textInputTraits key="textInputTraits" secureTextEntry="YES"/>
                                     </textField>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="J8y-qi-gaA">
-                                        <rect key="frame" x="0.0" y="234" width="333" height="34.333333333333314"/>
+                                        <rect key="frame" x="0.0" y="234.00000000000006" width="333" height="34.333333333333314"/>
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="filled" title="Login" cornerStyle="capsule">
                                             <color key="baseBackgroundColor" red="0.31653743979999999" green="0.46051841970000001" blue="0.81945055720000004" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -238,7 +238,7 @@
                                         </connections>
                                     </button>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Sgv-oq-ld3">
-                                        <rect key="frame" x="0.0" y="288.33333333333337" width="333" height="50"/>
+                                        <rect key="frame" x="0.0" y="288.33333333333331" width="333" height="50"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="id8-Hm-T7z">
                                                 <rect key="frame" x="147" y="0.0" width="66" height="50"/>
@@ -319,8 +319,8 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="jJM-q0-c0Z"/>
-        <segue reference="2BP-bX-o5D"/>
+        <segue reference="vJ3-Pa-ll9"/>
+        <segue reference="NUR-E3-Ium"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="imagen-penca" width="805" height="153"/>

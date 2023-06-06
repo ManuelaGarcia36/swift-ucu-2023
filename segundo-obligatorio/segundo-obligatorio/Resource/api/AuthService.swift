@@ -47,7 +47,7 @@ class AuthService {
     
     func deleteUser(completion: @escaping (Result<Dictionary<String, String>, Error>) -> Void) {
         guard let currentUser = UserRepository.shared.getUserResponse() else {
-            print("No se encontró ningún usuario autenticado")
+            print("No authenticated user found")
             return
         }
         

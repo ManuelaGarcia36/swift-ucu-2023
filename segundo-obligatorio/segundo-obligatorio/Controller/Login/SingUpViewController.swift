@@ -65,7 +65,7 @@ class SingUpViewController: UIViewController {
                    self.present(alertController, animated: true, completion: nil)
                }
             case .failure(let error):
-                print("Error al crear el usuario: \(error)")
+                print("Error creating user: \(error)")
                 UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "\(error.localizedDescription)")
             }
         }
