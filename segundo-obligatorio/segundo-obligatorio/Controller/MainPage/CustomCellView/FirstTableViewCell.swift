@@ -17,9 +17,7 @@ class FirstTableViewCell: UITableViewCell {
     
     // outlets
     @IBOutlet weak var minutLabel: UILabel!
-
     @IBOutlet weak var iconImage: UIImageView!
-    
     @IBOutlet weak var detailsLabel: UILabel!
     
     override func awakeFromNib() {
@@ -39,8 +37,6 @@ class FirstTableViewCell: UITableViewCell {
     
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
     }
     
 }

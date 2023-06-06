@@ -20,21 +20,20 @@ class MainPageViewController: UIViewController {
     @IBOutlet weak var filterButton: UIButton!
     @IBOutlet weak var deleteUserButton: UIButton!
     
-    let userRepository = UserRepository.shared
-    var currentUser: User!
-
+    let matchService = MatchService.shared
+    
     private var isFilterButtonOn: Bool = false
     private var filterType: Status?
-
-    private var bannerURLs: [String] = []
+    
+    private var bannerStringUrl: [String] = []
     private var matchesDictionaryList: [(Date, [Match])]! //dictionary
-    private var matchesFilterDictionaryList: [(Date, [Match])]! // copy
+    private var matchesDictionaryListWithFilters: [(Date, [Match])]! // copy
     
     override func viewDidLoad() {
         super.viewDidLoad()
         isFilterButtonOn = false
         pageControl.currentPage = 0
-    
+        
         // TableView
         tableView.dataSource = self
         tableView.delegate = self
@@ -54,14 +53,16 @@ class MainPageViewController: UIViewController {
         searchBar.searchTextField.textColor = .white
         filterButton.backgroundColor = UIColor.blueBackgroundTableView
         
-        let image = UIImage(systemName: "line.3.horizontal.decrease.circle")
-        filterButton.setImage(image, for: .normal)
+        let imageFilterButton = UIImage(systemName: "line.3.horizontal.decrease.circle")
+        filterButton.setImage(imageFilterButton, for: .normal)
         filterButton.setTitle("", for: .normal)
         filterButton.tintColor = UIColor.lightBlueTableViewDetails
         
         pageControl.backgroundColor = UIColor.blueBackgroundTableView
         labelSearch.backgroundColor = UIColor.blueBackgroundTableView
         headerView.backgroundColor = UIColor.blueBackgroundTableView
+        
+        // Initial data
         setup()
     }
     
@@ -78,107 +79,82 @@ class MainPageViewController: UIViewController {
     }
     
     func setup() {
-        guard let user = userRepository.getUserResponse() else {
-            print("Error: Not valid user data")
-            return
-        }
-        currentUser = user;
-        getBanners();
-        refreshTable();
-    }
-    
-    func getBanners() {
-        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/files",
-                                     method: .get,
-                                     params: [:],
-                                     token: currentUser.token,
-                                     sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, [String]>, Error>) in
-            switch result {
-            case .success(let response):
-                if let bannerURLs = response["bannerURLs"] {
-                    self.bannerURLs = bannerURLs
-                    self.collectionView.reloadData()
-                }
-            case .failure(let error):
+        matchService.fetchBannerUrls { [weak self] (bannerURLs, error) in
+            if let error = error {
                 print("Error al obtener las URLs de las imágenes:", error)
+            } else if let bannerURLs = bannerURLs {
+                self?.bannerStringUrl = bannerURLs
+                self?.collectionView.reloadData()
+            }
+        }
+        
+        matchService.fetchMatchesData { [weak self] (data, error) in
+            if let error = error {
+                print("Error al obtener las URLs de las imágenes:", error)
+            } else if let dictionary = data {
+                self?.matchesDictionaryList = dictionary
+                self?.matchesDictionaryListWithFilters = dictionary
+                self?.tableView.reloadData()
             }
         }
     }
     
-    func loadMatchesDataWithAPI() {
-        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/?page=1&pageSize=30&order=ASC",
-                                     method: .get,
-                                     params: [:],
-                                     token: currentUser.token,
-                                     sessionPolicy: .privateDomain) { (result: Result<MatchResponseWrapper, Error>) in
-            switch result {
-            case .success(let data):
-    
-                let dictionary = Dictionary(grouping: data.matches, by: { Calendar.current.startOfDay(for: $0.date ) })
-                        let sortedDictionary = dictionary.sorted(by: { $0.key < $1.key }).map { (key: $0.key, value: $0.value) }
-                    
-                self.matchesDictionaryList = sortedDictionary
-                self.matchesFilterDictionaryList = sortedDictionary
-                self.tableView.reloadData()
-            case .failure(let error):
-                print("Error:", error)
-            }
-        }
-    }
-    
-    func getDetailsMatchesDataWithAPI(matchId: Int, completion: @escaping (Result<MatchDetail, Error>) -> Void) {
-        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/\(matchId)",
-                                     method: .get,
-                                     params: [:],
-                                     token: currentUser.token,
-                                     sessionPolicy: .privateDomain) { (result: Result<MatchDetail, Error>) in
-            completion(result)
-        }
-    }
-    
-    func statusFilter() {
-        matchesFilterDictionaryList = matchesDictionaryList // siempre parte de la lista original
+    func filterByStatus() {
+        matchesDictionaryListWithFilters = matchesDictionaryList // original server list
         isFilterButtonOn = true
         self.filterButton.tintColor = UIColor.red
-        let filteredGamesList = matchesFilterDictionaryList.map { (date, games) in
+        let filteredGamesList = matchesDictionaryListWithFilters.map { (date, games) in
             let filteredGames = games.filter { game in
                 return game.status == filterType
             }
             return (date, filteredGames)
         }
-        matchesFilterDictionaryList = filteredGamesList.filter { !$0.1.isEmpty }
+        matchesDictionaryListWithFilters = filteredGamesList.filter { !$0.1.isEmpty }
         tableView.reloadData()
+    }
+    
+    func reloadDataFromServer() {
+        matchService.fetchMatchesData { [weak self] (data, error) in
+            if let error = error {
+                print("Error al obtener las URLs de las imágenes:", error)
+            } else if let dictionary = data {
+                self?.matchesDictionaryList = dictionary
+                self?.matchesDictionaryListWithFilters = dictionary
+                self?.tableView.reloadData()
+            }
+        }
+        removeFilters()
     }
     
     func removeFilters() {
         isFilterButtonOn = false
         filterType = nil
         self.filterButton.tintColor = UIColor.lightBlueTableViewDetails
-        matchesFilterDictionaryList = matchesDictionaryList
+        matchesDictionaryListWithFilters = matchesDictionaryList
         tableView.reloadData()
     }
     
     @IBAction func filterButton(_ sender: Any) {
-        matchesFilterDictionaryList = matchesDictionaryList
+        matchesDictionaryListWithFilters = matchesDictionaryList
         
         let alert = UIAlertController(title: "Filtrar partidos", message: nil, preferredStyle: .actionSheet)
         alert.addAction(UIAlertAction(title: "Ver acertados", style: .default, handler: { [self] action in
             self.filterType = .correct
-            self.statusFilter()
+            self.filterByStatus()
         }))
         alert.addAction(UIAlertAction(title: "Ver errados", style: .default, handler: { [self] action in
             self.filterType = .incorrect
-            self.statusFilter()
+            self.filterByStatus()
         }))
         let verPendientesAction = UIAlertAction(title: "Ver pendientes", style: .default, handler: { [self] action in
             self.filterType = .pending
-            self.statusFilter()
+            self.filterByStatus()
         })
         verPendientesAction.setValue(UIColor.redBackgroundLabelCard, forKey: "titleTextColor")
         alert.addAction(verPendientesAction)
         alert.addAction(UIAlertAction(title: "Ver jugados s/resultado", style: .default, handler: { [self] action in
             self.filterType = .not_predicted
-            self.statusFilter()
+            self.filterByStatus()
         }))
         alert.addAction(UIAlertAction(title: "Ver todos", style: .cancel, handler: { [self] action in
             self.removeFilters()
@@ -188,14 +164,13 @@ class MainPageViewController: UIViewController {
     }
     
     func isMatchesListEmpty() -> Bool {
-        guard let list = matchesFilterDictionaryList else {
+        guard let list = matchesDictionaryListWithFilters else {
             return true
         }
         // searchBar set Optional([]) in the case of empty text
         if let array = list as? [(Date, [Match])], array.isEmpty {
             return true
         }
-        
         return list.contains { $0.1.isEmpty == true }
     }
     
@@ -207,39 +182,9 @@ class MainPageViewController: UIViewController {
                 let destinationVC = storyboard.instantiateViewController(withIdentifier: "ViewControllerID") as! ViewController
                 self?.navigationController?.pushViewController(destinationVC, animated: true)
             case .failure(let error):
-                print("Error:", error)
+                print("Error al intentar eliminar usuario: ", error)
             }
         }
-    }
-    
-    func refreshTable() {
-        loadMatchesDataWithAPI()
-        
-        // FIXME
-        //removeFilters()
-    }
-    
-    func patchMatchWithAPI(matchId: Int, goalsHome: Int, goalsAway: Int) {
-        let params: [String: Any] = [
-            "homeGoals": goalsHome,
-            "awayGoals": goalsAway
-        ]
-        
-        APIClient.shared.requestBase(urlString: "https://api.penca.inhouse.decemberlabs.com/api/v1/match/\(matchId)",
-                                     method: .patch,
-                                     params: params,
-                                     token: currentUser.token,
-                                     sessionPolicy: .privateDomain) { (result: Result<Dictionary<String, Int>, Error>) in
-            switch result {
-            case .success(let data):
-                print("Succes patch: \(data)")
-                self.refreshTable()
-            case .failure(let error):
-                print("Error in patch:", error)
-            }
-        }
-    
-
     }
 }
 
@@ -249,65 +194,64 @@ extension MainPageViewController: CustomTableViewCellDelegate {
         guard let indexPath = tableView.indexPath(for: cell) else { return }
         let sectionIndex = indexPath.section
         let rowIndex = indexPath.row
-        guard sectionIndex >= 0 && sectionIndex < matchesDictionaryList.count else { return }
-        let section = matchesDictionaryList[sectionIndex] // sección correspondiente
+        guard let list = matchesDictionaryList else { return }
+        guard sectionIndex >= 0 && sectionIndex < list.count else { return }
+        let section = list[sectionIndex] // sección correspondiente
         guard rowIndex >= 0 && rowIndex < section.1.count else { return }
         let matchSelected = section.1[rowIndex] // fila correspondiente
-        getDetailsMatchesDataWithAPI(matchId: matchSelected.matchId) { result in
-            switch result {
-            case .success(let details):
+        
+        matchService.fetchDetailsMatchById(matchId: matchSelected.matchId) { [weak self] (matchDetail, error) in
+            if let error = error {
+                print("Error:", error)
+            } else if let matchDetail = matchDetail {
                 let storyboard = UIStoryboard(name: "MainPageScreen", bundle: nil)
                 let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailsGameID") as! DetailsGameViewController
-                destinationVC.matchDetails = details
+                destinationVC.matchDetails = matchDetail
                 destinationVC.matchSelected = matchSelected
-                self.navigationController?.pushViewController(destinationVC, animated: true)
-            case .failure(let error):
-                print("Error:", error)
+                self?.navigationController?.pushViewController(destinationVC, animated: true)
             }
         }
     }
     
     func updateResultGame(cell: UITableViewCell, goalLocal: Int, goalVisit: Int) {
-         guard let indexPath = tableView.indexPath(for: cell) else {
-             return
-         }
-         let sectionIndex = indexPath.section
-         let rowIndex = indexPath.row
-         guard sectionIndex >= 0 && sectionIndex < matchesFilterDictionaryList.count else {
-             return // invalido
-         }
-         let section = matchesFilterDictionaryList[sectionIndex] // Obtener la sección correspondiente al índice
-         guard rowIndex >= 0 && rowIndex < section.1.count else { // Verificar si el índice de fila es válido
-             return
-         }
-         let match = section.1[rowIndex]  // Obtener el elemento correspondiente al índice de fila
-         print("match: \(match) ")
-         print("elemento a actualizar: \(goalLocal) \(goalVisit) ")
+        guard let indexPath = tableView.indexPath(for: cell) else {
+            return
+        }
+        let sectionIndex = indexPath.section
+        let rowIndex = indexPath.row
+        guard sectionIndex >= 0 && sectionIndex < matchesDictionaryListWithFilters.count else {
+            return // invalid
+        }
+        let section = matchesDictionaryListWithFilters[sectionIndex] // get section index
+        guard rowIndex >= 0 && rowIndex < section.1.count else { // validate index
+            return
+        }
+        let match = section.1[rowIndex]
+        matchService.patchMatchWithAPI(matchId: match.matchId, goalsHome: goalLocal, goalsAway: goalVisit) { [weak self] (error) in
+            if let error = error {
+                print("Error al actualizar partido: \(error)")
+                self?.reloadDataFromServer() //FIXME: case with filters
+            } else {
+                print("Succesfully update")
+                self?.reloadDataFromServer() //FIXME: case with filters
+            }
+        }
         
-         var updatedGame = match // Crear una copia mutable del juego
-         updatedGame.homeTeamGoals = goalLocal
-         updatedGame.awayTeamGoals = goalVisit
-         
-         patchMatchWithAPI(matchId: match.matchId, goalsHome: goalLocal, goalsAway: goalVisit)
-         
+        
     }
 }
 
 extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
     
     func numberOfSections(in tableView: UITableView) -> Int {
-        if isMatchesListEmpty() {
-            return 1
-        } else {
-            return matchesFilterDictionaryList.count
+        if isMatchesListEmpty() { return 1 } else {
+            return matchesDictionaryListWithFilters.count
         }
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        if isMatchesListEmpty() {
-            return 1
-        } else {
-            let values = matchesFilterDictionaryList[section].1
+        if isMatchesListEmpty() { return 1 } else {
+            let values = matchesDictionaryListWithFilters[section].1
             return values.count
         }
     }
@@ -323,38 +267,35 @@ extension MainPageViewController: UITableViewDataSource , UITableViewDelegate {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CustomTableViewCell.reuseIdentifier, for: indexPath) as? CustomTableViewCell else {
                 return UITableViewCell()
             }
-            let values = matchesFilterDictionaryList[indexPath.section].1
-            let partido = values[indexPath.row]
+            let values = matchesDictionaryListWithFilters[indexPath.section].1
+            let match = values[indexPath.row]
             cell.delegate = self
-            cell.setup(match: partido)
+            cell.setup(match: match)
             return cell
         }
     }
     
     func tableView(_ tableView: UITableView, titleForHeaderInSection section: Int) -> String? {
-        if isMatchesListEmpty() {
-            return ""
-        }
-        let entry = matchesFilterDictionaryList[section]
-        let date = entry.0 // Acceder a la clave del elemento
-        return Date.dateFromToCustomString(date: date)
+        if isMatchesListEmpty() { return "" }
+        let entry = matchesDictionaryListWithFilters[section]
+        let date = entry.0 // key of element
+        return DateFormatter.dateFromToCustomString(date: date)
     }
-
+    
     func tableView(_ tableView: UITableView, willDisplayHeaderView view: UIView, forSection section: Int) {
         guard let headerView = view as? UITableViewHeaderFooterView else {
             return
         }
-        
         headerView.tintColor = UIColor.blueBackgroundTableView
         headerView.textLabel?.textColor = UIColor.white
     }
-
+    
 }
 
 extension MainPageViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        let cantBanners = bannerURLs.count
+        let cantBanners = bannerStringUrl.count
         pageControl.numberOfPages = cantBanners
         return cantBanners
     }
@@ -362,7 +303,7 @@ extension MainPageViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CustomCollectionViewCell.identifier, for: indexPath) as? CustomCollectionViewCell
         else { return .init()}
-        let elemt = bannerURLs[indexPath.row]
+        let elemt = bannerStringUrl[indexPath.row]
         cell.setup(image: elemt)
         return cell
     }
@@ -387,17 +328,16 @@ extension MainPageViewController: UICollectionViewDelegateFlowLayout, UICollecti
 extension MainPageViewController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         if searchText.isEmpty && !isFilterButtonOn {
-            matchesFilterDictionaryList = matchesDictionaryList
-            
+            matchesDictionaryListWithFilters = matchesDictionaryList
         } else if searchText.isEmpty && isFilterButtonOn {
-            statusFilter()
+            filterByStatus()
         }
-        matchesFilterDictionaryList = filterByTeamName(teamName: searchText)
+        matchesDictionaryListWithFilters = filterByTeamName(teamName: searchText)
         tableView.reloadData()
     }
     
     func filterByTeamName(teamName: String) -> [(Date, [Match])] {
-        let filteredGamesList = matchesFilterDictionaryList.map { (date, games) in
+        let filteredGamesList = matchesDictionaryListWithFilters.map { (date, games) in
             let filteredGames = games.filter { game in
                 return game.homeTeamName.lowercased().hasPrefix(teamName.lowercased())
                 || game.awayTeamName.lowercased().hasPrefix(teamName.lowercased())

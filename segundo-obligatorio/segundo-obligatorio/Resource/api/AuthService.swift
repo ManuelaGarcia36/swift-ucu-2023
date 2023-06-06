@@ -25,7 +25,6 @@ class AuthService {
             case .success(let data):
                 completion(.success(data))
             case .failure(let error):
-                print(error)
                 completion(.failure(error))
             }
         }
@@ -48,7 +47,7 @@ class AuthService {
     
     func deleteUser(completion: @escaping (Result<Dictionary<String, String>, Error>) -> Void) {
         guard let currentUser = UserRepository.shared.getUserResponse() else {
-            print("No se encontró ningún usuario actualmente autenticado")
+            print("No se encontró ningún usuario autenticado")
             return
         }
         

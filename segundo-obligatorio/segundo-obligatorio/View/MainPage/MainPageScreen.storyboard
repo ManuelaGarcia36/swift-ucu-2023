@@ -75,7 +75,6 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="392" height="198.66666666666663"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                     </collectionViewCellContentView>
-                                                    <size key="customSize" width="392" height="198.66666666666663"/>
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>

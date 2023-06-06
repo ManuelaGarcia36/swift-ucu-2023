@@ -83,7 +83,7 @@ class CustomTableViewCell: UITableViewCell {
         moreDetailsButton.tintColor = .white
     }
     
-    func initCompoents(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, game: Match){
+    func initCompoents(primaryColor: UIColor, secundaryColor: UIColor, detailsColor: UIColor, match: Match){
         // header card
         headerCellView.backgroundColor = primaryColor
         headerLabel.backgroundColor = secundaryColor
@@ -97,22 +97,22 @@ class CustomTableViewCell: UITableViewCell {
         firstRivalResultText.isEnabled = false
         secondRivalResultText.isEnabled = false
         
-        let name = String(game.homeTeamLogo)
-        let url = URL.makeURL(withString: name)
-        firstRivalImage.kf.setImage(with: url)
+        let nameHomeTeam = String(match.homeTeamLogo)
+        let urlHomeTeam = URL.makeURL(withString: nameHomeTeam)
+        firstRivalImage.kf.setImage(with: urlHomeTeam)
+        firstRivalLabel.text = match.homeTeamName
         
-        firstRivalLabel.text = game.homeTeamName
-        let name2 = String(game.awayTeamLogo)
-        let url2 = URL.makeURL(withString: name2)
-        secondRivalImage.kf.setImage(with: url2)
+        let nameAwayTeam = String(match.awayTeamLogo)
+        let urlAwayTeam = URL.makeURL(withString: nameAwayTeam)
+        secondRivalImage.kf.setImage(with: urlAwayTeam)
         
-        secondRivalLabel.text = game.awayTeamName
-        if let homeGoals = game.homeTeamGoals {
+        secondRivalLabel.text = match.awayTeamName
+        if let homeGoals = match.homeTeamGoals {
             firstRivalResultText.text = String(homeGoals)
         } else {
             firstRivalResultText.text = ""
         }
-        if let awayGoals = game.awayTeamGoals {
+        if let awayGoals = match.awayTeamGoals {
             secondRivalResultText.text = String(awayGoals)
         } else {
             secondRivalResultText.text = ""
@@ -133,7 +133,7 @@ class CustomTableViewCell: UITableViewCell {
         buttonView.layer.borderColor = UIColor.lightBlueTableViewDetails.cgColor
         buttonView.layer.borderWidth = 1.0
 
-        switch(game.status) {
+        switch(match.status) {
             
         case .correct:
             headerLabel.text = " Acertado "
@@ -147,13 +147,12 @@ class CustomTableViewCell: UITableViewCell {
             secondRivalResultText.backgroundColor = UIColor.blueBackgroundPickerCard
             firstRivalResultText.isEnabled = true
             secondRivalResultText.isEnabled = true
-            if let homeGoals = game.predictedHomeGoals {
+            if let homeGoals = match.predictedHomeGoals {
                 firstRivalResultText.text = String(homeGoals)
             } else {
                 firstRivalResultText.text = ""
             }
-
-            if let awayGoals = game.predictedAwayGoals {
+            if let awayGoals = match.predictedAwayGoals {
                 secondRivalResultText.text = String(awayGoals)
             } else {
                 secondRivalResultText.text = ""
@@ -169,13 +168,13 @@ class CustomTableViewCell: UITableViewCell {
     func setup(match: Match){
         switch(match.status) {
         case .correct:
-            initCompoents(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.greenBackgroundCard, secundaryColor: UIColor.greenBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, match: match)
         case .not_predicted:
-            initCompoents(primaryColor: UIColor.greyBackgroundCard, secundaryColor: UIColor.greyBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.greyBackgroundCard, secundaryColor: UIColor.greyBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, match: match)
         case .incorrect:
-            initCompoents(primaryColor: UIColor.redBackgroundCard, secundaryColor: UIColor.redBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.redBackgroundCard, secundaryColor: UIColor.redBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, match: match)
         case .pending:
-            initCompoents(primaryColor: UIColor.blueBackgroundCard, secundaryColor: UIColor.blueBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, game: match)
+            initCompoents(primaryColor: UIColor.blueBackgroundCard, secundaryColor: UIColor.blueBackgroundLabelCard, detailsColor: UIColor.lightBlueTableViewDetails, match: match)
         }
     }
     
@@ -186,12 +185,13 @@ class CustomTableViewCell: UITableViewCell {
     func updateResults() {
        let firstResultText = firstRivalResultText.text ?? ""
        let secondResultText = secondRivalResultText.text ?? ""
-        if let firstResult = Int(firstResultText), let secondResult = Int(secondResultText) {
-            print("Yendo a actualizar resultados con \(firstResult) y \(secondResult)")
-            delegate?.updateResultGame(cell: self, goalLocal: firstResult, goalVisit: secondResult)
-        } else {
-            print("Los valores no son números válidos: \(firstResultText), \(secondResultText)")
-            // Manejar el caso cuando los valores no son números válidos
+        if (firstResultText != "" && secondResultText != "") {
+            if let firstResult = Int(firstResultText), let secondResult = Int(secondResultText) {
+                print("yendo a updater \(firstResultText), \(secondResultText)")
+                delegate?.updateResultGame(cell: self, goalLocal: firstResult, goalVisit: secondResult)
+            } else {
+                print("Los valores ingresados por el usuario no son números válidos: \(firstResultText), \(secondResultText)")
+            }
         }
     }
 }
@@ -206,7 +206,7 @@ extension CustomTableViewCell: UITextFieldDelegate {
         }
         let currentText = (textField.text ?? "") as NSString
         let updatedText = currentText.replacingCharacters(in: range, with: string)
-        if let number = Int(updatedText), number < 100 && number >= 0 {  // Verificar si el valor es valido
+        if let number = Int(updatedText), number < 100 && number >= 0 {
             if textField == firstRivalResultText {
                 firstRivalResultText.text = updatedText
             } else if textField == secondRivalResultText {

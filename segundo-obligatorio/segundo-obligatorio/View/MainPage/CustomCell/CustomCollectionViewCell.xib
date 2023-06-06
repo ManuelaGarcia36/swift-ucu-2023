@@ -17,15 +17,19 @@
                 <subviews>
                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="gdg-Au-Hya">
                         <rect key="frame" x="0.0" y="0.0" width="373" height="220"/>
+                        <constraints>
+                            <constraint firstAttribute="height" constant="220" id="jwy-LH-09c"/>
+                            <constraint firstAttribute="width" constant="373" id="oO5-qM-5F7"/>
+                        </constraints>
                     </imageView>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="gdg-Au-Hya" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="NNA-He-xOj"/>
-                <constraint firstItem="gdg-Au-Hya" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="QUY-UO-esm"/>
-                <constraint firstAttribute="trailing" secondItem="gdg-Au-Hya" secondAttribute="trailing" id="VtV-6r-SPU"/>
-                <constraint firstAttribute="bottom" secondItem="gdg-Au-Hya" secondAttribute="bottom" id="xif-4Y-bAb"/>
+                <constraint firstItem="gdg-Au-Hya" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="6ob-us-goZ"/>
+                <constraint firstItem="gdg-Au-Hya" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="AdD-3N-eHP"/>
+                <constraint firstAttribute="trailing" secondItem="gdg-Au-Hya" secondAttribute="trailing" id="V89-8a-qnB"/>
+                <constraint firstAttribute="bottom" secondItem="gdg-Au-Hya" secondAttribute="bottom" id="lc7-du-OCh"/>
             </constraints>
             <size key="customSize" width="363" height="173.33333333333334"/>
             <connections>

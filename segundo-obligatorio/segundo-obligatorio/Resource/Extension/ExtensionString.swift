@@ -9,7 +9,6 @@ import Foundation
 
 extension String {
     
-    // valida mediante regex el input del usuario
     func isValidEmail(mail: String) -> Bool {
         let regex = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$"
         let test = NSPredicate(format: "SELF MATCHES %@", regex)

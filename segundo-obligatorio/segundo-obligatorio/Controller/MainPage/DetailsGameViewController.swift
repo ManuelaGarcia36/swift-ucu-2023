@@ -52,8 +52,8 @@ class DetailsGameViewController: UIViewController {
     }
     
     func setup(){
-        if let game = matchSelected {
-            switch (game.status){
+        if let match = matchSelected {
+            switch (match.status){
             case .correct:
                 statusGameView.backgroundColor = UIColor.greenBackgroundCard
                 statusLabel.backgroundColor = UIColor.greenBackgroundLabelCard
@@ -69,8 +69,9 @@ class DetailsGameViewController: UIViewController {
             case .pending:
                 break;
             }
+            
             if let details = matchDetails {
-                dateLabel.text = Date.dateFromToCustomString(date: details.date)
+                dateLabel.text = DateFormatter.dateFromToCustomString(date: details.date)
                 
                 let url = URL.makeURL(withString: details.homeTeamLogo)
                 firstRivalImage.kf.setImage(with: url!)
@@ -107,7 +108,6 @@ extension DetailsGameViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let game = matchDetails {
-            
             let sortedObservations =  game.incidences.sorted { $0.minute < $1.minute }
             let observation = sortedObservations[indexPath.row]
             

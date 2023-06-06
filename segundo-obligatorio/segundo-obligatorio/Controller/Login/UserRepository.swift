@@ -8,7 +8,7 @@
 import Foundation
 
 class UserRepository {
-    static let shared = UserRepository() // Singleton
+    static let shared = UserRepository()
     
     private var userResponse: User?
     

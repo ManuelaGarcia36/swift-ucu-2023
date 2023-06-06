@@ -48,17 +48,6 @@ struct Match: Codable {
          homeTeamGoals = try container.decodeIfPresent(Int.self, forKey: .homeTeamGoals)
          awayTeamGoals = try container.decodeIfPresent(Int.self, forKey: .awayTeamGoals)
         }
-        date = try container.decodeIfPresent(Date.self, forKey: .date) ?? Date() // FIXME
+        date = try container.decodeIfPresent(Date.self, forKey: .date)!
     }
-}
-
-extension DateFormatter {
-  static let iso8601Full: DateFormatter = {
-    let formatter = DateFormatter()
-    formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSSZ"
-    formatter.calendar = Calendar(identifier: .iso8601)
-    formatter.timeZone = TimeZone(secondsFromGMT: 0)
-    formatter.locale = Locale(identifier: "en_US_POSIX")
-    return formatter
-  }()
 }

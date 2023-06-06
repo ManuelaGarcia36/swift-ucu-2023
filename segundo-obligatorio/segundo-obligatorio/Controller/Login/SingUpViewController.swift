@@ -65,8 +65,8 @@ class SingUpViewController: UIViewController {
                    self.present(alertController, animated: true, completion: nil)
                }
             case .failure(let error):
-                // Ocurrió un error durante la solicitud
-                print("API request error: \(error)")
+                print("Error al crear el usuario: \(error)")
+                UtilityFunction().simpleAlert(vc: self, title: "Alert! ", message: "\(error.localizedDescription)")
             }
         }
     }

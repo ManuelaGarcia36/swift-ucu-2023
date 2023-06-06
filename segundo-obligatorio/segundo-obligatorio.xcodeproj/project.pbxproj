@@ -36,6 +36,7 @@
 		F5C984852A07EF1E00E4997F /* ExtensionColor.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984842A07EF1E00E4997F /* ExtensionColor.swift */; };
 		F5C9848F2A09C3BA00E4997F /* ExtensionArray.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C9848E2A09C3BA00E4997F /* ExtensionArray.swift */; };
 		F5C984922A09D3A600E4997F /* Const.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5C984912A09D3A600E4997F /* Const.swift */; };
+		F5D668522A2EA6FC0096A926 /* MatchService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D668512A2EA6FB0096A926 /* MatchService.swift */; };
 		F5FA209B2A048E20009A8C76 /* DetailsGameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FA209A2A048E20009A8C76 /* DetailsGameViewController.swift */; };
 		F5FCD25429F9F48A00D661E2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */; };
 		F5FCD25629F9F48A00D661E2 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5FCD25529F9F48A00D661E2 /* SceneDelegate.swift */; };
@@ -79,6 +80,7 @@
 		F5C984842A07EF1E00E4997F /* ExtensionColor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionColor.swift; sourceTree = "<group>"; };
 		F5C9848E2A09C3BA00E4997F /* ExtensionArray.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExtensionArray.swift; sourceTree = "<group>"; };
 		F5C984912A09D3A600E4997F /* Const.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Const.swift; sourceTree = "<group>"; };
+		F5D668512A2EA6FB0096A926 /* MatchService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MatchService.swift; sourceTree = "<group>"; };
 		F5FA209A2A048E20009A8C76 /* DetailsGameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailsGameViewController.swift; sourceTree = "<group>"; };
 		F5FCD25029F9F48A00D661E2 /* segundo-obligatorio.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "segundo-obligatorio.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5FCD25329F9F48A00D661E2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
@@ -124,6 +126,8 @@
 		F58926F22A1C4E4500940209 /* api */ = {
 			isa = PBXGroup;
 			children = (
+				F56D214A2A2BB4E200D37F67 /* AuthService.swift */,
+				F5D668512A2EA6FB0096A926 /* MatchService.swift */,
 				F58926F32A1C4E7600940209 /* ApiClient.swift */,
 			);
 			path = api;
@@ -135,7 +139,6 @@
 				F56D21542A2BFEA600D37F67 /* ViewController.swift */,
 				F5FCD26D29FA005F00D661E2 /* SignInViewController.swift */,
 				F5FCD26F29FA00BD00D661E2 /* SingUpViewController.swift */,
-				F56D214A2A2BB4E200D37F67 /* AuthService.swift */,
 				F56D214C2A2BB53E00D37F67 /* UserRepository.swift */,
 			);
 			path = Login;
@@ -437,6 +440,7 @@
 				F56D21492A27E6FC00D37F67 /* Match.swift in Sources */,
 				F5FA209B2A048E20009A8C76 /* DetailsGameViewController.swift in Sources */,
 				F5FCD25629F9F48A00D661E2 /* SceneDelegate.swift in Sources */,
+				F5D668522A2EA6FC0096A926 /* MatchService.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

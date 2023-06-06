@@ -10,7 +10,6 @@ import UIKit
 
 class UtilityFunction: NSObject {
     
-    // Alerta generica
     func simpleAlert(vc: UIViewController, title: String, message:String) {
         let alert =  UIAlertController(title: title, message: message, preferredStyle: .alert)
         let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
