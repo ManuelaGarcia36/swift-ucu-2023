@@ -1,0 +1,467 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 56;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2D4323E8CA8E325A096B2F2B /* Pods_obligatorio_final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0D62064B5F5CD4E81DB109 /* Pods_obligatorio_final.framework */; };
+		F54C87DE2A3A788500A8F988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87DD2A3A788500A8F988 /* AppDelegate.swift */; };
+		F54C87E02A3A788500A8F988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87DF2A3A788500A8F988 /* SceneDelegate.swift */; };
+		F54C87E22A3A788500A8F988 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87E12A3A788500A8F988 /* ViewController.swift */; };
+		F54C87E52A3A788500A8F988 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F54C87E32A3A788500A8F988 /* Main.storyboard */; };
+		F54C87E72A3A788800A8F988 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F54C87E62A3A788800A8F988 /* Assets.xcassets */; };
+		F54C87EA2A3A788800A8F988 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = F54C87E82A3A788800A8F988 /* LaunchScreen.storyboard */; };
+		F54C87F32A3A81A000A8F988 /* PokemonApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F22A3A81A000A8F988 /* PokemonApiService.swift */; };
+		F54C87F52A3A81BE00A8F988 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F42A3A81BE00A8F988 /* ApiClient.swift */; };
+		F54C87F72A3A841E00A8F988 /* PokemonResponse.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F62A3A841E00A8F988 /* PokemonResponse.swift */; };
+		F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */; };
+		F5B4049F2A44F77E00149996 /* TypesCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */; };
+		F5B404A22A44F79700149996 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */; };
+		F5B404A32A44F79700149996 /* PokemonCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B404A12A44F79700149996 /* PokemonCollectionViewCell.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		3E807490B6085B5E7DA636DF /* Pods-obligatorio-final.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-obligatorio-final.debug.xcconfig"; path = "Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final.debug.xcconfig"; sourceTree = "<group>"; };
+		6DE78AD7A479FC6EFD916E16 /* Pods-obligatorio-final.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-obligatorio-final.release.xcconfig"; path = "Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final.release.xcconfig"; sourceTree = "<group>"; };
+		EA0D62064B5F5CD4E81DB109 /* Pods_obligatorio_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_obligatorio_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F54C87DA2A3A788500A8F988 /* obligatorio-final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "obligatorio-final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		F54C87DD2A3A788500A8F988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		F54C87DF2A3A788500A8F988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		F54C87E12A3A788500A8F988 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		F54C87E42A3A788500A8F988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		F54C87E62A3A788800A8F988 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		F54C87E92A3A788800A8F988 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		F54C87EB2A3A788800A8F988 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F54C87F22A3A81A000A8F988 /* PokemonApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonApiService.swift; sourceTree = "<group>"; };
+		F54C87F42A3A81BE00A8F988 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
+		F54C87F62A3A841E00A8F988 /* PokemonResponse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonResponse.swift; sourceTree = "<group>"; };
+		F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesCustomCollectionViewCell.swift; sourceTree = "<group>"; };
+		F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypesCustomCollectionViewCell.xib; sourceTree = "<group>"; };
+		F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
+		F5B404A12A44F79700149996 /* PokemonCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = PokemonCollectionViewCell.xib; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		F54C87D72A3A788500A8F988 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				2D4323E8CA8E325A096B2F2B /* Pods_obligatorio_final.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		AC10CF1620118FEDFB739208 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				EA0D62064B5F5CD4E81DB109 /* Pods_obligatorio_final.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		F54C87D12A3A788500A8F988 = {
+			isa = PBXGroup;
+			children = (
+				F54C87DC2A3A788500A8F988 /* obligatorio-final */,
+				F54C87DB2A3A788500A8F988 /* Products */,
+				FEE2A81FB6BF83EA96C5F8BA /* Pods */,
+				AC10CF1620118FEDFB739208 /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		F54C87DB2A3A788500A8F988 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				F54C87DA2A3A788500A8F988 /* obligatorio-final.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		F54C87DC2A3A788500A8F988 /* obligatorio-final */ = {
+			isa = PBXGroup;
+			children = (
+				F54C87F12A3A819300A8F988 /* api */,
+				F54C87DD2A3A788500A8F988 /* AppDelegate.swift */,
+				F54C87DF2A3A788500A8F988 /* SceneDelegate.swift */,
+				F54C87E12A3A788500A8F988 /* ViewController.swift */,
+				F54C87E32A3A788500A8F988 /* Main.storyboard */,
+				F54C87E62A3A788800A8F988 /* Assets.xcassets */,
+				F54C87E82A3A788800A8F988 /* LaunchScreen.storyboard */,
+				F54C87EB2A3A788800A8F988 /* Info.plist */,
+				F54C87F62A3A841E00A8F988 /* PokemonResponse.swift */,
+				F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */,
+				F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */,
+				F5B404A12A44F79700149996 /* PokemonCollectionViewCell.xib */,
+				F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */,
+			);
+			path = "obligatorio-final";
+			sourceTree = "<group>";
+		};
+		F54C87F12A3A819300A8F988 /* api */ = {
+			isa = PBXGroup;
+			children = (
+				F54C87F22A3A81A000A8F988 /* PokemonApiService.swift */,
+				F54C87F42A3A81BE00A8F988 /* ApiClient.swift */,
+			);
+			path = api;
+			sourceTree = "<group>";
+		};
+		FEE2A81FB6BF83EA96C5F8BA /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				3E807490B6085B5E7DA636DF /* Pods-obligatorio-final.debug.xcconfig */,
+				6DE78AD7A479FC6EFD916E16 /* Pods-obligatorio-final.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		F54C87D92A3A788500A8F988 /* obligatorio-final */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F54C87EE2A3A788800A8F988 /* Build configuration list for PBXNativeTarget "obligatorio-final" */;
+			buildPhases = (
+				D57009491079DB44B750186A /* [CP] Check Pods Manifest.lock */,
+				F54C87D62A3A788500A8F988 /* Sources */,
+				F54C87D72A3A788500A8F988 /* Frameworks */,
+				F54C87D82A3A788500A8F988 /* Resources */,
+				EB9AB16FB2EDDCF63D027EFB /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = "obligatorio-final";
+			productName = "obligatorio-final";
+			productReference = F54C87DA2A3A788500A8F988 /* obligatorio-final.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		F54C87D22A3A788500A8F988 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1430;
+				LastUpgradeCheck = 1430;
+				TargetAttributes = {
+					F54C87D92A3A788500A8F988 = {
+						CreatedOnToolsVersion = 14.3.1;
+					};
+				};
+			};
+			buildConfigurationList = F54C87D52A3A788500A8F988 /* Build configuration list for PBXProject "obligatorio-final" */;
+			compatibilityVersion = "Xcode 14.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = F54C87D12A3A788500A8F988;
+			productRefGroup = F54C87DB2A3A788500A8F988 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				F54C87D92A3A788500A8F988 /* obligatorio-final */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		F54C87D82A3A788500A8F988 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F54C87EA2A3A788800A8F988 /* LaunchScreen.storyboard in Resources */,
+				F54C87E72A3A788800A8F988 /* Assets.xcassets in Resources */,
+				F54C87E52A3A788500A8F988 /* Main.storyboard in Resources */,
+				F5B404A32A44F79700149996 /* PokemonCollectionViewCell.xib in Resources */,
+				F5B4049F2A44F77E00149996 /* TypesCustomCollectionViewCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		D57009491079DB44B750186A /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-obligatorio-final-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		EB9AB16FB2EDDCF63D027EFB /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		F54C87D62A3A788500A8F988 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F54C87E22A3A788500A8F988 /* ViewController.swift in Sources */,
+				F54C87DE2A3A788500A8F988 /* AppDelegate.swift in Sources */,
+				F5B404A22A44F79700149996 /* PokemonCollectionViewCell.swift in Sources */,
+				F54C87F72A3A841E00A8F988 /* PokemonResponse.swift in Sources */,
+				F54C87F32A3A81A000A8F988 /* PokemonApiService.swift in Sources */,
+				F54C87E02A3A788500A8F988 /* SceneDelegate.swift in Sources */,
+				F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */,
+				F54C87F52A3A81BE00A8F988 /* ApiClient.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		F54C87E32A3A788500A8F988 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F54C87E42A3A788500A8F988 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		F54C87E82A3A788800A8F988 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F54C87E92A3A788800A8F988 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		F54C87EC2A3A788800A8F988 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		F54C87ED2A3A788800A8F988 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		F54C87EF2A3A788800A8F988 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 3E807490B6085B5E7DA636DF /* Pods-obligatorio-final.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "obligatorio-final/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "manuggar.obligatorio-final";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		F54C87F02A3A788800A8F988 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6DE78AD7A479FC6EFD916E16 /* Pods-obligatorio-final.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = "obligatorio-final/Info.plist";
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = "manuggar.obligatorio-final";
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		F54C87D52A3A788500A8F988 /* Build configuration list for PBXProject "obligatorio-final" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F54C87EC2A3A788800A8F988 /* Debug */,
+				F54C87ED2A3A788800A8F988 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F54C87EE2A3A788800A8F988 /* Build configuration list for PBXNativeTarget "obligatorio-final" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F54C87EF2A3A788800A8F988 /* Debug */,
+				F54C87F02A3A788800A8F988 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = F54C87D22A3A788500A8F988 /* Project object */;
+}
