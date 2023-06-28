@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -15,21 +16,39 @@
                 <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="hET-I8-KeX">
-                        <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
-                    </imageView>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK7-zL-cnE">
+                        <rect key="frame" x="5" y="5" width="130" height="130"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VP8-WO-aQU">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="VP8-WO-aQU" secondAttribute="bottom" id="M0B-bh-tYa"/>
+                            <constraint firstItem="VP8-WO-aQU" firstAttribute="top" secondItem="JK7-zL-cnE" secondAttribute="top" id="Vrs-dM-sWT"/>
+                            <constraint firstAttribute="trailing" secondItem="VP8-WO-aQU" secondAttribute="trailing" id="bRA-Os-8Nl"/>
+                            <constraint firstItem="VP8-WO-aQU" firstAttribute="leading" secondItem="JK7-zL-cnE" secondAttribute="leading" id="j1h-SJ-r9V"/>
+                        </constraints>
+                    </view>
                 </subviews>
             </view>
             <constraints>
-                <constraint firstItem="hET-I8-KeX" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="Hku-39-iVI"/>
-                <constraint firstItem="hET-I8-KeX" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="K1H-ac-gdq"/>
-                <constraint firstAttribute="trailing" secondItem="hET-I8-KeX" secondAttribute="trailing" id="amt-Ez-tsF"/>
-                <constraint firstAttribute="bottom" secondItem="hET-I8-KeX" secondAttribute="bottom" id="uZd-0l-a8I"/>
+                <constraint firstItem="JK7-zL-cnE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="0Zp-79-KxU"/>
+                <constraint firstAttribute="bottom" secondItem="JK7-zL-cnE" secondAttribute="bottom" constant="5" id="Cdu-nT-pyx"/>
+                <constraint firstItem="JK7-zL-cnE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="Riw-xs-EkZ"/>
+                <constraint firstAttribute="trailing" secondItem="JK7-zL-cnE" secondAttribute="trailing" constant="5" id="uoZ-iA-eYK"/>
             </constraints>
             <connections>
-                <outlet property="cellImageView" destination="hET-I8-KeX" id="945-vy-SpM"/>
+                <outlet property="cellImageView" destination="VP8-WO-aQU" id="fhI-T6-bqf"/>
+                <outlet property="contentPokemonImageView" destination="JK7-zL-cnE" id="AhP-xP-FVK"/>
             </connections>
             <point key="canvasLocation" x="139" y="21"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
 </document>

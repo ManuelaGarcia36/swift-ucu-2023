@@ -148,14 +148,28 @@
                                     <rect key="frame" x="0.0" y="0.0" width="393" height="372"/>
                                     <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                     <subviews>
-                                        <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N13-Pe-veB">
+                                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LnE-IP-aWs">
                                             <rect key="frame" x="0.0" y="0.0" width="393" height="200"/>
+                                            <subviews>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="N13-Pe-veB">
+                                                    <rect key="frame" x="109" y="15" width="175" height="175"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="width" constant="175" id="cVt-E3-6Dn"/>
+                                                        <constraint firstAttribute="height" constant="175" id="faN-wm-JHH"/>
+                                                    </constraints>
+                                                </imageView>
+                                            </subviews>
                                             <constraints>
-                                                <constraint firstAttribute="height" constant="200" id="lc4-DT-xiI"/>
+                                                <constraint firstItem="N13-Pe-veB" firstAttribute="top" secondItem="LnE-IP-aWs" secondAttribute="top" constant="15" id="84j-3a-EZX"/>
+                                                <constraint firstItem="N13-Pe-veB" firstAttribute="leading" relation="greaterThanOrEqual" secondItem="LnE-IP-aWs" secondAttribute="leading" constant="50" id="Fx6-so-4vF"/>
+                                                <constraint firstItem="N13-Pe-veB" firstAttribute="top" secondItem="LnE-IP-aWs" secondAttribute="top" constant="15" id="Vel-jR-RnT"/>
+                                                <constraint firstItem="N13-Pe-veB" firstAttribute="centerX" secondItem="LnE-IP-aWs" secondAttribute="centerX" id="YWI-u5-t6F"/>
+                                                <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="N13-Pe-veB" secondAttribute="trailing" constant="50" id="kEg-7d-Ld9"/>
+                                                <constraint firstAttribute="height" constant="200" id="pop-pN-cmK"/>
                                             </constraints>
-                                        </imageView>
+                                        </view>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Poke name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="XIA-CU-9j2">
-                                            <rect key="frame" x="154.66666666666666" y="215" width="84" height="21"/>
+                                            <rect key="frame" x="154.66666666666666" y="205" width="84" height="21"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -191,7 +205,7 @@
                                             <nil key="highlightedColor"/>
                                         </label>
                                         <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="d2U-sc-jgP">
-                                            <rect key="frame" x="0.0" y="241" width="393" height="35"/>
+                                            <rect key="frame" x="0.0" y="231" width="393" height="35"/>
                                             <constraints>
                                                 <constraint firstAttribute="height" constant="35" id="Vdw-sk-R8W"/>
                                             </constraints>
@@ -212,45 +226,32 @@
                                                 </collectionViewCell>
                                             </cells>
                                         </collectionView>
-                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Kj9-ni-v0F">
-                                            <rect key="frame" x="313" y="5" width="75" height="75"/>
-                                            <constraints>
-                                                <constraint firstAttribute="height" constant="75" id="KWl-g4-yvD"/>
-                                                <constraint firstAttribute="width" constant="75" id="l1Z-QX-eVw"/>
-                                            </constraints>
-                                            <state key="normal" title="Button"/>
-                                            <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                                            <connections>
-                                                <action selector="favoriteAction:" destination="cmF-Qh-rPh" eventType="touchUpInside" id="dY1-CE-7jE"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
-                                    <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                     <constraints>
                                         <constraint firstItem="vAU-Ff-Gqu" firstAttribute="centerX" secondItem="lsM-UV-u9g" secondAttribute="centerX" id="8PK-3W-g7D"/>
                                         <constraint firstItem="XIA-CU-9j2" firstAttribute="centerX" secondItem="lsM-UV-u9g" secondAttribute="centerX" id="8Py-b6-m6C"/>
                                         <constraint firstAttribute="trailing" secondItem="kL5-vL-hvK" secondAttribute="trailing" constant="20" id="AXa-bi-ofZ"/>
                                         <constraint firstItem="9NM-4T-C6N" firstAttribute="trailing" secondItem="aK8-yJ-vO1" secondAttribute="trailing" id="BgJ-ce-Qka"/>
+                                        <constraint firstItem="LnE-IP-aWs" firstAttribute="leading" secondItem="lsM-UV-u9g" secondAttribute="leading" id="Egj-nc-yaz"/>
                                         <constraint firstAttribute="bottom" secondItem="aK8-yJ-vO1" secondAttribute="bottom" constant="20" id="F0n-KX-ajj"/>
-                                        <constraint firstAttribute="trailing" secondItem="Kj9-ni-v0F" secondAttribute="trailing" constant="5" id="FFk-ex-1bh"/>
                                         <constraint firstItem="9NM-4T-C6N" firstAttribute="leading" secondItem="lsM-UV-u9g" secondAttribute="leading" constant="20" id="Fh8-hq-TCW"/>
                                         <constraint firstAttribute="bottom" secondItem="vAU-Ff-Gqu" secondAttribute="bottom" constant="5" id="Fig-N5-6Fb"/>
+                                        <constraint firstItem="d2U-sc-jgP" firstAttribute="top" secondItem="XIA-CU-9j2" secondAttribute="bottom" constant="5" id="ICT-C8-Ovt"/>
                                         <constraint firstAttribute="trailing" secondItem="d2U-sc-jgP" secondAttribute="trailing" id="ICm-N7-lHq"/>
-                                        <constraint firstItem="N13-Pe-veB" firstAttribute="leading" secondItem="lsM-UV-u9g" secondAttribute="leading" id="KMK-l5-QCZ"/>
-                                        <constraint firstAttribute="trailing" secondItem="N13-Pe-veB" secondAttribute="trailing" id="KOs-Td-jzn"/>
+                                        <constraint firstItem="XIA-CU-9j2" firstAttribute="top" secondItem="LnE-IP-aWs" secondAttribute="bottom" constant="5" id="NMn-WO-GeM"/>
+                                        <constraint firstItem="d2U-sc-jgP" firstAttribute="top" secondItem="XIA-CU-9j2" secondAttribute="bottom" constant="5" id="QWY-HM-lWA"/>
                                         <constraint firstItem="aK8-yJ-vO1" firstAttribute="top" secondItem="9NM-4T-C6N" secondAttribute="bottom" constant="5" id="Qec-yd-J8g"/>
                                         <constraint firstItem="d2U-sc-jgP" firstAttribute="leading" secondItem="lsM-UV-u9g" secondAttribute="leading" id="R04-te-zNP"/>
                                         <constraint firstItem="kL5-vL-hvK" firstAttribute="centerY" secondItem="9NM-4T-C6N" secondAttribute="centerY" id="VZM-ub-umj"/>
                                         <constraint firstItem="9NM-4T-C6N" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d2U-sc-jgP" secondAttribute="bottom" constant="15" id="WDi-2F-ZvN"/>
                                         <constraint firstItem="kL5-vL-hvK" firstAttribute="top" relation="greaterThanOrEqual" secondItem="d2U-sc-jgP" secondAttribute="bottom" constant="15" id="Wzi-nZ-DEe"/>
-                                        <constraint firstItem="XIA-CU-9j2" firstAttribute="top" secondItem="N13-Pe-veB" secondAttribute="bottom" constant="15" id="a0B-bh-qf3"/>
+                                        <constraint firstAttribute="trailing" secondItem="LnE-IP-aWs" secondAttribute="trailing" id="Y9y-nH-k0S"/>
                                         <constraint firstItem="kL5-vL-hvK" firstAttribute="leading" secondItem="g2Q-GO-yu3" secondAttribute="leading" id="aQX-kV-AO5"/>
-                                        <constraint firstItem="Kj9-ni-v0F" firstAttribute="top" secondItem="lsM-UV-u9g" secondAttribute="top" constant="5" id="dU1-D6-Jzj"/>
                                         <constraint firstItem="g2Q-GO-yu3" firstAttribute="top" secondItem="kL5-vL-hvK" secondAttribute="bottom" constant="5" id="glR-hX-KB5"/>
-                                        <constraint firstItem="N13-Pe-veB" firstAttribute="top" secondItem="lsM-UV-u9g" secondAttribute="top" id="kLj-4K-wEE"/>
                                         <constraint firstItem="kL5-vL-hvK" firstAttribute="trailing" secondItem="g2Q-GO-yu3" secondAttribute="trailing" id="lRA-iY-D5n"/>
                                         <constraint firstItem="aK8-yJ-vO1" firstAttribute="leading" secondItem="lsM-UV-u9g" secondAttribute="leading" constant="20" id="m3l-0q-tX8"/>
                                         <constraint firstItem="9NM-4T-C6N" firstAttribute="leading" secondItem="aK8-yJ-vO1" secondAttribute="leading" id="nMr-cv-9Yb"/>
+                                        <constraint firstItem="LnE-IP-aWs" firstAttribute="top" secondItem="lsM-UV-u9g" secondAttribute="top" id="sjw-nE-2DY"/>
                                         <constraint firstItem="d2U-sc-jgP" firstAttribute="top" secondItem="XIA-CU-9j2" secondAttribute="bottom" constant="5" id="vmS-cE-YnA"/>
                                         <constraint firstItem="aK8-yJ-vO1" firstAttribute="top" secondItem="9NM-4T-C6N" secondAttribute="bottom" constant="5" id="zn7-Wi-gQa"/>
                                     </constraints>
@@ -286,7 +287,7 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="favoriteButton" destination="Kj9-ni-v0F" id="1gD-ek-gEM"/>
+                        <outlet property="contentImageView" destination="LnE-IP-aWs" id="sNF-tm-ZVY"/>
                         <outlet property="goComparePokemonsButton" destination="0xC-F9-tbb" id="7JC-8D-1ga"/>
                         <outlet property="heightNumberLabel" destination="kL5-vL-hvK" id="C9i-GR-txh"/>
                         <outlet property="pokemonImage" destination="N13-Pe-veB" id="P2p-jN-FvO"/>

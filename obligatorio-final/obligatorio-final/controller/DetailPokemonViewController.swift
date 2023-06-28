@@ -11,6 +11,7 @@ import UIKit
 
 class DetailPokemonViewController: UIViewController {
     
+    @IBOutlet weak var contentImageView: UIView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var pokemonImage: UIImageView!
     @IBOutlet weak var pokemonNameLabel: UILabel!
@@ -43,12 +44,22 @@ class DetailPokemonViewController: UIViewController {
         // TODO: add types for collection view
         weightNumberLabel.text = String(poke.weight)
         heightNumberLabel.text = String(poke.height)
-        pokemonImage.image = UIImage(named: "pokeImage")
+        pokemonImage.kf.setImage(with: poke.url)
         statListPokemon = poke.stats
         colorPokemon = "green" // fixme: resolve color pokemon
         typesPokemon = poke.types
         
+        let randomColor = UIColor.random()
+        contentImageView.backgroundColor = randomColor
+
+        // Aplicar el radio de esquina solo a los costados inferiores
+        contentImageView.layer.cornerRadius = 25.0
+        contentImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        contentImageView.layer.masksToBounds = true
+
+        
         // if isFav
+        
         
         // else
     }

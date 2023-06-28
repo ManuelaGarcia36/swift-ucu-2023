@@ -16,6 +16,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
        return UINib(nibName: self.reuseIdentifier, bundle: nil)
    }
        
+    @IBOutlet weak var contentPokemonImageView: UIView!
     @IBOutlet weak var cellImageView: UIImageView!
     
     override func awakeFromNib() {
@@ -24,6 +25,10 @@ class PokemonCollectionViewCell: UICollectionViewCell {
     
     func configure(with imageUrl: URL) {
         cellImageView.kf.setImage(with: imageUrl)
+        let randomColor = UIColor.random()
+        contentPokemonImageView.backgroundColor = randomColor
+        contentPokemonImageView.layer.cornerRadius = 45.0
+        contentPokemonImageView.layer.masksToBounds = true
     }
 
 }

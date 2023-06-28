@@ -29,22 +29,22 @@ class HomeViewController: UIViewController {
         collectionTypesView.delegate = self
         collectionTypesView.dataSource = self
         collectionTypesView.register(TypesCustomCollectionViewCell.nib(), forCellWithReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier)
-        collectionTypesView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
         
         collectionPokemonView.delegate = self
         collectionPokemonView.dataSource = self
         collectionPokemonView.register(
             PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
+        collectionPokemonView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
         pokemonManager.fetchPokemones { [weak self] (details, error) in
             if let error = error {
                 print("Error getting pokemon list and details: \(error)")
             } else {
-                DispatchQueue.main.async {
-                    if let pokeDetail = details {
-                        self?.pokemonList = pokeDetail
-                    }
+
+                if let pokeDetail = details {
+                    self?.pokemonList = pokeDetail
+                    self?.collectionPokemonView.reloadData()
                 }
             }
         }
@@ -116,6 +116,9 @@ extension HomeViewController: UICollectionViewDelegateFlowLayout {
 
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionPokemonView {
+            if (pokemonList.count == 0) {
+                return CGSize(width: collectionView.bounds.width , height: collectionView.bounds.height/2)
+            }
             let itemSize = (collectionView.bounds.width - 2*2) / 2
             return CGSize(width: itemSize, height: itemSize)
         } else if collectionView == collectionTypesView {

@@ -20,31 +20,29 @@ class PokemonApiService {
             
             switch result {
             case .success(let response):
-    
                 let dispatchGroup = DispatchGroup()
                 var detailPokemons: [DetailPokemon] = []
                 
                 // Iterate over each Pokemon and fetch details
                 for pokemon in response.results {
-                    
                     dispatchGroup.enter()
                     getDetailedPokemon(url: pokemon.url) { [weak self] (details, error) in
                         if let error = error {
-                        
+                            // Handle error
                         } else {
                             if let pokeDetail = details {
                                 detailPokemons.append(pokeDetail)
                             }
-                         
                         }
-                   
+                        dispatchGroup.leave() // Move dispatchGroup.leave() inside the completion handler
                     }
                 }
+                
                 // Notify when all requests have completed
                 dispatchGroup.notify(queue: .main) {
                     completion(detailPokemons, nil)
                 }
-                
+
             case .failure(let error):
                 completion(nil, error)
             }
@@ -58,9 +56,7 @@ class PokemonApiService {
                                      sessionPolicy: .publicDomain) { (result: Result<DetailPokemon, Error>) in
             switch result {
                 case .success(let response):
-                
                    completion(response, nil)
-               
                 case .failure(let error):
                     completion(nil, error)
             }
