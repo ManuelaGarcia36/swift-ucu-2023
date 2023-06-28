@@ -7,53 +7,63 @@
 
 import Foundation
 
-/**
+
 class PokemonApiService {
     static let shared = PokemonApiService()
     
     func fetchPokemones(completion: @escaping ([DetailPokemon]?, Error?) -> Void) {
         let url = "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20"
-        APIClient.shared.requestBase(urlString: url,
+        APIClient.shared.requestItem(urlString: url,
                                      method: .get,
                                      params: [:],
-                                     token: "",
-                                     sessionPolicy: .publicDomain) { (result: Result<DetailPokemon, Error>) in
-        
+                                     sessionPolicy: .publicDomain) { [self] (result: Result<PokemonPage, Error>) in
+            
             switch result {
             case .success(let response):
-                var pokemonsWithDetails: [DetailPokemon] = []
-                
+    
                 let dispatchGroup = DispatchGroup()
+                var detailPokemons: [DetailPokemon] = []
                 
+                // Iterate over each Pokemon and fetch details
                 for pokemon in response.results {
-                    dispatchGroup.enter()
                     
-                    APIClient.shared.requestBase(urlString: pokemon.url,
-                                                 method: .get,
-                                                 params: [:],
-                                                 token: "",
-                                                 sessionPolicy: .publicDomain) { (result: Result<DetailPokemon, Error>) in
-                        switch result {
-                        case .success(let detailPokemon):
-                            pokemonsWithDetails.append(detailPokemon)
-                        case .failure(let error):
-                            // Manejar el error de la solicitud del detalle del Pokémon
-                            print("Error obteniendo detalles del Pokémon \(pokemon.name): \(error)")
-                        }
+                    dispatchGroup.enter()
+                    getDetailedPokemon(url: pokemon.url) { [weak self] (details, error) in
+                        if let error = error {
                         
-                        dispatchGroup.leave()
+                        } else {
+                            if let pokeDetail = details {
+                                detailPokemons.append(pokeDetail)
+                            }
+                         
+                        }
+                   
                     }
                 }
-                
+                // Notify when all requests have completed
                 dispatchGroup.notify(queue: .main) {
-                    print("Lista de pokemones \(pokemonsWithDetails)")
-                    completion(pokemonsWithDetails, nil)
+                    completion(detailPokemons, nil)
                 }
+                
             case .failure(let error):
                 completion(nil, error)
             }
         }
     }
-
+    
+    func getDetailedPokemon(url: String, _ completion:@escaping (DetailPokemon?, Error?) -> Void) {
+        APIClient.shared.requestItem(urlString: url,
+                                     method: .get,
+                                     params: [:],
+                                     sessionPolicy: .publicDomain) { (result: Result<DetailPokemon, Error>) in
+            switch result {
+                case .success(let response):
+                
+                   completion(response, nil)
+               
+                case .failure(let error):
+                    completion(nil, error)
+            }
+        }
+    }
 }
- */

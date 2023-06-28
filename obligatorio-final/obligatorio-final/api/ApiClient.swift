@@ -20,11 +20,11 @@ class APIClient {
     private init() { }
     
     @discardableResult func request(urlString: String,
-                                            method: Method = .get,
-                                            params: [String: Any] = [:],
-                                            token: String,
-                                            sessionPolicy: SessionPolicy = .publicDomain,
-                                            onCompletion: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
+                                    method: Method = .get,
+                                    params: [String: Any] = [:],
+                                    token: String,
+                                    sessionPolicy: SessionPolicy = .publicDomain,
+                                    onCompletion: @escaping (Result<Data, Error>) -> Void) -> URLSessionDataTask {
         
         // 1 - Create URL
         let url: URL
@@ -67,24 +67,43 @@ class APIClient {
     
     @discardableResult
     func requestBase<T: Decodable>(urlString: String,
-                                      method: Method = .get,
-                                      params: [String: Any] = [:],
-                                      token: String = "",
-                                      sessionPolicy: SessionPolicy = .publicDomain,
-                                      onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
-
+                                   method: Method = .get,
+                                   params: [String: Any] = [:],
+                                   token: String = "",
+                                   sessionPolicy: SessionPolicy = .publicDomain,
+                                   onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
+        
         request(urlString: urlString, method: method, params: params, token: token, sessionPolicy: sessionPolicy) { result in
             switch result {
             case .success(let data):
                 do {
                     onCompletion(.success(try JSONDecoder().decode(T.self, from: data)))
                 } catch {
-                    //if let errorResponse = try? JSONDecoder().decode(ErrorResponse.self, from: data) {
-                      print("tengo un error \(data)")
-                   // }
+                    print("tengo un error \(data)")
+                    
                 }
             case .failure(let error):
                 print("Error getting request data: \(error)")
+                onCompletion(.failure(error))
+            }
+        }
+    }
+    
+    @discardableResult func requestItem<T: Decodable>(urlString: String,
+                                                      method: Method = .get,
+                                                      params: [String: Any] = [:],
+                                                      sessionPolicy: SessionPolicy = .publicDomain,
+                                                      onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
+        
+        request(urlString: urlString, method: method, params: params, token: "",sessionPolicy: sessionPolicy) { result in
+            switch result {
+            case .success(let data):
+                do {
+                    onCompletion(.success(try JSONDecoder().decode(T.self, from: data)))
+                } catch {
+                    onCompletion(.failure(error))
+                }
+            case .failure(let error):
                 onCompletion(.failure(error))
             }
         }

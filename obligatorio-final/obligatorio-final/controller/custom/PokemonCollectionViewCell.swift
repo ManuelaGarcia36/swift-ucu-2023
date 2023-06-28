@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class PokemonCollectionViewCell: UICollectionViewCell {
 
@@ -21,11 +22,8 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with image: UIImage?) {
-        //self.cellImageView.isHidden = true
-        //backgroundColor = .red
-        //TODO: ARREGLAR //cellImageView.image = image
-        cellImageView.image = image
+    func configure(with imageUrl: URL) {
+        cellImageView.kf.setImage(with: imageUrl)
     }
 
 }
