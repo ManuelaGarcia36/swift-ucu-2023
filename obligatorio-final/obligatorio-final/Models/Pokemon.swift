@@ -27,7 +27,8 @@ struct DetailPokemon: Codable {
     let types: [String]
     let name: String
     var url: URL
-
+    var color: UIColor
+    
     private enum CodingKeys: String, CodingKey {
         case id, weight, height, stats, types, name, url
     }
@@ -43,6 +44,7 @@ struct DetailPokemon: Codable {
         let typesArray = try container.decode([TypeContainer].self, forKey: .types)
         types = typesArray.map { $0.type.name }
         url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")!
+        color = UIColor.random()
     }
 
 }

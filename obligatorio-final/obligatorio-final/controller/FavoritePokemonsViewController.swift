@@ -17,26 +17,26 @@ class FavoritePokemonsViewController: UIViewController {
     @IBOutlet weak var viewTiteleLabel: UILabel!
     @IBOutlet weak var pageControlByScrolView: UIPageControl!
     
-    var pages : [ViewExample] {
+    var pages : [FavoriteImagePokemonView] {
         get {
-            let page1: ViewExample = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! ViewExample
-            page1.view.backgroundColor = UIColor.blue
+            let page1: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
+           
             page1.imagePokemon.image = UIImage(named: "pokeImage")
             
-            let page2: ViewExample = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! ViewExample
-            page2.view.backgroundColor = UIColor.green
+            let page2: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
+           // page2.view.backgroundColor = UIColor.green
             page2.imagePokemon.image = UIImage(named: "pokeImage")
             
-            let page3: ViewExample = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! ViewExample
-            page3.view.backgroundColor = UIColor.gray
+            let page3: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
+           // page3.view.backgroundColor = UIColor.gray
             page3.imagePokemon.image = UIImage(named: "pokeImage")
             
-            let page4: ViewExample = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! ViewExample
-            page4.view.backgroundColor = UIColor.yellow
+            let page4: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
+           // page4.view.backgroundColor = UIColor.yellow
             page4.imagePokemon.image = UIImage(named: "pokeImage")
             
-            let page5: ViewExample = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! ViewExample
-            page5.view.backgroundColor = UIColor.purple
+            let page5: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
+           // page5.view.backgroundColor = UIColor.purple
             page5.imagePokemon.image = UIImage(named: "pokeImage")
             
             return [page1, page2, page3, page4, page5]
@@ -56,7 +56,7 @@ class FavoritePokemonsViewController: UIViewController {
         pageControlByScrolView.currentPage = 0
     }
  
-    func setupScrollView(pages: [ViewExample]) {
+    func setupScrollView(pages: [FavoriteImagePokemonView]) {
         pokemonScrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
         pokemonScrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height)
         pokemonScrollView.isPagingEnabled = true

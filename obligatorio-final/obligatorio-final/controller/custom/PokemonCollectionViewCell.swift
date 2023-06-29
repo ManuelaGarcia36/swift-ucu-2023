@@ -23,10 +23,9 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with imageUrl: URL) {
+    func configure(with imageUrl: URL, color: UIColor) {
         cellImageView.kf.setImage(with: imageUrl)
-        let randomColor = UIColor.random()
-        contentPokemonImageView.backgroundColor = randomColor
+        contentPokemonImageView.backgroundColor = color
         contentPokemonImageView.layer.cornerRadius = 45.0
         contentPokemonImageView.layer.masksToBounds = true
     }

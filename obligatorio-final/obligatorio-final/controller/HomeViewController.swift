@@ -8,7 +8,7 @@
 import UIKit
 
 class HomeViewController: UIViewController {
-
+    
     @IBOutlet weak var collectionTypesView: UICollectionView!
     @IBOutlet weak var collectionPokemonView: UICollectionView!
     @IBOutlet weak var goToFavoritesButton: UIButton!
@@ -18,14 +18,12 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
         if let starImage = UIImage(systemName: "star.circle") {
-           let tintedImage = starImage.withTintColor(.red, renderingMode: .alwaysOriginal)
-
-           goToFavoritesButton.setImage(tintedImage, for: .normal)
-           goToFavoritesButton.setTitle("", for: .normal)
-       }
-            
+            let tintedImage = starImage.withTintColor(.red, renderingMode: .alwaysOriginal)
+            goToFavoritesButton.setImage(tintedImage, for: .normal)
+            goToFavoritesButton.setTitle("", for: .normal)
+        }
+        
         collectionTypesView.delegate = self
         collectionTypesView.dataSource = self
         collectionTypesView.register(TypesCustomCollectionViewCell.nib(), forCellWithReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier)
@@ -37,11 +35,11 @@ class HomeViewController: UIViewController {
             PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
         collectionPokemonView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
+       
         pokemonManager.fetchPokemones { [weak self] (details, error) in
             if let error = error {
                 print("Error getting pokemon list and details: \(error)")
             } else {
-
                 if let pokeDetail = details {
                     self?.pokemonList = pokeDetail
                     self?.collectionPokemonView.reloadData()
@@ -75,17 +73,17 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-       
+        
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailPokemonID") as! DetailPokemonViewController
-        destinationVC.loadViewIfNeeded()
         destinationVC.modalPresentationStyle = .fullScreen
-        destinationVC.configure(with: pokemonList[indexPath.row])
+        destinationVC.detailPokemon = pokemonList[indexPath.row]
+        destinationVC.loadViewIfNeeded()
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-    
+        
         if collectionView == collectionPokemonView {
             if (pokemonList.count == 0) {
                 guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier, for: indexPath) as? EmptyCollectionViewCell
@@ -96,7 +94,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier, for: indexPath) as? PokemonCollectionViewCell
                 else { return .init()}
                 let pokemon = pokemonList[indexPath.row]
-                cell.configure(with: pokemon.url)
+                cell.configure(with: pokemon.url,color:     pokemon.color)
                 return cell
             }
         } else if collectionView == collectionTypesView {
@@ -104,7 +102,7 @@ extension HomeViewController: UICollectionViewDataSource {
             guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier, for: indexPath) as? TypesCustomCollectionViewCell
             else { return .init()}
             let nameButton = typesList[indexPath.row]
-            cell.configure(with: nameButton)
+            cell.setup(with: nameButton)
             return cell
         } else {
             fatalError("unknow collection view")
@@ -113,7 +111,7 @@ extension HomeViewController: UICollectionViewDataSource {
 }
 
 extension HomeViewController: UICollectionViewDelegateFlowLayout {
-
+    
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == collectionPokemonView {
             if (pokemonList.count == 0) {

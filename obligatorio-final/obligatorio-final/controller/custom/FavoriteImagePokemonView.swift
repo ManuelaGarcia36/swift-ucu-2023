@@ -8,7 +8,7 @@
 import Foundation
 import UIKit
 
-class ViewExample: UIView {
+class FavoriteImagePokemonView: UIView {
 
     @IBOutlet weak var view: UIView!
     @IBOutlet weak var imagePokemon: UIImageView!

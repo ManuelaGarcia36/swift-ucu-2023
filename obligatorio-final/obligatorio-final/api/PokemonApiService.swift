@@ -23,7 +23,6 @@ class PokemonApiService {
                 let dispatchGroup = DispatchGroup()
                 var detailPokemons: [DetailPokemon] = []
                 
-                // Iterate over each Pokemon and fetch details
                 for pokemon in response.results {
                     dispatchGroup.enter()
                     getDetailedPokemon(url: pokemon.url) { [weak self] (details, error) in
@@ -34,11 +33,9 @@ class PokemonApiService {
                                 detailPokemons.append(pokeDetail)
                             }
                         }
-                        dispatchGroup.leave() // Move dispatchGroup.leave() inside the completion handler
+                        dispatchGroup.leave()
                     }
                 }
-                
-                // Notify when all requests have completed
                 dispatchGroup.notify(queue: .main) {
                     completion(detailPokemons, nil)
                 }

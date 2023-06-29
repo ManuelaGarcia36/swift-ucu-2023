@@ -26,12 +26,15 @@ class DetailPokemonTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
     
-    func configure(with name: String, stat: Int) {
-        statNameLabel.text = name
-        var progress = Float(stat) / 300
-        if (name == "exp") {
-            progress = Float(stat) / 100
+    func configure(with stat: StatContainer) {
+        statNameLabel.text = stat.stat.name
+     
+        var progress = Float(stat.base_stat) / 300
+        if (stat.stat.name == "exp") {
+            progress = Float(stat.base_stat) / 100
         }
+        
+        animationStatProgressView.progressTintColor = UIColor.random() // TODO: Mejorar
         animationStatProgressView.progress = progress
     }
 }
