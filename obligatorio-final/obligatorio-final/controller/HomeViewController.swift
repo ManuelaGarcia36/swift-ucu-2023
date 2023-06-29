@@ -15,6 +15,7 @@ class HomeViewController: UIViewController {
     
     private let pokemonManager = PokemonApiService()
     var pokemonList = [DetailPokemon]()
+    var favoritesList: FavoritesList?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -35,7 +36,6 @@ class HomeViewController: UIViewController {
             PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
         collectionPokemonView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
-       
         pokemonManager.fetchPokemones { [weak self] (details, error) in
             if let error = error {
                 print("Error getting pokemon list and details: \(error)")
@@ -48,7 +48,6 @@ class HomeViewController: UIViewController {
         }
     }
     
-    
     @IBAction func goToFavoriteViewAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: "FavoritePokemonsID") as! FavoritePokemonsViewController
@@ -56,7 +55,6 @@ class HomeViewController: UIViewController {
         destinationVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
-    
 }
 
 extension HomeViewController: UICollectionViewDataSource {

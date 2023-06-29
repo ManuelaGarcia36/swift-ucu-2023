@@ -34,6 +34,7 @@
 		F5D951752A4C03C500978287 /* EmptyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5D951732A4C03C500978287 /* EmptyCollectionViewCell.swift */; };
 		F5D951762A4C03C500978287 /* EmptyCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5D951742A4C03C500978287 /* EmptyCollectionViewCell.xib */; };
 		F5DF73842A4E0DFF004CA45C /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF73832A4E0DFF004CA45C /* ColorExtension.swift */; };
+		F5DF73862A4E4A1F004CA45C /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF73852A4E4A1F004CA45C /* Favorites.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -68,6 +69,7 @@
 		F5D951732A4C03C500978287 /* EmptyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmptyCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5D951742A4C03C500978287 /* EmptyCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EmptyCollectionViewCell.xib; sourceTree = "<group>"; };
 		F5DF73832A4E0DFF004CA45C /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		F5DF73852A4E4A1F004CA45C /* Favorites.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Favorites.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -146,6 +148,7 @@
 			children = (
 				F5B404A42A4515D000149996 /* DetailPokemonViewController.swift */,
 				F54C87E12A3A788500A8F988 /* HomeViewController.swift */,
+				F5DF73852A4E4A1F004CA45C /* Favorites.swift */,
 				F5B404A62A4516E900149996 /* ComparativePokemonsViewController.swift */,
 				F5B404A82A45175500149996 /* FavoritePokemonsViewController.swift */,
 				F5D951712A4BFF1400978287 /* custom */,
@@ -321,6 +324,7 @@
 				F5DF73842A4E0DFF004CA45C /* ColorExtension.swift in Sources */,
 				F5B404A72A4516E900149996 /* ComparativePokemonsViewController.swift in Sources */,
 				F5B404A52A4515D000149996 /* DetailPokemonViewController.swift in Sources */,
+				F5DF73862A4E4A1F004CA45C /* Favorites.swift in Sources */,
 				F54C87F32A3A81A000A8F988 /* PokemonApiService.swift in Sources */,
 				F54C87E02A3A788500A8F988 /* SceneDelegate.swift in Sources */,
 				F5B404AD2A451E0800149996 /* NibLoadingView.swift in Sources */,

@@ -28,6 +28,8 @@ class DetailPokemonViewController: UIViewController {
     // TODO: Implementar @IBOutlet weak var favoriteButton: UIButton!
     
     var detailPokemon: DetailPokemon?
+    var isFavorite: Bool = false
+    var favoritesList = FavoritesList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -40,11 +42,27 @@ class DetailPokemonViewController: UIViewController {
         typeCollectionView.dataSource = self
         typeCollectionView.register(TypesCustomCollectionViewCell.nib(), forCellWithReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier)
         
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
+            navigationItem.rightBarButtonItem = favoriteButton
+     
         setup()
     }
     
+    @objc func favoriteButtonTapped() {
+        isFavorite.toggle()
+        print("marcando como favorito el pokemon particular")
+        // TODO: addFavorite()
+        updateFavoriteButtonAppearance()
+    }
+
+    func updateFavoriteButtonAppearance() {
+        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: isFavorite ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
+        navigationItem.rightBarButtonItem = favoriteButton
+    }
+
     
     func setup() {
+        updateFavoriteButtonAppearance()
         if let name = detailPokemon?.name {
             pokemonNameLabel.text = String(name)
         }
@@ -56,7 +74,6 @@ class DetailPokemonViewController: UIViewController {
         }
         
         if let url = detailPokemon?.url {
-            print(url)
             pokemonImage.kf.setImage(with: url)
         }
         
@@ -65,11 +82,9 @@ class DetailPokemonViewController: UIViewController {
         contentImageView.layer.cornerRadius = 55.0
         contentImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         contentImageView.layer.masksToBounds = true
-        
         // Configurar el color de fondo del UINavigationBar
-        //navigationController?.navigationBar.tintColor = contentImageView.backgroundColor
-        //navigationController?.navigationBar.isTranslucent = false
-        
+        // navigationController?.navigationBar.tintColor = detailPokemon?.color
+        // navigationController?navigationBar.isTranslucent = false
     }
     
     
