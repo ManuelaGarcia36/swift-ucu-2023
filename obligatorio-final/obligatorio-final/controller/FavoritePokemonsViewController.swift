@@ -7,41 +7,16 @@
 
 import Foundation
 import UIKit
-
+import Kingfisher
 
 
 class FavoritePokemonsViewController: UIViewController {
     
     @IBOutlet weak var headerImage: UIImageView!
-    @IBOutlet weak var pokemonScrollView: UIScrollView!
+    @IBOutlet weak var pokemonCollectionView: UICollectionView!
     @IBOutlet weak var viewTiteleLabel: UILabel!
     @IBOutlet weak var pageControlByScrolView: UIPageControl!
-    
-    var pages : [FavoriteImagePokemonView] {
-        get {
-            let page1: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
-           
-            page1.imagePokemon.image = UIImage(named: "pokeImage")
-            
-            let page2: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
-           // page2.view.backgroundColor = UIColor.green
-            page2.imagePokemon.image = UIImage(named: "pokeImage")
-            
-            let page3: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
-           // page3.view.backgroundColor = UIColor.gray
-            page3.imagePokemon.image = UIImage(named: "pokeImage")
-            
-            let page4: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
-           // page4.view.backgroundColor = UIColor.yellow
-            page4.imagePokemon.image = UIImage(named: "pokeImage")
-            
-            let page5: FavoriteImagePokemonView = Bundle.main.loadNibNamed("ViewExample", owner: self, options: nil)?.first as! FavoriteImagePokemonView
-           // page5.view.backgroundColor = UIColor.purple
-            page5.imagePokemon.image = UIImage(named: "pokeImage")
-            
-            return [page1, page2, page3, page4, page5]
-        }
-    }
+    var favoritesList = FavoritesList()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -50,28 +25,96 @@ class FavoritePokemonsViewController: UIViewController {
         
         view.bringSubviewToFront(pageControlByScrolView)
         
-        setupScrollView(pages: pages)
+        pokemonCollectionView.delegate = self
+        pokemonCollectionView.dataSource = self
+        pokemonCollectionView.register(
+            PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
+        pokemonCollectionView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
-        pageControlByScrolView.numberOfPages = pages.count
+        pageControlByScrolView.numberOfPages = FavoritesList.shared.getList().count
         pageControlByScrolView.currentPage = 0
-    }
- 
-    func setupScrollView(pages: [FavoriteImagePokemonView]) {
-        pokemonScrollView.frame = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.height)
-        pokemonScrollView.contentSize = CGSize(width: view.frame.width * CGFloat(pages.count), height: view.frame.height)
-        pokemonScrollView.isPagingEnabled = true
         
-        for i in 0 ..< pages.count {
-            pages[i].frame = CGRect(x: view.frame.width * CGFloat(i), y: 0, width: view.frame.width, height: view.frame.height)
-            pokemonScrollView.addSubview(pages[i])
+        pokemonCollectionView.reloadData()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+         super.viewWillAppear(animated)
+         
+         // Recargar los datos de la lista de favoritos aquí
+        pokemonCollectionView.reloadData()
+     }
+}
+
+extension FavoritePokemonsViewController: UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        if collectionView == pokemonCollectionView {
+            if FavoritesList.shared.getList().count == 0 { return 1 } else {
+                return FavoritesList.shared.getList().count
+            }
+        } else {
+            fatalError("unknow collection view")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailPokemonID") as! DetailPokemonViewController
+        destinationVC.modalPresentationStyle = .fullScreen
+        let list = FavoritesList.shared.getList()
+        destinationVC.detailPokemon = list[indexPath.row]
+        destinationVC.loadViewIfNeeded()
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        if collectionView == pokemonCollectionView {
+            if FavoritesList.shared.getList().isEmpty {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier, for: indexPath) as? EmptyCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                return cell
+            } else {
+                guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier, for: indexPath) as? PokemonCollectionViewCell else {
+                    return UICollectionViewCell()
+                }
+                let list = FavoritesList.shared.getList()
+                let item = list[indexPath.row]
+                cell.configure(with: item.url, color: item.color)
+                return cell
+            }
+        }
+        fatalError("Unknown collection view")
+    }
+    
+}
+
+extension FavoritePokemonsViewController: UICollectionViewDelegateFlowLayout {
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+        if collectionView == pokemonCollectionView {
+            if FavoritesList.shared.getList().isEmpty {
+                return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height/2)
+            }
+            let itemSize = collectionView.bounds.width - 2 * 2
+            return CGSize(width: itemSize, height: itemSize)
+        } else {
+            fatalError("Unknown collection view")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == pokemonCollectionView {
+            return 5
+        } else {
+            fatalError("unknow collection view")
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumInteritemSpacingForSectionAt section: Int) -> CGFloat {
+        if collectionView == pokemonCollectionView {
+            return 5
+        } else {
+            fatalError("unknow collection view")
         }
     }
 }
-
-extension FavoritePokemonsViewController: UIScrollViewDelegate {
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
-        let pageIndex = round(scrollView.contentOffset.x/view.frame.width)
-        pageControlByScrolView.currentPage = Int(pageIndex)
-    }
-}
-

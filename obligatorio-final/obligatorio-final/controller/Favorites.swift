@@ -1,18 +1,24 @@
 import UIKit
 import Foundation
 
-struct FavoritesList {
-    var favoritePokemons: [DetailPokemon] = []
+class FavoritesList {
+    static let shared = FavoritesList()
+    
+    private var favoritePokemons: [DetailPokemon] = []
 
-    mutating func addFavorite(_ pokemon: DetailPokemon) {
+    func addFavorite(_ pokemon: DetailPokemon) {
         favoritePokemons.append(pokemon)
     }
 
-    mutating func removeFavorite(_ pokemon: DetailPokemon) {
+    func removeFavorite(_ pokemon: DetailPokemon) {
         favoritePokemons.removeAll { $0.id == pokemon.id }
     }
 
     func isFavorite(_ pokemon: DetailPokemon) -> Bool {
         return favoritePokemons.contains { $0.id == pokemon.id }
+    }
+    
+    func getList() -> [DetailPokemon] {
+        return favoritePokemons
     }
 }

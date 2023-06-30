@@ -42,19 +42,29 @@ class DetailPokemonViewController: UIViewController {
         typeCollectionView.dataSource = self
         typeCollectionView.register(TypesCustomCollectionViewCell.nib(), forCellWithReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier)
         
-        let favoriteButton = UIBarButtonItem(image: UIImage(systemName: "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
-            navigationItem.rightBarButtonItem = favoriteButton
-     
+        
+    
+       
         setup()
     }
     
     @objc func favoriteButtonTapped() {
         isFavorite.toggle()
-        print("marcando como favorito el pokemon particular")
         // TODO: addFavorite()
         updateFavoriteButtonAppearance()
+        updateFavoriteStatus()
     }
 
+    func updateFavoriteStatus() {
+        if let pokemonID = detailPokemon {
+            if FavoritesList.shared.isFavorite(pokemonID) {
+                FavoritesList.shared.removeFavorite(pokemonID)
+            } else {
+                FavoritesList.shared.addFavorite(pokemonID)
+            }
+        }
+    }
+    
     func updateFavoriteButtonAppearance() {
         let favoriteButton = UIBarButtonItem(image: UIImage(systemName: isFavorite ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
         navigationItem.rightBarButtonItem = favoriteButton

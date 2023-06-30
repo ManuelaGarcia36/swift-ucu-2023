@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeViewController: UIViewController {
     
@@ -19,7 +20,8 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        if let starImage = UIImage(systemName: "star.circle") {
+        
+        if let starImage = UIImage(systemName: "heart.fill") {
             let tintedImage = starImage.withTintColor(.red, renderingMode: .alwaysOriginal)
             goToFavoritesButton.setImage(tintedImage, for: .normal)
             goToFavoritesButton.setTitle("", for: .normal)
