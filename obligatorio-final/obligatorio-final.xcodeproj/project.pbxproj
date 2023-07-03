@@ -18,6 +18,9 @@
 		F54C87F52A3A81BE00A8F988 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F42A3A81BE00A8F988 /* ApiClient.swift */; };
 		F54C87F72A3A841E00A8F988 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F62A3A841E00A8F988 /* Pokemon.swift */; };
 		F5AF321D2A5332A2004DF6E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */; };
+		F5AF32212A533DFC004DF6E0 /* Pods_obligatorio_final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */; };
+		F5AF32222A533DFC004DF6E0 /* Pods_obligatorio_final.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F5AF32252A534C40004DF6E0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF32242A534C40004DF6E0 /* AuthViewController.swift */; };
 		F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */; };
 		F5B4049F2A44F77E00149996 /* TypesCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */; };
 		F5B404A22A44F79700149996 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */; };
@@ -38,6 +41,20 @@
 		F5DF73862A4E4A1F004CA45C /* Favorites.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5DF73852A4E4A1F004CA45C /* Favorites.swift */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXCopyFilesBuildPhase section */
+		F5AF32232A533DFC004DF6E0 /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F5AF32222A533DFC004DF6E0 /* Pods_obligatorio_final.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
+
 /* Begin PBXFileReference section */
 		3E807490B6085B5E7DA636DF /* Pods-obligatorio-final.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-obligatorio-final.debug.xcconfig"; path = "Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final.debug.xcconfig"; sourceTree = "<group>"; };
 		6DE78AD7A479FC6EFD916E16 /* Pods-obligatorio-final.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-obligatorio-final.release.xcconfig"; path = "Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final.release.xcconfig"; sourceTree = "<group>"; };
@@ -54,6 +71,8 @@
 		F54C87F42A3A81BE00A8F988 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		F54C87F62A3A841E00A8F988 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_obligatorio_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		F5AF32242A534C40004DF6E0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = ../../../../../AuthViewController.swift; sourceTree = "<group>"; };
 		F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesCustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypesCustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -79,6 +98,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F5AF32212A533DFC004DF6E0 /* Pods_obligatorio_final.framework in Frameworks */,
 				2D4323E8CA8E325A096B2F2B /* Pods_obligatorio_final.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -89,6 +109,7 @@
 		AC10CF1620118FEDFB739208 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */,
 				EA0D62064B5F5CD4E81DB109 /* Pods_obligatorio_final.framework */,
 			);
 			name = Frameworks;
@@ -115,7 +136,6 @@
 		F54C87DC2A3A788500A8F988 /* obligatorio-final */ = {
 			isa = PBXGroup;
 			children = (
-				F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */,
 				F5D951722A4BFF5D00978287 /* view */,
 				F5D9516D2A4BE4A100978287 /* controller */,
 				F5D9516C2A4BE35500978287 /* Models */,
@@ -125,6 +145,7 @@
 				F5DF73832A4E0DFF004CA45C /* ColorExtension.swift */,
 				F54C87E62A3A788800A8F988 /* Assets.xcassets */,
 				F54C87EB2A3A788800A8F988 /* Info.plist */,
+				F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */,
 			);
 			path = "obligatorio-final";
 			sourceTree = "<group>";
@@ -154,6 +175,7 @@
 				F5DF73852A4E4A1F004CA45C /* Favorites.swift */,
 				F5B404A62A4516E900149996 /* ComparativePokemonsViewController.swift */,
 				F5B404A82A45175500149996 /* FavoritePokemonsViewController.swift */,
+				F5AF32242A534C40004DF6E0 /* AuthViewController.swift */,
 				F5D951712A4BFF1400978287 /* custom */,
 			);
 			path = controller;
@@ -209,6 +231,7 @@
 				F54C87D72A3A788500A8F988 /* Frameworks */,
 				F54C87D82A3A788500A8F988 /* Resources */,
 				EB9AB16FB2EDDCF63D027EFB /* [CP] Embed Pods Frameworks */,
+				F5AF32232A533DFC004DF6E0 /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -338,6 +361,7 @@
 				F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */,
 				F5D951672A4BD58700978287 /* FavoriteImagePokemonView.swift in Sources */,
 				F54C87F52A3A81BE00A8F988 /* ApiClient.swift in Sources */,
+				F5AF32252A534C40004DF6E0 /* AuthViewController.swift in Sources */,
 				F5D951752A4C03C500978287 /* EmptyCollectionViewCell.swift in Sources */,
 				F5B404B02A45229800149996 /* DetailPokemonTableViewCell.swift in Sources */,
 			);
@@ -487,6 +511,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 26YTKRS35Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "obligatorio-final/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -515,6 +540,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 26YTKRS35Y;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "obligatorio-final/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -563,7 +589,7 @@
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "git@github.com:firebase/firebase-ios-sdk.git";
 			requirement = {
-				kind = upToNextMajorVersion;
+				kind = upToNextMinorVersion;
 				minimumVersion = 10.0.0;
 			};
 		};

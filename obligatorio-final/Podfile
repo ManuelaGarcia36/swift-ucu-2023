@@ -8,4 +8,6 @@ target 'obligatorio-final' do
   # Pods for obligatorio-final
   pod 'Kingfisher', '~> 7.7’
   pod 'IQKeyboardManager', '~> 6.5'
+  pod 'Firebase/Core'
+  pod 'Firebase/Auth'
 end
