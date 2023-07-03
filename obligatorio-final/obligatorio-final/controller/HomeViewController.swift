@@ -13,6 +13,7 @@ class HomeViewController: UIViewController {
     @IBOutlet weak var collectionTypesView: UICollectionView!
     @IBOutlet weak var collectionPokemonView: UICollectionView!
     @IBOutlet weak var goToFavoritesButton: UIButton!
+    @IBOutlet weak var profileButton: UIButton!
     
     private let pokemonManager = PokemonApiService()
     var pokemonList = [DetailPokemon]()
@@ -20,13 +21,22 @@ class HomeViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        if let starImage = UIImage(systemName: "heart.fill") {
-            let tintedImage = starImage.withTintColor(.red, renderingMode: .alwaysOriginal)
+        if let starFavoritesImage = UIImage(systemName: "heart.fill") {
+            let configuration = UIImage.SymbolConfiguration(pointSize: 24)
+            let tintedImage = starFavoritesImage.withTintColor(.red, renderingMode: .alwaysOriginal)
+                                                  .withConfiguration(configuration)
             goToFavoritesButton.setImage(tintedImage, for: .normal)
             goToFavoritesButton.setTitle("", for: .normal)
         }
-        
+
+        if let startProfileImage = UIImage(systemName: "person.crop.circle") {
+            let configuration = UIImage.SymbolConfiguration(pointSize: 24)
+            let tintedImage = startProfileImage.withTintColor(.red, renderingMode: .alwaysOriginal)
+                                               .withConfiguration(configuration)
+            profileButton.setImage(tintedImage, for: .normal)
+            profileButton.setTitle("", for: .normal)
+        }
+
         collectionTypesView.delegate = self
         collectionTypesView.dataSource = self
         collectionTypesView.register(TypesCustomCollectionViewCell.nib(), forCellWithReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier)
@@ -61,6 +71,7 @@ class HomeViewController: UIViewController {
         // Restore the visibility of the back button in the navigation bar for other screens
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
+    
     @IBAction func goToFavoriteViewAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: "FavoritePokemonsID") as! FavoritePokemonsViewController
@@ -68,6 +79,15 @@ class HomeViewController: UIViewController {
         destinationVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
+    
+    @IBAction func profileButtonAction(_ sender: Any) {
+        let storyboard = UIStoryboard(name: "Main", bundle: nil)
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "ProfileViewControllerID") as! ProfileViewController
+        destinationVC.loadViewIfNeeded()
+        destinationVC.modalPresentationStyle = .fullScreen
+        self.navigationController?.pushViewController(destinationVC, animated: true)
+    }
+
 }
 
 extension HomeViewController: UICollectionViewDataSource {

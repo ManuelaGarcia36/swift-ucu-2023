@@ -20,7 +20,10 @@
 		F5AF321D2A5332A2004DF6E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */; };
 		F5AF32212A533DFC004DF6E0 /* Pods_obligatorio_final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */; };
 		F5AF32222A533DFC004DF6E0 /* Pods_obligatorio_final.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
-		F5AF32252A534C40004DF6E0 /* AuthViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF32242A534C40004DF6E0 /* AuthViewController.swift */; };
+		F5AF32272A5354FC004DF6E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF32262A5354FC004DF6E0 /* ProfileViewController.swift */; };
+		F5AF322B2A5364FF004DF6E0 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF322A2A5364FF004DF6E0 /* UserRepository.swift */; };
+		F5AF322D2A5367BC004DF6E0 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF322C2A5367BC004DF6E0 /* utils.swift */; };
+		F5AF322F2A538546004DF6E0 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF322E2A538546004DF6E0 /* AuthenticationViewController.swift */; };
 		F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */; };
 		F5B4049F2A44F77E00149996 /* TypesCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */; };
 		F5B404A22A44F79700149996 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */; };
@@ -72,7 +75,10 @@
 		F54C87F62A3A841E00A8F988 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
 		F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_obligatorio_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		F5AF32242A534C40004DF6E0 /* AuthViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AuthViewController.swift; path = ../../../../../AuthViewController.swift; sourceTree = "<group>"; };
+		F5AF32262A5354FC004DF6E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		F5AF322A2A5364FF004DF6E0 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
+		F5AF322C2A5367BC004DF6E0 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
+		F5AF322E2A538546004DF6E0 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesCustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypesCustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -159,6 +165,16 @@
 			path = api;
 			sourceTree = "<group>";
 		};
+		F5AF32282A5364E4004DF6E0 /* user */ = {
+			isa = PBXGroup;
+			children = (
+				F5AF32262A5354FC004DF6E0 /* ProfileViewController.swift */,
+				F5AF322A2A5364FF004DF6E0 /* UserRepository.swift */,
+				F5AF322E2A538546004DF6E0 /* AuthenticationViewController.swift */,
+			);
+			path = user;
+			sourceTree = "<group>";
+		};
 		F5D9516C2A4BE35500978287 /* Models */ = {
 			isa = PBXGroup;
 			children = (
@@ -170,13 +186,14 @@
 		F5D9516D2A4BE4A100978287 /* controller */ = {
 			isa = PBXGroup;
 			children = (
+				F5AF32282A5364E4004DF6E0 /* user */,
 				F5B404A42A4515D000149996 /* DetailPokemonViewController.swift */,
 				F54C87E12A3A788500A8F988 /* HomeViewController.swift */,
 				F5DF73852A4E4A1F004CA45C /* Favorites.swift */,
 				F5B404A62A4516E900149996 /* ComparativePokemonsViewController.swift */,
 				F5B404A82A45175500149996 /* FavoritePokemonsViewController.swift */,
-				F5AF32242A534C40004DF6E0 /* AuthViewController.swift */,
 				F5D951712A4BFF1400978287 /* custom */,
+				F5AF322C2A5367BC004DF6E0 /* utils.swift */,
 			);
 			path = controller;
 			sourceTree = "<group>";
@@ -346,7 +363,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				F54C87E22A3A788500A8F988 /* HomeViewController.swift in Sources */,
+				F5AF322F2A538546004DF6E0 /* AuthenticationViewController.swift in Sources */,
+				F5AF322D2A5367BC004DF6E0 /* utils.swift in Sources */,
 				F54C87DE2A3A788500A8F988 /* AppDelegate.swift in Sources */,
+				F5AF32272A5354FC004DF6E0 /* ProfileViewController.swift in Sources */,
 				F5B404A22A44F79700149996 /* PokemonCollectionViewCell.swift in Sources */,
 				F54C87F72A3A841E00A8F988 /* Pokemon.swift in Sources */,
 				F5B404A92A45175500149996 /* FavoritePokemonsViewController.swift in Sources */,
@@ -361,7 +381,7 @@
 				F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */,
 				F5D951672A4BD58700978287 /* FavoriteImagePokemonView.swift in Sources */,
 				F54C87F52A3A81BE00A8F988 /* ApiClient.swift in Sources */,
-				F5AF32252A534C40004DF6E0 /* AuthViewController.swift in Sources */,
+				F5AF322B2A5364FF004DF6E0 /* UserRepository.swift in Sources */,
 				F5D951752A4C03C500978287 /* EmptyCollectionViewCell.swift in Sources */,
 				F5B404B02A45229800149996 /* DetailPokemonTableViewCell.swift in Sources */,
 			);
