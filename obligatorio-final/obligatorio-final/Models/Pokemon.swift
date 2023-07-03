@@ -33,6 +33,17 @@ struct DetailPokemon: Codable {
         case id, weight, height, stats, types, name, url
     }
 
+    init() {
+          id = 0
+          weight = 0
+          height = 0
+          stats = []
+          types = []
+          name = ""
+          url = URL(string: "")!
+          color = .clear
+      }
+    
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
         id = try container.decode(Int.self, forKey: .id)

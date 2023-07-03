@@ -59,4 +59,17 @@ class PokemonApiService {
             }
         }
     }
+    
+    func fetchPokemonByName(name: String, _ completion:@escaping (DetailPokemon?, Error?) -> Void) {
+        let url = "https://pokeapi.co/api/v2/pokemon/\(name)"
+        getDetailedPokemon(url: url) { [weak self] (details, error) in
+            if let error = error {
+                completion(nil, error)
+            } else {
+                if let pokeDetail = details {
+                    completion(pokeDetail, nil)
+                } 
+            }
+        }
+    }
 }

@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 import Kingfisher
 
+
 class CompareView: NibLoadingView {
 
     @IBOutlet weak var myContentView: UIView!
@@ -35,11 +36,15 @@ class CompareView: NibLoadingView {
     }
     
     func setup(detailPokemon: DetailPokemon) {
+        statstTableView.backgroundColor = UIColor(hex: 0x819FC0)
+        myContentView.backgroundColor = UIColor(hex: 0x819FC0)
+        myContentView.layer.cornerRadius = 15.0
         pokemonNameLabel.text = detailPokemon.name
         pokemonImage.kf.setImage(with: detailPokemon.url)
         idPokemonLabel.text = String("#\(detailPokemon.id)")
         stats = detailPokemon.stats
         statstTableView.reloadData()
+
     }
     
 }
@@ -58,4 +63,13 @@ extension CompareView: UITableViewDataSource, UITableViewDelegate {
         return cell
     }
     
+}
+
+extension UIColor {
+    convenience init(hex: UInt32, alpha: CGFloat = 1.0) {
+        let red = CGFloat((hex & 0xFF0000) >> 16) / 255.0
+        let green = CGFloat((hex & 0x00FF00) >> 8) / 255.0
+        let blue = CGFloat(hex & 0x0000FF) / 255.0
+        self.init(red: red, green: green, blue: blue, alpha: alpha)
+    }
 }

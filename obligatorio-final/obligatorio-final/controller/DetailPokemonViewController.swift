@@ -25,8 +25,6 @@ class DetailPokemonViewController: UIViewController {
     
     @IBOutlet weak var goComparePokemonsButton: UIButton!
     
-    // TODO: Implementar @IBOutlet weak var favoriteButton: UIButton!
-    
     var detailPokemon: DetailPokemon?
     var isFavorite: Bool = false
     var favoritesList = FavoritesList()
@@ -42,15 +40,11 @@ class DetailPokemonViewController: UIViewController {
         typeCollectionView.dataSource = self
         typeCollectionView.register(TypesCustomCollectionViewCell.nib(), forCellWithReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier)
         
-        
-    
-       
         setup()
     }
     
     @objc func favoriteButtonTapped() {
         isFavorite.toggle()
-        // TODO: addFavorite()
         updateFavoriteButtonAppearance()
         updateFavoriteStatus()
     }
@@ -58,8 +52,10 @@ class DetailPokemonViewController: UIViewController {
     func updateFavoriteStatus() {
         if let pokemonID = detailPokemon {
             if FavoritesList.shared.isFavorite(pokemonID) {
+                print("eliminando de favorito")
                 FavoritesList.shared.removeFavorite(pokemonID)
             } else {
+                print("agregando a favorito")
                 FavoritesList.shared.addFavorite(pokemonID)
             }
         }
@@ -92,9 +88,11 @@ class DetailPokemonViewController: UIViewController {
         contentImageView.layer.cornerRadius = 55.0
         contentImageView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         contentImageView.layer.masksToBounds = true
-        // Configurar el color de fondo del UINavigationBar
-        // navigationController?.navigationBar.tintColor = detailPokemon?.color
-        // navigationController?navigationBar.isTranslucent = false
+        
+        if let pokemon = detailPokemon {
+            isFavorite = FavoritesList.shared.isFavorite(pokemon)
+            updateFavoriteButtonAppearance()
+        }
     }
     
     

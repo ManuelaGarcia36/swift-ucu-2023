@@ -17,6 +17,7 @@
 		F54C87F32A3A81A000A8F988 /* PokemonApiService.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F22A3A81A000A8F988 /* PokemonApiService.swift */; };
 		F54C87F52A3A81BE00A8F988 /* ApiClient.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F42A3A81BE00A8F988 /* ApiClient.swift */; };
 		F54C87F72A3A841E00A8F988 /* Pokemon.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87F62A3A841E00A8F988 /* Pokemon.swift */; };
+		F5AF321D2A5332A2004DF6E0 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */; };
 		F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */; };
 		F5B4049F2A44F77E00149996 /* TypesCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */; };
 		F5B404A22A44F79700149996 /* PokemonCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */; };
@@ -52,6 +53,7 @@
 		F54C87F22A3A81A000A8F988 /* PokemonApiService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonApiService.swift; sourceTree = "<group>"; };
 		F54C87F42A3A81BE00A8F988 /* ApiClient.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiClient.swift; sourceTree = "<group>"; };
 		F54C87F62A3A841E00A8F988 /* Pokemon.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Pokemon.swift; sourceTree = "<group>"; };
+		F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesCustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypesCustomCollectionViewCell.xib; sourceTree = "<group>"; };
 		F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PokemonCollectionViewCell.swift; sourceTree = "<group>"; };
@@ -113,6 +115,7 @@
 		F54C87DC2A3A788500A8F988 /* obligatorio-final */ = {
 			isa = PBXGroup;
 			children = (
+				F5AF321C2A5332A1004DF6E0 /* GoogleService-Info.plist */,
 				F5D951722A4BFF5D00978287 /* view */,
 				F5D9516D2A4BE4A100978287 /* controller */,
 				F5D9516C2A4BE35500978287 /* Models */,
@@ -240,6 +243,9 @@
 				Base,
 			);
 			mainGroup = F54C87D12A3A788500A8F988;
+			packageReferences = (
+				F5AF321E2A53337A004DF6E0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+			);
 			productRefGroup = F54C87DB2A3A788500A8F988 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -261,6 +267,7 @@
 				F5D951652A4BD53800978287 /* ViewExample.xib in Resources */,
 				F54C87E52A3A788500A8F988 /* Main.storyboard in Resources */,
 				F5B404A32A44F79700149996 /* PokemonCollectionViewCell.xib in Resources */,
+				F5AF321D2A5332A2004DF6E0 /* GoogleService-Info.plist in Resources */,
 				F5B404B12A45229800149996 /* DetailPokemonTableViewCell.xib in Resources */,
 				F5B4049F2A44F77E00149996 /* TypesCustomCollectionViewCell.xib in Resources */,
 			);
@@ -550,6 +557,17 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		F5AF321E2A53337A004DF6E0 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "git@github.com:firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 10.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 	};
 	rootObject = F54C87D22A3A788500A8F988 /* Project object */;
 }
