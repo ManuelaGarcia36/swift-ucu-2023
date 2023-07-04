@@ -12,7 +12,6 @@ class PokemonApiService {
     static let shared = PokemonApiService()
     
     func fetchPokemones(page: Int, limit: Int, completion: @escaping ([DetailPokemon]?, Error?) -> Void) {
-        // si page 0 = 0 -1 = -1 * 20 = -20
         var offset = 0
         if (page != 0) {
             offset = page * limit

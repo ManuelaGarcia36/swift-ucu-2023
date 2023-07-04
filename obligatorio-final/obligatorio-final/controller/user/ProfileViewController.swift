@@ -13,21 +13,21 @@ class ProfileViewController: UIViewController {
     
     @IBOutlet weak var headerImageView: UIImageView!
     @IBOutlet weak var emailLabel: UILabel!
-    @IBOutlet weak var proveedorLabel: UILabel!
-    @IBOutlet weak var logOutButton: UIButton!
+    @IBOutlet weak var providerLabel: UILabel!
+    @IBOutlet weak var logoutButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         title = "Profile"
-        headerImageView.image = UIImage(named: "logo_v2")
+        headerImageView.image = UIImage(named: "logoPokemon")
         
         if let currentUser = UserRepository.shared.getUser() {
             emailLabel.text = currentUser.email
-            proveedorLabel.text = currentUser.providerID
+            providerLabel.text = currentUser.providerID
        }
     }
     
-    @IBAction func logOutButtonAction(_ sender: Any) {
+    @IBAction func logoutButtonAction(_ sender: Any) {
         do {
             try Auth.auth().signOut()
             UserRepository.shared.reset()
@@ -36,7 +36,7 @@ class ProfileViewController: UIViewController {
             navigationController?.navigationBar.isHidden = true
             self.navigationController?.pushViewController(destinationVC, animated: true)
         } catch {
-            print("error al salir de la cuenta")
+            print("Error al hacer logout de la cuenta")
         }
     }
 }

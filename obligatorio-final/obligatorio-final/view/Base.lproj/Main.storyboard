@@ -118,7 +118,7 @@
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qb9-Za-KVc">
                                 <rect key="frame" x="0.0" y="59" width="393" height="120"/>
                                 <subviews>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="logo_v2" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-gu-SJZ">
+                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="nj9-gu-SJZ">
                                         <rect key="frame" x="0.0" y="0.0" width="393" height="80"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="80" id="Wqe-gV-fT1"/>
@@ -149,7 +149,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="F"/>
                                         <connections>
-                                            <action selector="goToFavoriteViewAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tcg-Ez-aEo"/>
+                                            <action selector="favoriteViewAction:" destination="BYZ-38-t0r" eventType="touchUpInside" id="tcg-Ez-aEo"/>
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="KS5-57-cSw">
@@ -218,7 +218,8 @@
                     <connections>
                         <outlet property="collectionPokemonView" destination="ASb-WB-4fN" id="HLk-B2-rRZ"/>
                         <outlet property="collectionTypesView" destination="UCZ-da-gCo" id="EGI-QL-Xdh"/>
-                        <outlet property="goToFavoritesButton" destination="gqz-Uy-Es3" id="C7t-Zf-Wer"/>
+                        <outlet property="favoritesButton" destination="gqz-Uy-Es3" id="C7t-Zf-Wer"/>
+                        <outlet property="headerImage" destination="nj9-gu-SJZ" id="1F4-ez-qlJ"/>
                         <outlet property="profileButton" destination="KS5-57-cSw" id="Qhe-uE-6kt"/>
                     </connections>
                 </viewController>
@@ -395,10 +396,10 @@
             </objects>
             <point key="canvasLocation" x="-143" y="-787"/>
         </scene>
-        <!--Comparative Pokemons View Controller-->
+        <!--Comparison Pokemon View Controller-->
         <scene sceneID="dEx-cp-8fx">
             <objects>
-                <viewController storyboardIdentifier="ComparativeID" id="hRz-FM-G3E" customClass="ComparativePokemonsViewController" customModule="obligatorio_final" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="ComparativeID" id="hRz-FM-G3E" customClass="ComparisonPokemonViewController" customModule="obligatorio_final" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="14f-U6-IQR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -415,7 +416,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blx-jT-FRq" customClass="CompareView" customModule="obligatorio_final" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="blx-jT-FRq" customClass="ComparePokemonView" customModule="obligatorio_final" customModuleProvider="target">
                                 <rect key="frame" x="20" y="194.33333333333337" width="353" height="250"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                 <constraints>
@@ -438,7 +439,7 @@
                                     <action selector="searchRivalToCompareActionButton:" destination="hRz-FM-G3E" eventType="touchUpInside" id="dYN-Cd-Rfw"/>
                                 </connections>
                             </button>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZf-cI-Mfb" customClass="CompareView" customModule="obligatorio_final" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="UZf-cI-Mfb" customClass="ComparePokemonView" customModule="obligatorio_final" customModuleProvider="target">
                                 <rect key="frame" x="20" y="518.66666666666663" width="353" height="250"/>
                                 <color key="backgroundColor" systemColor="secondarySystemFillColor"/>
                                 <constraints>
@@ -493,10 +494,10 @@
             </objects>
             <point key="canvasLocation" x="637" y="-787"/>
         </scene>
-        <!--Favorite Pokemons View Controller-->
+        <!--Favorite Pokemon View Controller-->
         <scene sceneID="9zM-rT-okC">
             <objects>
-                <viewController storyboardIdentifier="FavoritePokemonsID" id="V3z-QQ-9A7" customClass="FavoritePokemonsViewController" customModule="obligatorio_final" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="FavoritePokemonsID" id="V3z-QQ-9A7" customClass="FavoritePokemonViewController" customModule="obligatorio_final" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="7Qv-qy-scR">
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -608,7 +609,7 @@
                                         <state key="normal" title="Button"/>
                                         <buttonConfiguration key="configuration" style="plain" title="Cerrar sesion"/>
                                         <connections>
-                                            <action selector="logOutButtonAction:" destination="CRa-jh-dg4" eventType="touchUpInside" id="zoP-rQ-S8I"/>
+                                            <action selector="logoutButtonAction:" destination="CRa-jh-dg4" eventType="touchUpInside" id="zoP-rQ-S8I"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -629,8 +630,8 @@
                     <connections>
                         <outlet property="emailLabel" destination="wy4-t7-LBJ" id="rdJ-Wp-xzZ"/>
                         <outlet property="headerImageView" destination="DBZ-dr-qId" id="hJC-vt-R2r"/>
-                        <outlet property="logOutButton" destination="Tag-V8-jXy" id="x3e-QR-QB4"/>
-                        <outlet property="proveedorLabel" destination="Zf2-lF-xfF" id="UcK-48-rZe"/>
+                        <outlet property="logoutButton" destination="Tag-V8-jXy" id="x3e-QR-QB4"/>
+                        <outlet property="providerLabel" destination="Zf2-lF-xfF" id="UcK-48-rZe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Z2G-i9-N4u" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -639,7 +640,6 @@
         </scene>
     </scenes>
     <resources>
-        <image name="logo_v2" width="737" height="339"/>
         <systemColor name="secondarySystemFillColor">
             <color red="0.47058823529411764" green="0.47058823529411764" blue="0.50196078431372548" alpha="0.16" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

@@ -8,12 +8,12 @@
 import Foundation
 import UIKit
 
-class ComparativePokemonsViewController: UIViewController {
+class ComparisonPokemonViewController: UIViewController {
     
     @IBOutlet weak var headerTitleLabel: UILabel!
     @IBOutlet weak var headerImageView: UIImageView!
-    @IBOutlet weak var principalPokemonView: CompareView!
-    @IBOutlet weak var secundaryPokemonView: CompareView!
+    @IBOutlet weak var principalPokemonView: ComparePokemonView!
+    @IBOutlet weak var secundaryPokemonView: ComparePokemonView!
     @IBOutlet weak var compareButton: UIButton!
     @IBOutlet weak var notFoundLabel: UILabel!
     @IBOutlet weak var searchByPokemonNameTextField: UITextField!
@@ -27,12 +27,12 @@ class ComparativePokemonsViewController: UIViewController {
     }
     
     func setup() {
-        // Se inicia la view del primer pokemon
-        headerImageView.image = UIImage(named: "logo_v2")
+        headerImageView.image = UIImage(named: "logoPokemon")
+        // only initialized first pokemon
         if let detail = detailPokemon {
             principalPokemonView.setup(detailPokemon: detail)
         }
-        // Los componentes del segundo pokemon se esconden hasta que el usuario realice una busqueda
+        
         secundaryPokemonView.isHidden = true
         notFoundLabel.isHidden = true
     }
@@ -40,7 +40,7 @@ class ComparativePokemonsViewController: UIViewController {
     @IBAction func searchRivalToCompareActionButton(_ sender: Any) {
         let name = searchByPokemonNameTextField.text ?? ""
         pokemonManager.fetchPokemonByName(name: name) { [weak self] (details, error) in
-            if let error = error {
+            if let _ = error {
                 self?.notFoundLabel.isHidden = false
                 self?.secundaryPokemonView.isHidden = true
             } else {

@@ -10,7 +10,7 @@ import UIKit
 import Kingfisher
 
 
-class CompareView: NibLoadingView {
+class ComparePokemonView: NibLoadingView {
 
     @IBOutlet weak var myContentView: UIView!
     @IBOutlet weak var idPokemonLabel: UILabel!
@@ -49,7 +49,7 @@ class CompareView: NibLoadingView {
     
 }
 
-extension CompareView: UITableViewDataSource, UITableViewDelegate {
+extension ComparePokemonView: UITableViewDataSource, UITableViewDelegate {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return stats.count
     }

@@ -1,8 +1,8 @@
 import UIKit
 import Foundation
 
-class FavoritesList {
-    static let shared = FavoritesList()
+class FavoritesRepository {
+    static let shared = FavoritesRepository()
     
     private var favoritePokemons: [DetailPokemon] = []
 

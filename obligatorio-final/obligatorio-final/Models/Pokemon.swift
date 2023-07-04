@@ -77,5 +77,3 @@ struct TypeContainer: Codable {
 struct TypeInfo: Codable {
     let name: String
 }
-
-let typesList = ["Normal", "Grass", "Fire", "Water", "Bug", "Electric", "Rock", "Ghost", "Poison", "Psychic", "Fighting", "Ground", "Dragon", "Reset"]

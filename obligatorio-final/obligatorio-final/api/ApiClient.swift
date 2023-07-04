@@ -79,8 +79,7 @@ class APIClient {
                 do {
                     onCompletion(.success(try JSONDecoder().decode(T.self, from: data)))
                 } catch {
-                    print("tengo un error \(data)")
-                    
+                    print("Error parsing request data: \(data)")
                 }
             case .failure(let error):
                 print("Error getting request data: \(error)")

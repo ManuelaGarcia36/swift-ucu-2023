@@ -12,22 +12,18 @@ import UIKit
 class DetailPokemonViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
-    
     @IBOutlet weak var headerView: UIView!
     @IBOutlet weak var contentImageView: UIView!
     @IBOutlet weak var pokemonImage: UIImageView!
-    
     @IBOutlet weak var pokemonNameLabel: UILabel!
     @IBOutlet weak var weightNumberLabel: UILabel!
     @IBOutlet weak var heightNumberLabel: UILabel!
-    
     @IBOutlet weak var typeCollectionView: UICollectionView!
-    
     @IBOutlet weak var goComparePokemonsButton: UIButton!
     
     var detailPokemon: DetailPokemon?
     var isFavorite: Bool = false
-    var favoritesList = FavoritesList()
+    var favoritesList = FavoritesRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,15 +44,15 @@ class DetailPokemonViewController: UIViewController {
         updateFavoriteButtonAppearance()
         updateFavoriteStatus()
     }
-
+    
     func updateFavoriteStatus() {
         if let pokemonID = detailPokemon {
-            if FavoritesList.shared.isFavorite(pokemonID) {
+            if FavoritesRepository.shared.isFavorite(pokemonID) {
                 print("eliminando de favorito")
-                FavoritesList.shared.removeFavorite(pokemonID)
+                FavoritesRepository.shared.removeFavorite(pokemonID)
             } else {
                 print("agregando a favorito")
-                FavoritesList.shared.addFavorite(pokemonID)
+                FavoritesRepository.shared.addFavorite(pokemonID)
             }
         }
     }
@@ -65,7 +61,7 @@ class DetailPokemonViewController: UIViewController {
         let favoriteButton = UIBarButtonItem(image: UIImage(systemName: isFavorite ? "heart.fill" : "heart"), style: .plain, target: self, action: #selector(favoriteButtonTapped))
         navigationItem.rightBarButtonItem = favoriteButton
     }
-
+    
     
     func setup() {
         updateFavoriteButtonAppearance()
@@ -90,7 +86,7 @@ class DetailPokemonViewController: UIViewController {
         contentImageView.layer.masksToBounds = true
         
         if let pokemon = detailPokemon {
-            isFavorite = FavoritesList.shared.isFavorite(pokemon)
+            isFavorite = FavoritesRepository.shared.isFavorite(pokemon)
             updateFavoriteButtonAppearance()
         }
     }
@@ -98,7 +94,7 @@ class DetailPokemonViewController: UIViewController {
     
     @IBAction func goCompareView(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "ComparativeID") as! ComparativePokemonsViewController
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "ComparativeID") as! ComparisonPokemonViewController
         destinationVC.modalPresentationStyle = .fullScreen
         destinationVC.detailPokemon = detailPokemon
         destinationVC.loadViewIfNeeded()

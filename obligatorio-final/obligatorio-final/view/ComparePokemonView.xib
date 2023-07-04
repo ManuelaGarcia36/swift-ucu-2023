@@ -8,7 +8,7 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="CompareView" customModule="obligatorio_final" customModuleProvider="target">
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="ComparePokemonView" customModule="obligatorio_final" customModuleProvider="target">
             <connections>
                 <outlet property="idPokemonLabel" destination="2r8-ep-oZN" id="f2M-Ah-27p"/>
                 <outlet property="myContentView" destination="U4U-UB-35K" id="Q4l-FO-0rh"/>

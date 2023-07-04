@@ -10,11 +10,6 @@ import UIKit
 import FirebaseAnalytics
 import FirebaseAuth
 
-enum ProviderType: String {
-    case basic
-    case google
-}
-
 class AuthenticationViewController: UIViewController {
     
     @IBOutlet weak var headerImage: UIImageView!
@@ -26,50 +21,73 @@ class AuthenticationViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        headerImage.image = UIImage(named: "logo_v2")
-    
+        headerImage.image = UIImage(named: "logoPokemon")
+        
         Analytics.logEvent("InitScreen", parameters: ["message": "Integracion de firebase completa"])
     }
     
-     @IBAction func singUpButtonAction(_ sender: Any) {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            Auth.auth().createUser(withEmail: email, password: password) {
-                (result, error) in
-                if let result = result, error == nil {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let destinationVC = storyboard.instantiateViewController(withIdentifier: "HomeID") as! HomeViewController
-                    destinationVC.modalPresentationStyle = .fullScreen
-                    self.navigationController?.pushViewController(destinationVC, animated: true)
+    func simpleAlert(vc: UIViewController, title: String, message:String) {
+        let alert =  UIAlertController(title: title, message: message, preferredStyle: .alert)
+        let okAction = UIAlertAction(title: "Ok", style: .default, handler: nil)
+        alert.addAction(okAction)
+        vc.present(alert, animated: true)
+    }
+    
+    @IBAction func singUpButtonAction(_ sender: Any) {
+        if let user = emailTextField.text, let pass = passwordTextField.text {
+            if user == "" && pass == "" {
+                simpleAlert(vc: self, title: "Alert! ", message: "Please enter user and password")
+            } else if user != "" && pass == "" {
+                simpleAlert(vc: self, title: "Alert! ", message: "Please enter password")
+            } else {
+                if !user.isValidEmail(mail: user) {
+                    simpleAlert(vc: self, title: "Alert! ", message: "Please enter valid mail")
+                } else if !pass.isValidPassword(password: pass) {
+                    simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
                 } else {
-                    let alertController = UIAlertController(title: "Error", message: "Se ha producido un error regitrando el usuario", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-                    self.present(alertController, animated: true, completion: nil)
+                    Auth.auth().createUser(withEmail: user, password: pass) {
+                        (result, error) in
+                        if let result = result, error == nil {
+                            UserRepository.shared.updateUser(result.user)
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let destinationVC = storyboard.instantiateViewController(withIdentifier: "HomeID") as! HomeViewController
+                            destinationVC.modalPresentationStyle = .fullScreen
+                            self.navigationController?.pushViewController(destinationVC, animated: true)
+                        } else {
+                            self.simpleAlert(vc: self, title: "Alert! ", message: "Error al intentar crear el usuario")
+                        }
+                    }
                 }
             }
         }
     }
     
     @IBAction func logInButtonAction(_ sender: Any) {
-        if let email = emailTextField.text, let password = passwordTextField.text {
-            Auth.auth().signIn(withEmail: email, password: password) {
-                (result, error) in
-                if let result = result, error == nil {
-                    let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                    let destinationVC = storyboard.instantiateViewController(withIdentifier: "HomeID") as! HomeViewController
-                    destinationVC.modalPresentationStyle = .fullScreen
-                    self.navigationController?.pushViewController(destinationVC, animated: true)
+        if let user = emailTextField.text, let pass = passwordTextField.text {
+            if user == "" && pass == "" {
+                simpleAlert(vc: self, title: "Alert! ", message: "Please enter user and password")
+            } else if user != "" && pass == "" {
+                simpleAlert(vc: self, title: "Alert! ", message: "Please enter password")
+            } else {
+                if !user.isValidEmail(mail: user) {
+                    simpleAlert(vc: self, title: "Alert! ", message: "Please enter valid mail")
+                } else if !pass.isValidPassword(password: pass) {
+                    simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
                 } else {
-                    let alertController = UIAlertController(title: "Error", message: "Se ha producido un error regitrando el usuario", preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: "Ok", style: .default))
-                    self.present(alertController, animated: true, completion: nil)
+                    Auth.auth().signIn(withEmail: user, password: pass) {
+                        (result, error) in
+                        if let result = result, error == nil {
+                            UserRepository.shared.updateUser(result.user)
+                            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+                            let destinationVC = storyboard.instantiateViewController(withIdentifier: "HomeID") as! HomeViewController
+                            destinationVC.modalPresentationStyle = .fullScreen
+                            self.navigationController?.pushViewController(destinationVC, animated: true)
+                        } else {
+                            self.simpleAlert(vc: self, title: "Alert! ", message: "Error al intentar hacer login")
+                        }
+                    }
                 }
             }
         }
     }
-    
-    @IBAction func googleButtonAction(_ sender: Any) {
-            
-        
-    }
-    
 }

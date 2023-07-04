@@ -16,23 +16,24 @@
                 <rect key="frame" x="0.0" y="0.0" width="82" height="50"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hpy-lQ-2ye">
-                        <rect key="frame" x="0.0" y="0.0" width="82" height="50"/>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="tinted" title="Button"/>
-                    </button>
+                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="EWh-HC-CLQ">
+                        <rect key="frame" x="5" y="5" width="72" height="40"/>
+                        <fontDescription key="fontDescription" type="system" pointSize="15"/>
+                        <nil key="textColor"/>
+                        <nil key="highlightedColor"/>
+                    </label>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="hpy-lQ-2ye" secondAttribute="bottom" id="Ht0-ae-zxM"/>
-                <constraint firstItem="hpy-lQ-2ye" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="MDY-7L-zY3"/>
-                <constraint firstAttribute="trailing" secondItem="hpy-lQ-2ye" secondAttribute="trailing" id="blR-6z-BXi"/>
-                <constraint firstItem="hpy-lQ-2ye" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mh1-Vu-tfg"/>
+                <constraint firstItem="EWh-HC-CLQ" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="31r-VN-JZp"/>
+                <constraint firstAttribute="bottom" secondItem="EWh-HC-CLQ" secondAttribute="bottom" constant="5" id="Pzk-P6-2nh"/>
+                <constraint firstItem="EWh-HC-CLQ" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="ZnB-4t-Gxm"/>
+                <constraint firstAttribute="trailing" secondItem="EWh-HC-CLQ" secondAttribute="trailing" constant="5" id="m1l-6k-57a"/>
             </constraints>
             <size key="customSize" width="82" height="50"/>
             <connections>
-                <outlet property="typeButton" destination="hpy-lQ-2ye" id="Egw-iP-wPK"/>
+                <outlet property="typeName" destination="EWh-HC-CLQ" id="P0g-Ag-KLf"/>
             </connections>
             <point key="canvasLocation" x="163.35877862595419" y="20.422535211267608"/>
         </collectionViewCell>

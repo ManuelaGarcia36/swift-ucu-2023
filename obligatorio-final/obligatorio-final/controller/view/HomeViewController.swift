@@ -10,37 +10,40 @@ import Kingfisher
 
 class HomeViewController: UIViewController {
     
+    @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var collectionTypesView: UICollectionView!
     @IBOutlet weak var collectionPokemonView: UICollectionView!
-    @IBOutlet weak var goToFavoritesButton: UIButton!
+    @IBOutlet weak var favoritesButton: UIButton!
     @IBOutlet weak var profileButton: UIButton!
     
     private let pokemonManager = PokemonApiService()
     var pokemonList = [DetailPokemon]()
-    var favoritesList: FavoritesList?
+    var favoritesList: FavoritesRepository?
+    let typesList = ["Reset", "Normal", "Grass", "Fire", "Water", "Bug", "Electric", "Rock", "Ghost", "Poison", "Psychic", "Fighting", "Ground", "Dragon"]
+    
     var currentPage = 0
-    let itemsPerPage = 20
     var isLoadMoreData = false
-
+    let itemsPerPage = 20
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        headerImage.image = UIImage(named: "logoPokemon")
         if let starFavoritesImage = UIImage(systemName: "heart.fill") {
             let configuration = UIImage.SymbolConfiguration(pointSize: 24)
             let tintedImage = starFavoritesImage.withTintColor(.red, renderingMode: .alwaysOriginal)
-                                                  .withConfiguration(configuration)
-            goToFavoritesButton.setImage(tintedImage, for: .normal)
-            goToFavoritesButton.setTitle("", for: .normal)
+                .withConfiguration(configuration)
+            favoritesButton.setImage(tintedImage, for: .normal)
+            favoritesButton.setTitle("", for: .normal)
         }
-
+        
         if let startProfileImage = UIImage(systemName: "person.crop.circle") {
             let configuration = UIImage.SymbolConfiguration(pointSize: 24)
             let tintedImage = startProfileImage.withTintColor(.red, renderingMode: .alwaysOriginal)
-                                               .withConfiguration(configuration)
+                .withConfiguration(configuration)
             profileButton.setImage(tintedImage, for: .normal)
             profileButton.setTitle("", for: .normal)
         }
-
+        
         collectionTypesView.delegate = self
         collectionTypesView.dataSource = self
         collectionTypesView.register(TypesCustomCollectionViewCell.nib(), forCellWithReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier)
@@ -52,16 +55,7 @@ class HomeViewController: UIViewController {
             PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
         collectionPokemonView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
-        pokemonManager.fetchPokemones(page: currentPage, limit: itemsPerPage) { [weak self] (details, error) in
-            if let error = error {
-                print("Error getting pokemon list and details: \(error)")
-            } else {
-                if let pokeDetail = details {
-                    self?.pokemonList = pokeDetail
-                    self?.collectionPokemonView.reloadData()
-                }
-            }
-        }
+        getInitialData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -76,9 +70,35 @@ class HomeViewController: UIViewController {
         self.navigationController?.setNavigationBarHidden(false, animated: animated)
     }
     
-    @IBAction func goToFavoriteViewAction(_ sender: Any) {
+    func getInitialData() {
+        pokemonManager.fetchPokemones(page: 0, limit: itemsPerPage) { [weak self] (details, error) in
+            if let error = error {
+                print("Error getting pokemon list and details: \(error)")
+            } else {
+                if let pokeDetail = details {
+                    self?.pokemonList = pokeDetail
+                    self?.collectionPokemonView.reloadData()
+                }
+            }
+        }
+    }
+    
+    func filterByType(typeFilter: String) {
+        let typeFilterLowercased = typeFilter.lowercased()
+        if (typeFilterLowercased != "reset") {
+            let pokemonesFiltrados = pokemonList.filter { detallePokemon in
+                return detallePokemon.types.contains(typeFilterLowercased)
+            }
+            self.pokemonList = pokemonesFiltrados
+            collectionPokemonView.reloadData()
+        } else {
+            getInitialData()
+        }
+    }
+    
+    @IBAction func favoriteViewAction(_ sender: Any) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "FavoritePokemonsID") as! FavoritePokemonsViewController
+        let destinationVC = storyboard.instantiateViewController(withIdentifier: "FavoritePokemonsID") as! FavoritePokemonViewController
         destinationVC.loadViewIfNeeded()
         destinationVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(destinationVC, animated: true)
@@ -91,7 +111,6 @@ class HomeViewController: UIViewController {
         destinationVC.modalPresentationStyle = .fullScreen
         self.navigationController?.pushViewController(destinationVC, animated: true)
     }
-
 }
 
 extension HomeViewController: UICollectionViewDataSource {
@@ -108,13 +127,18 @@ extension HomeViewController: UICollectionViewDataSource {
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        
-        let storyboard = UIStoryboard(name: "Main", bundle: nil)
-        let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailPokemonID") as! DetailPokemonViewController
-        destinationVC.modalPresentationStyle = .fullScreen
-        destinationVC.detailPokemon = pokemonList[indexPath.row]
-        destinationVC.loadViewIfNeeded()
-        self.navigationController?.pushViewController(destinationVC, animated: true)
+        if collectionView == collectionPokemonView {
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailPokemonID") as! DetailPokemonViewController
+            destinationVC.modalPresentationStyle = .fullScreen
+            destinationVC.detailPokemon = pokemonList[indexPath.row]
+            destinationVC.loadViewIfNeeded()
+            self.navigationController?.pushViewController(destinationVC, animated: true)
+        } else if collectionView == collectionTypesView {
+            return filterByType(typeFilter: typesList[indexPath.row])
+        } else {
+            fatalError("unknow collection view")
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -133,7 +157,6 @@ extension HomeViewController: UICollectionViewDataSource {
                 return cell
             }
         } else if collectionView == collectionTypesView {
-            // collection view buttons filter
             guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: TypesCustomCollectionViewCell.reuseIdentifier, for: indexPath) as? TypesCustomCollectionViewCell
             else { return .init()}
             let nameButton = typesList[indexPath.row]

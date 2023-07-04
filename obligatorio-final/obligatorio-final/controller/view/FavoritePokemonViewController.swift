@@ -1,5 +1,5 @@
 //
-//  FavoritePokemonsViewController.swift
+//  FavoritePokemonViewController.swift
 //  obligatorio-final
 //
 //  Created by Manuela Garcia Lira on 22/6/23.
@@ -7,21 +7,19 @@
 
 import Foundation
 import UIKit
-import Kingfisher
 
-
-class FavoritePokemonsViewController: UIViewController {
+class FavoritePokemonViewController: UIViewController {
     
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var pokemonCollectionView: UICollectionView!
     @IBOutlet weak var viewTiteleLabel: UILabel!
     @IBOutlet weak var pageControlByScrolView: UIPageControl!
-    var favoritesList = FavoritesList()
+    var favoritesList = FavoritesRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         viewTiteleLabel.text = "Favorites"
-        headerImage.image = UIImage(named: "logo_v2")
+        headerImage.image = UIImage(named: "logoPokemon")
         
         view.bringSubviewToFront(pageControlByScrolView)
         
@@ -31,25 +29,24 @@ class FavoritePokemonsViewController: UIViewController {
             PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
         pokemonCollectionView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
-        pageControlByScrolView.numberOfPages = FavoritesList.shared.getList().count
+        pageControlByScrolView.numberOfPages = FavoritesRepository.shared.getList().count
         pageControlByScrolView.currentPage = 0
         
         pokemonCollectionView.reloadData()
     }
     
     override func viewWillAppear(_ animated: Bool) {
-         super.viewWillAppear(animated)
-         
-         // Recargar los datos de la lista de favoritos aquí
+        super.viewWillAppear(animated)
+        // Reload favorites list data for each appear
         pokemonCollectionView.reloadData()
-     }
+    }
 }
 
-extension FavoritePokemonsViewController: UICollectionViewDataSource {
+extension FavoritePokemonViewController: UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == pokemonCollectionView {
-            if FavoritesList.shared.getList().count == 0 { return 1 } else {
-                return FavoritesList.shared.getList().count
+            if FavoritesRepository.shared.getList().count == 0 { return 1 } else {
+                return FavoritesRepository.shared.getList().count
             }
         } else {
             fatalError("unknow collection view")
@@ -60,7 +57,7 @@ extension FavoritePokemonsViewController: UICollectionViewDataSource {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         let destinationVC = storyboard.instantiateViewController(withIdentifier: "DetailPokemonID") as! DetailPokemonViewController
         destinationVC.modalPresentationStyle = .fullScreen
-        let list = FavoritesList.shared.getList()
+        let list = FavoritesRepository.shared.getList()
         destinationVC.detailPokemon = list[indexPath.row]
         destinationVC.loadViewIfNeeded()
         self.navigationController?.pushViewController(destinationVC, animated: true)
@@ -68,7 +65,7 @@ extension FavoritePokemonsViewController: UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == pokemonCollectionView {
-            if FavoritesList.shared.getList().isEmpty {
+            if FavoritesRepository.shared.getList().isEmpty {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier, for: indexPath) as? EmptyCollectionViewCell else {
                     return UICollectionViewCell()
                 }
@@ -77,7 +74,7 @@ extension FavoritePokemonsViewController: UICollectionViewDataSource {
                 guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier, for: indexPath) as? PokemonCollectionViewCell else {
                     return UICollectionViewCell()
                 }
-                let list = FavoritesList.shared.getList()
+                let list = FavoritesRepository.shared.getList()
                 let item = list[indexPath.row]
                 cell.configure(with: item.url, color: item.color)
                 return cell
@@ -88,11 +85,11 @@ extension FavoritePokemonsViewController: UICollectionViewDataSource {
     
 }
 
-extension FavoritePokemonsViewController: UICollectionViewDelegateFlowLayout {
+extension FavoritePokemonViewController: UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         if collectionView == pokemonCollectionView {
-            if FavoritesList.shared.getList().isEmpty {
+            if FavoritesRepository.shared.getList().isEmpty {
                 return CGSize(width: collectionView.bounds.width, height: collectionView.bounds.height/2)
             }
             let itemSize = collectionView.bounds.width - 2 * 2
