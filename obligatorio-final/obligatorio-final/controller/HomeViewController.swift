@@ -18,6 +18,10 @@ class HomeViewController: UIViewController {
     private let pokemonManager = PokemonApiService()
     var pokemonList = [DetailPokemon]()
     var favoritesList: FavoritesList?
+    var currentPage = 0
+    let itemsPerPage = 20
+    var isLoadMoreData = false
+
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -48,7 +52,7 @@ class HomeViewController: UIViewController {
             PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
         collectionPokemonView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
         
-        pokemonManager.fetchPokemones { [weak self] (details, error) in
+        pokemonManager.fetchPokemones(page: currentPage, limit: itemsPerPage) { [weak self] (details, error) in
             if let error = error {
                 print("Error getting pokemon list and details: \(error)")
             } else {
@@ -137,6 +141,28 @@ extension HomeViewController: UICollectionViewDataSource {
             return cell
         } else {
             fatalError("unknow collection view")
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        let position = scrollView.contentOffset.y
+        // comprueba si la posición actual del desplazamiento es mayor que del final del contenido de la vista de desplazamiento
+        if position > (collectionPokemonView.contentSize.height-scrollView.frame.size.height) {
+            if (!isLoadMoreData) {
+                isLoadMoreData = true
+                currentPage += 1
+                pokemonManager.fetchPokemones(page: currentPage, limit: itemsPerPage) { [weak self] (details, error) in
+                    if let error = error {
+                        print("Error getting pokemon list and details: \(error)")
+                    } else {
+                        if let pokeDetail = details {
+                            self?.pokemonList.append(contentsOf: pokeDetail)
+                            self?.collectionPokemonView.reloadData()
+                            self?.isLoadMoreData = false
+                        }
+                    }
+                }
+            }
         }
     }
 }

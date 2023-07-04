@@ -11,13 +11,17 @@ import Foundation
 class PokemonApiService {
     static let shared = PokemonApiService()
     
-    func fetchPokemones(completion: @escaping ([DetailPokemon]?, Error?) -> Void) {
-        let url = "https://pokeapi.co/api/v2/pokemon/?limit=20&offset=20"
-        APIClient.shared.requestItem(urlString: url,
-                                     method: .get,
-                                     params: [:],
-                                     sessionPolicy: .publicDomain) { [self] (result: Result<PokemonPage, Error>) in
-            
+    func fetchPokemones(page: Int, limit: Int, completion: @escaping ([DetailPokemon]?, Error?) -> Void) {
+        // si page 0 = 0 -1 = -1 * 20 = -20
+        var offset = 0
+        if (page != 0) {
+            offset = page * limit
+        }
+        
+        print("obteniendo datos con los parametros: \(offset) y \(limit)")
+        let url = "https://pokeapi.co/api/v2/pokemon/?limit=\(limit)&offset=\(offset)"
+        
+        APIClient.shared.requestItem(urlString: url, method: .get, params: [:], sessionPolicy: .publicDomain) { [self] (result: Result<PokemonPage, Error>) in
             switch result {
             case .success(let response):
                 let dispatchGroup = DispatchGroup()
