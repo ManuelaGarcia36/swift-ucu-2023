@@ -153,7 +153,7 @@ extension HomeViewController: UICollectionViewDataSource {
                 guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier, for: indexPath) as? PokemonCollectionViewCell
                 else { return .init()}
                 let pokemon = pokemonList[indexPath.row]
-                cell.configure(with: pokemon.url,color:     pokemon.color)
+                cell.configure(with: pokemon.url, id: String(pokemon.id), color: pokemon.color)
                 return cell
             }
         } else if collectionView == collectionTypesView {
@@ -174,16 +174,10 @@ extension HomeViewController: UICollectionViewDataSource {
             if (!isLoadMoreData) {
                 isLoadMoreData = true
                 currentPage += 1
-                pokemonManager.fetchPokemones(page: currentPage, limit: itemsPerPage) { [weak self] (details, error) in
-                    if let error = error {
-                        print("Error getting pokemon list and details: \(error)")
-                    } else {
-                        if let pokeDetail = details {
-                            self?.pokemonList.append(contentsOf: pokeDetail)
-                            self?.collectionPokemonView.reloadData()
-                            self?.isLoadMoreData = false
-                        }
-                    }
+                pokemonManager.fetchPokemonesByIterator(page: currentPage, limit: itemsPerPage) { detailPokemons in
+                    self.pokemonList.append(contentsOf: detailPokemons)
+                    self.collectionPokemonView.reloadData()
+                    self.isLoadMoreData = false
                 }
             }
         }

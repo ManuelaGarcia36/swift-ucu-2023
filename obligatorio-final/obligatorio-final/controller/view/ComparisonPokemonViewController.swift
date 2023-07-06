@@ -23,6 +23,7 @@ class ComparisonPokemonViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        title = "Compare"
         setup()
     }
     

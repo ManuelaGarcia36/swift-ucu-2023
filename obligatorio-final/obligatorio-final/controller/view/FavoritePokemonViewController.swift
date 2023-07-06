@@ -12,25 +12,19 @@ class FavoritePokemonViewController: UIViewController {
     
     @IBOutlet weak var headerImage: UIImageView!
     @IBOutlet weak var pokemonCollectionView: UICollectionView!
-    @IBOutlet weak var viewTiteleLabel: UILabel!
-    @IBOutlet weak var pageControlByScrolView: UIPageControl!
+    
     var favoritesList = FavoritesRepository()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewTiteleLabel.text = "Favorites"
+        title = "Favorites"
         headerImage.image = UIImage(named: "logoPokemon")
-        
-        view.bringSubviewToFront(pageControlByScrolView)
         
         pokemonCollectionView.delegate = self
         pokemonCollectionView.dataSource = self
         pokemonCollectionView.register(
             PokemonCollectionViewCell.nib(), forCellWithReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier)
         pokemonCollectionView.register(EmptyCollectionViewCell.nib(), forCellWithReuseIdentifier: EmptyCollectionViewCell.reuseIdentifier)
-        
-        pageControlByScrolView.numberOfPages = FavoritesRepository.shared.getList().count
-        pageControlByScrolView.currentPage = 0
         
         pokemonCollectionView.reloadData()
     }
@@ -76,7 +70,7 @@ extension FavoritePokemonViewController: UICollectionViewDataSource {
                 }
                 let list = FavoritesRepository.shared.getList()
                 let item = list[indexPath.row]
-                cell.configure(with: item.url, color: item.color)
+                cell.configure(with: item.url, id: String(item.id), color: item.color)
                 return cell
             }
         }

@@ -65,35 +65,12 @@ class APIClient {
         return task
     }
     
-    @discardableResult
-    func requestBase<T: Decodable>(urlString: String,
-                                   method: Method = .get,
-                                   params: [String: Any] = [:],
-                                   token: String = "",
-                                   sessionPolicy: SessionPolicy = .publicDomain,
-                                   onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
-        
-        request(urlString: urlString, method: method, params: params, token: token, sessionPolicy: sessionPolicy) { result in
-            switch result {
-            case .success(let data):
-                do {
-                    onCompletion(.success(try JSONDecoder().decode(T.self, from: data)))
-                } catch {
-                    print("Error parsing request data: \(data)")
-                }
-            case .failure(let error):
-                print("Error getting request data: \(error)")
-                onCompletion(.failure(error))
-            }
-        }
-    }
-    
-    @discardableResult func requestItem<T: Decodable>(urlString: String,
+    @discardableResult func requestBase<T: Decodable>(urlString: String,
                                                       method: Method = .get,
                                                       params: [String: Any] = [:],
                                                       sessionPolicy: SessionPolicy = .publicDomain,
                                                       onCompletion: @escaping (Result<T, Error>) -> Void) -> URLSessionDataTask {
-        
+     
         request(urlString: urlString, method: method, params: params, token: "",sessionPolicy: sessionPolicy) { result in
             switch result {
             case .success(let data):

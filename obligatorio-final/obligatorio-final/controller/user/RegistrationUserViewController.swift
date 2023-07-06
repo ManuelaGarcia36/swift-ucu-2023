@@ -1,8 +1,8 @@
 //
-//  AuthenticationViewController.swift
+//  RegistrationUser.swift
 //  obligatorio-final
 //
-//  Created by Manuela Garcia Lira on 3/7/23.
+//  Created by Manuela Garcia Lira on 5/7/23.
 //
 
 import Foundation
@@ -10,20 +10,17 @@ import UIKit
 import FirebaseAnalytics
 import FirebaseAuth
 
-class AuthenticationViewController: UIViewController {
+class RegistrationUserViewController: UIViewController {
     
-    @IBOutlet weak var headerImage: UIImageView!
+    @IBOutlet weak var imageHeader: UIImageView!
     @IBOutlet weak var emailTextField: UITextField!
     @IBOutlet weak var passwordTextField: UITextField!
-    @IBOutlet weak var registrationButton: UIButton!
-    @IBOutlet weak var loginButton: UIButton!
+    @IBOutlet weak var passwordCheckTextField: UITextField!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        headerImage.image = UIImage(named: "logoPokemon")
-        
-        Analytics.logEvent("InitScreen", parameters: ["message": "Integracion de firebase completa"])
+        imageHeader.image = UIImage(named: "logoPokemon")
     }
     
     private func simpleAlert(vc: UIViewController, title: String, message:String) {
@@ -33,19 +30,21 @@ class AuthenticationViewController: UIViewController {
         vc.present(alert, animated: true)
     }
     
-    @IBAction func logInButtonAction(_ sender: Any) {
-        if let user = emailTextField.text, let pass = passwordTextField.text {
-            if user == "" && pass == "" {
+    @IBAction func registerUserButton(_ sender: Any) {
+        if let user = emailTextField.text, let pass = passwordTextField.text, let passCheck = passwordCheckTextField.text {
+            if user == "" && pass == "" && passCheck == "" {
                 simpleAlert(vc: self, title: "Alert! ", message: "Please enter user and password")
-            } else if user != "" && pass == "" {
+            } else if user != "" && pass == "" && passCheck  == "" {
                 simpleAlert(vc: self, title: "Alert! ", message: "Please enter password")
-            } else {
+            } else if pass != passCheck {
+                simpleAlert(vc: self, title: "Alert! ", message: "Please check passwords")
+            }else {
                 if !user.isValidEmail(mail: user) {
                     simpleAlert(vc: self, title: "Alert! ", message: "Please enter valid mail")
                 } else if !pass.isValidPassword(password: pass) {
                     simpleAlert(vc: self, title: "Alert! ", message: "Please enter a valid password with at least 8 characters")
                 } else {
-                    Auth.auth().signIn(withEmail: user, password: pass) {
+                    Auth.auth().createUser(withEmail: user, password: pass) {
                         (result, error) in
                         if let result = result, error == nil {
                             UserRepository.shared.updateUser(result.user)
@@ -54,7 +53,7 @@ class AuthenticationViewController: UIViewController {
                             destinationVC.modalPresentationStyle = .fullScreen
                             self.navigationController?.pushViewController(destinationVC, animated: true)
                         } else {
-                            self.simpleAlert(vc: self, title: "Alert! ", message: "Error al intentar hacer login")
+                            self.simpleAlert(vc: self, title: "Alert! ", message: "Error al intentar crear el usuario")
                         }
                     }
                 }

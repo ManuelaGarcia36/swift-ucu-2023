@@ -19,7 +19,7 @@ struct Pokemon: Codable {
     let url: String
 }
 
-struct DetailPokemon: Codable {
+struct DetailPokemon: Codable, Hashable {
     let id: Int
     let weight: Double
     let height: Double
@@ -32,17 +32,17 @@ struct DetailPokemon: Codable {
     private enum CodingKeys: String, CodingKey {
         case id, weight, height, stats, types, name, url
     }
-
+    
     init() {
-          id = 0
-          weight = 0
-          height = 0
-          stats = []
-          types = []
-          name = ""
-          url = URL(string: "")!
-          color = .clear
-      }
+        id = 0
+        weight = 0
+        height = 0
+        stats = []
+        types = []
+        name = ""
+        url = URL(string: "")!
+        color = .clear
+    }
     
     init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
@@ -57,7 +57,14 @@ struct DetailPokemon: Codable {
         url = URL(string: "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/\(id).png")!
         color = UIColor.random()
     }
-
+    
+    func hash(into hasher: inout Hasher) {
+       hasher.combine(id)
+   }
+   
+   static func ==(lhs: DetailPokemon, rhs: DetailPokemon) -> Bool {
+       return lhs.id == rhs.id
+   }
 }
 
 struct StatContainer: Codable {
