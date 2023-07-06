@@ -70,7 +70,7 @@ extension FavoritePokemonViewController: UICollectionViewDataSource {
                 }
                 let list = FavoritesRepository.shared.getList()
                 let item = list[indexPath.row]
-                cell.configure(with: item.url, id: String(item.id), color: item.color)
+                cell.setup(with: item.url, id: String(item.id), color: item.color)
                 return cell
             }
         }

@@ -149,11 +149,10 @@ extension HomeViewController: UICollectionViewDataSource {
                 else { return .init()}
                 return cell
             } else {
-                // collection view image pokemon
                 guard let cell  = collectionView.dequeueReusableCell(withReuseIdentifier: PokemonCollectionViewCell.reuseIdentifier, for: indexPath) as? PokemonCollectionViewCell
                 else { return .init()}
                 let pokemon = pokemonList[indexPath.row]
-                cell.configure(with: pokemon.url, id: String(pokemon.id), color: pokemon.color)
+                cell.setup(with: pokemon.url, id: String(pokemon.id), color: pokemon.color)
                 return cell
             }
         } else if collectionView == collectionTypesView {

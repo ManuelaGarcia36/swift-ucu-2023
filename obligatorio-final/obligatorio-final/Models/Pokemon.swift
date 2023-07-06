@@ -19,6 +19,7 @@ struct Pokemon: Codable {
     let url: String
 }
 
+// Hashable to order
 struct DetailPokemon: Codable, Hashable {
     let id: Int
     let weight: Double
@@ -33,6 +34,7 @@ struct DetailPokemon: Codable, Hashable {
         case id, weight, height, stats, types, name, url
     }
     
+    // only for init empty view in comparate controller
     init() {
         id = 0
         weight = 0

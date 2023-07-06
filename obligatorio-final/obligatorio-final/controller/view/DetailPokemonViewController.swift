@@ -48,10 +48,8 @@ class DetailPokemonViewController: UIViewController {
     func updateFavoriteStatus() {
         if let pokemonID = detailPokemon {
             if FavoritesRepository.shared.isFavorite(pokemonID) {
-                print("eliminando de favorito")
                 FavoritesRepository.shared.removeFavorite(pokemonID)
             } else {
-                print("agregando a favorito")
                 FavoritesRepository.shared.addFavorite(pokemonID)
             }
         }

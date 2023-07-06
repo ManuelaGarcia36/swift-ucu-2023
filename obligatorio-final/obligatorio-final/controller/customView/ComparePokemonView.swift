@@ -36,15 +36,14 @@ class ComparePokemonView: NibLoadingView {
     }
     
     func setup(detailPokemon: DetailPokemon) {
-        statstTableView.backgroundColor = UIColor(hex: 0x819FC0)
-        myContentView.backgroundColor = UIColor(hex: 0x819FC0)
+        statstTableView.backgroundColor = UIColor(hex: 0xBAD5F2)
+        myContentView.backgroundColor = UIColor(hex: 0xBAD5F2)
         myContentView.layer.cornerRadius = 15.0
         pokemonNameLabel.text = detailPokemon.name
         pokemonImage.kf.setImage(with: detailPokemon.url)
         idPokemonLabel.text = String("#\(detailPokemon.id)")
         stats = detailPokemon.stats
         statstTableView.reloadData()
-
     }
     
 }
@@ -60,9 +59,9 @@ extension ComparePokemonView: UITableViewDataSource, UITableViewDelegate {
         }
         let stat = stats[indexPath.row]
         cell.configure(with: stat)
+        cell.backgroundColor = UIColor(hex: 0xBAD5F2)
         return cell
     }
-    
 }
 
 extension UIColor {

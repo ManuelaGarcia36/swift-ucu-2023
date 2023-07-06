@@ -23,7 +23,7 @@ class PokemonCollectionViewCell: UICollectionViewCell {
         super.awakeFromNib()
     }
     
-    func configure(with imageUrl: URL,id: String, color: UIColor) {
+    func setup(with imageUrl: URL,id: String, color: UIColor) {
         cellImageView.kf.setImage(with: imageUrl)
         contentPokemonImageView.backgroundColor = color
         contentPokemonImageView.layer.cornerRadius = 45.0

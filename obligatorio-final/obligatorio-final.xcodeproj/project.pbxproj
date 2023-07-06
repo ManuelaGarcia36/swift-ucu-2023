@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		2D4323E8CA8E325A096B2F2B /* Pods_obligatorio_final.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EA0D62064B5F5CD4E81DB109 /* Pods_obligatorio_final.framework */; };
 		F5067B6B2A56387B0002732A /* RegistrationUserViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5067B6A2A56387B0002732A /* RegistrationUserViewController.swift */; };
+		F5067B6F2A567DA40002732A /* StringExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5067B6E2A567DA40002732A /* StringExtension.swift */; };
 		F54C87DE2A3A788500A8F988 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87DD2A3A788500A8F988 /* AppDelegate.swift */; };
 		F54C87E02A3A788500A8F988 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87DF2A3A788500A8F988 /* SceneDelegate.swift */; };
 		F54C87E22A3A788500A8F988 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F54C87E12A3A788500A8F988 /* HomeViewController.swift */; };
@@ -23,7 +24,6 @@
 		F5AF32222A533DFC004DF6E0 /* Pods_obligatorio_final.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F5AF32272A5354FC004DF6E0 /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF32262A5354FC004DF6E0 /* ProfileViewController.swift */; };
 		F5AF322B2A5364FF004DF6E0 /* UserRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF322A2A5364FF004DF6E0 /* UserRepository.swift */; };
-		F5AF322D2A5367BC004DF6E0 /* utils.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF322C2A5367BC004DF6E0 /* utils.swift */; };
 		F5AF322F2A538546004DF6E0 /* AuthenticationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5AF322E2A538546004DF6E0 /* AuthenticationViewController.swift */; };
 		F5B4049E2A44F77E00149996 /* TypesCustomCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */; };
 		F5B4049F2A44F77E00149996 /* TypesCustomCollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */; };
@@ -63,6 +63,7 @@
 		6DE78AD7A479FC6EFD916E16 /* Pods-obligatorio-final.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-obligatorio-final.release.xcconfig"; path = "Target Support Files/Pods-obligatorio-final/Pods-obligatorio-final.release.xcconfig"; sourceTree = "<group>"; };
 		EA0D62064B5F5CD4E81DB109 /* Pods_obligatorio_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_obligatorio_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5067B6A2A56387B0002732A /* RegistrationUserViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegistrationUserViewController.swift; sourceTree = "<group>"; };
+		F5067B6E2A567DA40002732A /* StringExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StringExtension.swift; sourceTree = "<group>"; };
 		F54C87DA2A3A788500A8F988 /* obligatorio-final.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "obligatorio-final.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		F54C87DD2A3A788500A8F988 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F54C87DF2A3A788500A8F988 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,7 +79,6 @@
 		F5AF32202A533DFC004DF6E0 /* Pods_obligatorio_final.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; path = Pods_obligatorio_final.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		F5AF32262A5354FC004DF6E0 /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		F5AF322A2A5364FF004DF6E0 /* UserRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserRepository.swift; sourceTree = "<group>"; };
-		F5AF322C2A5367BC004DF6E0 /* utils.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = utils.swift; sourceTree = "<group>"; };
 		F5AF322E2A538546004DF6E0 /* AuthenticationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewController.swift; sourceTree = "<group>"; };
 		F5B4049C2A44F77E00149996 /* TypesCustomCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TypesCustomCollectionViewCell.swift; sourceTree = "<group>"; };
 		F5B4049D2A44F77E00149996 /* TypesCustomCollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = TypesCustomCollectionViewCell.xib; sourceTree = "<group>"; };
@@ -206,17 +206,17 @@
 			isa = PBXGroup;
 			children = (
 				F5DF73832A4E0DFF004CA45C /* ColorExtension.swift */,
+				F5067B6E2A567DA40002732A /* StringExtension.swift */,
 				F5B404AC2A451E0800149996 /* NibLoadingView.swift */,
-				F5AF322C2A5367BC004DF6E0 /* utils.swift */,
 				F5AF32312A53CA43004DF6E0 /* repository */,
 				F5AF32302A53C74F004DF6E0 /* view */,
 				F5AF32282A5364E4004DF6E0 /* user */,
-				F5D951712A4BFF1400978287 /* customSubView */,
+				F5D951712A4BFF1400978287 /* customView */,
 			);
 			path = controller;
 			sourceTree = "<group>";
 		};
-		F5D951712A4BFF1400978287 /* customSubView */ = {
+		F5D951712A4BFF1400978287 /* customView */ = {
 			isa = PBXGroup;
 			children = (
 				F5B404AE2A45229800149996 /* DetailPokemonTableViewCell.swift */,
@@ -226,7 +226,7 @@
 				F5B404A02A44F79700149996 /* PokemonCollectionViewCell.swift */,
 				F5D951732A4C03C500978287 /* EmptyCollectionViewCell.swift */,
 			);
-			path = customSubView;
+			path = customView;
 			sourceTree = "<group>";
 		};
 		F5D951722A4BFF5D00978287 /* view */ = {
@@ -379,7 +379,6 @@
 			files = (
 				F54C87E22A3A788500A8F988 /* HomeViewController.swift in Sources */,
 				F5AF322F2A538546004DF6E0 /* AuthenticationViewController.swift in Sources */,
-				F5AF322D2A5367BC004DF6E0 /* utils.swift in Sources */,
 				F54C87DE2A3A788500A8F988 /* AppDelegate.swift in Sources */,
 				F5AF32272A5354FC004DF6E0 /* ProfileViewController.swift in Sources */,
 				F5B404A22A44F79700149996 /* PokemonCollectionViewCell.swift in Sources */,
@@ -399,6 +398,7 @@
 				F5AF322B2A5364FF004DF6E0 /* UserRepository.swift in Sources */,
 				F5067B6B2A56387B0002732A /* RegistrationUserViewController.swift in Sources */,
 				F5D951752A4C03C500978287 /* EmptyCollectionViewCell.swift in Sources */,
+				F5067B6F2A567DA40002732A /* StringExtension.swift in Sources */,
 				F5B404B02A45229800149996 /* DetailPokemonTableViewCell.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
