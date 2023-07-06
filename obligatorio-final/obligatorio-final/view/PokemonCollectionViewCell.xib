@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21701" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_12" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21679"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="gTV-IL-0wX" customClass="PokemonCollectionViewCell" customModule="obligatorio_final" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+            <autoresizingMask key="autoresizingMask"/>
+            <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                <rect key="frame" x="0.0" y="0.0" width="140" height="140"/>
+                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                <subviews>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JK7-zL-cnE">
+                        <rect key="frame" x="5" y="5" width="130" height="130"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="VP8-WO-aQU">
+                                <rect key="frame" x="0.0" y="0.0" width="130" height="130"/>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemPinkColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="VP8-WO-aQU" secondAttribute="bottom" id="M0B-bh-tYa"/>
+                            <constraint firstItem="VP8-WO-aQU" firstAttribute="top" secondItem="JK7-zL-cnE" secondAttribute="top" id="Vrs-dM-sWT"/>
+                            <constraint firstAttribute="trailing" secondItem="VP8-WO-aQU" secondAttribute="trailing" id="bRA-Os-8Nl"/>
+                            <constraint firstItem="VP8-WO-aQU" firstAttribute="leading" secondItem="JK7-zL-cnE" secondAttribute="leading" id="j1h-SJ-r9V"/>
+                        </constraints>
+                    </view>
+                </subviews>
+            </view>
+            <constraints>
+                <constraint firstItem="JK7-zL-cnE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="0Zp-79-KxU"/>
+                <constraint firstAttribute="bottom" secondItem="JK7-zL-cnE" secondAttribute="bottom" constant="5" id="Cdu-nT-pyx"/>
+                <constraint firstItem="JK7-zL-cnE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="Riw-xs-EkZ"/>
+                <constraint firstAttribute="trailing" secondItem="JK7-zL-cnE" secondAttribute="trailing" constant="5" id="uoZ-iA-eYK"/>
+            </constraints>
+            <connections>
+                <outlet property="cellImageView" destination="VP8-WO-aQU" id="fhI-T6-bqf"/>
+                <outlet property="contentPokemonImageView" destination="JK7-zL-cnE" id="AhP-xP-FVK"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="21"/>
+        </collectionViewCell>
+    </objects>
+    <resources>
+        <systemColor name="systemPinkColor">
+            <color red="1" green="0.17647058823529413" blue="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </systemColor>
+    </resources>
+</document>
